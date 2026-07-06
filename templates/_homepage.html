@@ -335,4 +335,42 @@
     </div><!-- /.ky-blog__inner -->
   </section>
 
+  <!-- ── CONTACT SECTION ───────────────────────────────────────────── -->
+  <section class="ky-contact" style="background-image: url('{{ theme['keith-about.png'] }}');">
+    <div class="ky-contact__inner">
+
+      <div class="ky-contact__card">
+
+        <!-- Header row: heading left, body right -->
+        <div class="ky-contact__header">
+          <h2 class="ky-contact__heading">I want to know what's important to you</h2>
+          <p class="ky-contact__body">Building a better Langford is a team effort. I'm looking forward to hearing your perspective and finding ways we can work together.</p>
+        </div>
+
+        <!-- Contact form -->
+        <form class="ky-contact__form" method="post" action="/contact">
+          <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
+
+          <div class="ky-contact__row">
+            <input type="text"  name="contact[first_name]"   placeholder="First Name"    class="ky-contact__input" autocomplete="given-name" />
+            <input type="text"  name="contact[last_name]"    placeholder="Last Name"     class="ky-contact__input" autocomplete="family-name" />
+          </div>
+
+          <div class="ky-contact__row">
+            <input type="email" name="contact[email]"        placeholder="Email"         class="ky-contact__input" required autocomplete="email" />
+            <input type="tel"   name="contact[phone_number]" placeholder="Phone Number"  class="ky-contact__input" autocomplete="tel" />
+          </div>
+
+          <textarea name="contact[note]" placeholder="Your Message" class="ky-contact__textarea" rows="5"></textarea>
+
+          <div class="ky-contact__footer">
+            <button type="submit" class="ky-contact__submit">Send message</button>
+          </div>
+        </form>
+
+      </div><!-- /.ky-contact__card -->
+
+    </div><!-- /.ky-contact__inner -->
+  </section>
+
 </div>

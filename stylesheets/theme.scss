@@ -2634,3 +2634,177 @@ $ky-progress-radius: 20px;
     font-size: 1.5rem;
   }
 }
+
+/* ── CONTACT SECTION ───────────────────────────────────────────────── */
+
+.ky-contact {
+  background-color: #003144;
+  background-size: cover;
+  background-position: center right;
+  padding: 96px 0;
+}
+
+.ky-contact__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+}
+
+/* Cream card — left ~57% of the row, right side shows photo */
+.ky-contact__card {
+  width: 819px;
+  max-width: 100%;
+  background-color: #faf7ee;
+  border-radius: 20px;
+  padding: 64px;
+  flex-shrink: 0;
+}
+
+/* Header: heading left, body right, 32px gap */
+.ky-contact__header {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  padding-bottom: 32px;
+}
+
+.ky-contact__heading {
+  flex: 1;
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #001720;
+  margin: 0;
+}
+
+.ky-contact__body {
+  flex: 1;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(0, 23, 32, 0.8);
+  margin: 0;
+}
+
+/* Form */
+.ky-contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ky-contact__row {
+  display: flex;
+  gap: 24px;
+}
+
+.ky-contact__input,
+.ky-contact__textarea {
+  flex: 1;
+  min-width: 0;
+  background-color: #e8e3d4;
+  border: none;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #00445e;
+  outline: none;
+
+  &::placeholder {
+    color: #00445e;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #1bd49a;
+  }
+}
+
+.ky-contact__input {
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 100px;
+}
+
+.ky-contact__textarea {
+  padding: 16px 24px;
+  border-radius: 20px;
+  min-height: 144px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.ky-contact__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ky-contact__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1bd49a;
+  color: #001720;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 12px 24px;
+  min-height: 48px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: darken(#1bd49a, 8%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .ky-contact {
+    padding: 3rem 0;
+    background-position: top center;
+  }
+
+  .ky-contact__inner {
+    padding: 0 1rem;
+  }
+
+  .ky-contact__card {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  .ky-contact__header {
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .ky-contact__row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .ky-contact__inner {
+    padding: 0 1.5rem;
+  }
+
+  .ky-contact__card {
+    width: 100%;
+    max-width: 600px;
+    padding: 2.5rem;
+  }
+
+  .ky-contact__heading {
+    font-size: 1.875rem;
+  }
+}
