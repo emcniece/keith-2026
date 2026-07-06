@@ -85,16 +85,91 @@ upload-to-nb/         Deploy target — populated by deploy.sh, drag-and-drop in
 
 Do not edit files in `downloaded-from-nb/`. Copy the file you want to change into the appropriate source directory, edit it there, then run `deploy.sh`.
 
+### Layout template partial strategy
+
+`layout.html` is the single entry point for every page render. It uses a layered routing pattern borrowed from colby-2026:
+
+#### 1. Homepage bypass
+```liquid
+{% if page.is_homepage? and page.type_slug == 'basic' %}
+  {% include "homepage" %}   {# → _homepage.html, owns everything: nav, hero, footer #}
+{% else %}
+  ... normal flow ...
+{% endif %}
+```
+The homepage partial is self-contained — it renders its own nav and footer so NB's `_header.html` / `_footer.html` are never included for it.
+
+#### 2. Slug-based custom page routing
+For pages that need a fully custom layout (not just content), match on `page.slug` inside the `{% else %}` branch:
+```liquid
+{% if page.slug == 'about' %}
+  <main id="content" role="main">{% include "about" %}</main>
+{% elsif page.slug == 'platform' %}
+  <main id="content" role="main">{% include "platform" %}</main>
+{% else %}
+  ... standard NB content flow ...
+{% endif %}
+```
+This bypasses NB's `_content.html` wrapper and lets each partial control its own markup entirely.
+
+#### 3. Hero partial for standard pages
+Non-homepage, non-custom pages still get a shared hero bar:
+```liquid
+{% unless is_session or is_donation or page.slug == 'about' ... %}
+  {% include "hero" %}   {# → _hero.html: page-specific sub-header / banner #}
+{% endunless %}
+```
+
+#### 4. Conditional script and asset loading
+Scripts that are only needed on specific page types are loaded conditionally:
+```liquid
+{% if page.is_homepage? and page.type_slug == 'basic' %}
+  <script src="accordion.js"></script>
+  <script src="counter-animation.js"></script>
+{% endif %}
+```
+
+#### 5. LCP preloads on homepage
+Add `<link rel="preload">` for hero images in `<head>` to avoid layout shift:
+```liquid
+{% if page.is_homepage? and page.type_slug == 'basic' %}
+  <link rel="preload" as="image" href="{{ theme['keith-banner-bg.jpg'] }}" />
+  <link rel="preload" as="image" href="{{ theme['keith-portrait.png'] }}" />
+{% endif %}
+```
+
+#### 6. Non-blocking font loading
+Fonts loaded with `media="print" onload` so they never block render:
+```html
+<link href="https://fonts.googleapis.com/..." rel="stylesheet"
+      media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/..." rel="stylesheet" /></noscript>
+```
+
+#### Status: what's implemented vs. planned
+
+| Pattern | colby-2026 | keith-2026 |
+|---|---|---|
+| Homepage bypass → `_homepage.html` | ✓ | ✓ |
+| Slug-based custom page routing | ✓ | planned |
+| Shared `_hero.html` for inner pages | ✓ | planned |
+| LCP preloads for hero images | ✓ | planned |
+| Non-blocking font load | ✓ | planned |
+| Font Awesome via CDN (non-blocking) | ✓ | planned |
+| OG / twitter meta tags in `<head>` | ✓ | planned |
+| Conditional script loading by page type | ✓ | planned |
+
 ### Key templates
 
 | File | Role |
 |---|---|
-| `templates/layout.html` | Master layout — for homepage renders `_homepage.html` only; for all other pages uses NB's standard header/footer/content flow |
-| `templates/_homepage.html` | **Full custom homepage** — owns everything from nav to footer |
-| `templates/_header.html` | NB site header (used on non-homepage pages) |
+| `templates/layout.html` | Master layout — routes homepage to `_homepage.html`; slug-based routing for custom pages; standard NB flow for everything else |
+| `templates/_homepage.html` | **Full custom homepage** — owns everything: nav, hero, footer |
+| `templates/_hero.html` | Sub-header / page banner shown on inner pages (planned) |
+| `templates/_header.html` | NB site header (used on non-homepage, non-custom pages) |
 | `templates/_footer.html` | NB site footer (used on non-homepage pages) |
 
-The homepage detection in `layout.html` is `{% if page.is_homepage? and page.type_slug == 'basic' %}`.
+Homepage detection: `{% if page.is_homepage? and page.type_slug == 'basic' %}`
 
 ## Deploying to NationBuilder
 
