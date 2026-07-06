@@ -4,32 +4,32 @@
       .on('show.bs.modal', function () {
         var $iframe = $(this).find('iframe');
         if (!$iframe.length) return;
-        // Store original src on first open
+        // Store original src once
         if (!$iframe.data('ky-src')) {
           $iframe.data('ky-src', $iframe.attr('src'));
         }
-        // Restore src if cleared by a previous close
-        if (!$iframe.attr('src') && $iframe.data('ky-src')) {
-          $iframe.attr('src', $iframe.data('ky-src'));
-        }
       })
       .on('shown.bs.modal', function () {
+        // Reload iframe inside the user-gesture window so autoplay is permitted
         var $iframe = $(this).find('iframe');
         if (!$iframe.length) return;
-        var src = $iframe.attr('src') || $iframe.data('ky-src');
+        var src = $iframe.data('ky-src');
         if (!src) return;
-        // YouTube: reload with autoplay=1
-        if (src.indexOf('youtube.com') !== -1 || src.indexOf('youtu.be') !== -1) {
-          src = src.replace(/[?&]autoplay=\d/, '');
-          $iframe.attr('src', src + (src.indexOf('?') !== -1 ? '&' : '?') + 'autoplay=1');
-        }
+
+        // Add autoplay hint (honoured by YouTube; ignored but harmless elsewhere)
+        src = src.replace(/[?&]autoplay=\d/, '');
+        src += (src.indexOf('?') !== -1 ? '&' : '?') + 'autoplay=1';
+
+        // Allow autoplay on the iframe element itself
+        $iframe.attr('allow', 'autoplay; encrypted-media');
+
+        // Force a reload: clear first, then set after a tick
+        $iframe.attr('src', '');
+        setTimeout(function () { $iframe.attr('src', src); }, 50);
       })
       .on('hide.bs.modal', function () {
         var $iframe = $(this).find('iframe');
         if (!$iframe.length) return;
-        var src = $iframe.attr('src');
-        if (src) $iframe.data('ky-src', src);
-        // Clear src to stop playback
         $iframe.attr('src', '');
       });
   });
