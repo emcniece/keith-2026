@@ -2435,6 +2435,35 @@ $ky-progress-radius: 20px;
   &:hover .ky-blog__play {
     background-color: darken(#1bd49a, 8%);
   }
+
+  &.ky-blog__card-img--embed {
+    overflow: hidden;
+    align-items: stretch;
+
+    // Make any iframe fill the slot
+    iframe {
+      width: 100% !important;
+      height: 100% !important;
+      border: none;
+      display: block;
+    }
+
+    // Instagram blockquote before script runs — hide loading flash
+    blockquote {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    // NB / oEmbed wrappers
+    > div,
+    > figure,
+    > .oembed-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: stretch;
+    }
+  }
 }
 
 /* Play button overlay */

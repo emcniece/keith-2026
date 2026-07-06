@@ -1,15 +1,24 @@
+{% assign ky_parts = post.blog_post.content | split: "<!-- more -->" %}
+{% assign ky_before_flip = ky_parts | first %}
+{% assign ky_after_flip  = ky_parts | last %}
+
 <article class="ky-blog__card">
 
-  <a href="{{ post.url }}" class="ky-blog__card-img" aria-label="Read: {{ post.headline }}">
-    {% if post.has_meta_image? %}
+  <div class="ky-blog__card-img{% if ky_before_flip != "" %} ky-blog__card-img--embed{% endif %}">
+    {% if ky_before_flip != "" %}
+      {{ ky_before_flip }}
+    {% elsif post.has_meta_image? %}
       <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+      <div class="ky-blog__play" aria-hidden="true">
+        <i class="fa-solid fa-play"></i>
+      </div>
     {% else %}
       <img src="{{ theme['keith-placeholder.jpg'] }}" alt="{{ post.headline }}" />
+      <div class="ky-blog__play" aria-hidden="true">
+        <i class="fa-solid fa-play"></i>
+      </div>
     {% endif %}
-    <div class="ky-blog__play" aria-hidden="true">
-      <i class="fa-solid fa-play"></i>
-    </div>
-  </a>
+  </div>
 
   <div class="ky-blog__card-body">
     {% assign ky_first_tag = post.page_tags | split: "," | first | strip %}
@@ -17,7 +26,7 @@
       <span class="ky-blog__tag">{{ ky_first_tag }}</span>
     {% endif %}
     <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
-    <p class="ky-blog__card-text">{{ post.blog_post.content | strip_html | truncatewords: 30 }}</p>
+    <p class="ky-blog__card-text">{{ ky_after_flip | strip_html | truncatewords: 30 }}</p>
     <div class="ky-blog__card-footer">
       <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>
       <a href="{{ post.url }}" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
