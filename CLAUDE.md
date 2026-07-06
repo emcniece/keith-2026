@@ -175,31 +175,25 @@ Homepage detection: `{% if page.is_homepage? and page.type_slug == 'basic' %}`
 
 NationBuilder admin: `https://KEITH_NB_SLUG.nationbuilder.com/admin/themes`
 
-### Committing changes
+### Deploy workflow
 
-Use `commit.sh` instead of `git commit` directly — it commits, writes the new hash to `.last-deploy-sha`, and clears `upload-to-nb/`:
+**After every change: commit and push.** A GitHub Action runs automatically on push and uploads all changed files to NationBuilder — no manual drag-and-drop or template editor steps required.
 
 ```bash
+git add <files>
 bash commit.sh "your commit message"
+git push
 ```
 
-`git add -u` is called automatically; manually `git add` any new untracked files first.
+`commit.sh` commits, writes the new hash to `.last-deploy-sha`, and clears `upload-to-nb/`. `git add -u` is called automatically inside it; manually `git add` any new untracked files first.
 
-### Prepare a deploy
+### Legacy manual deploy (reference only)
 
-Update the datestamp comment in `stylesheets/theme.scss` (the `COLBY 2026 CUSTOM STYLES — DATE` line near the bottom), then run:
+`deploy.sh` populates `upload-to-nb/` with changed files. This was the old process before the GitHub Action was set up — no longer needed for normal deployments.
 
-```bash
-bash deploy.sh
-```
-
-This seeds `upload-to-nb/` with the complete NB theme baseline, then overwrites with all our modified files.
-
-### CRITICAL: Two separate upload paths
-
-**Template files** (all `.html` files) → paste into the **NationBuilder template code editor** (admin → Theme → Edit → click the file in the left-hand list). Drag-and-drop uploads `.html` as a static asset — NationBuilder ignores those as templates.
-
-**Static assets** (`theme.scss`, JS files, images, fonts) → drag-and-drop from `upload-to-nb/` into the NationBuilder theme file manager.
+The old two-path upload rules (kept for reference):
+- **Template files** (`.html`) → NationBuilder template code editor (admin → Theme → Edit)
+- **Static assets** (`theme.scss`, JS, images) → drag-and-drop into NB theme file manager
 
 ### File reference rules (NationBuilder Liquid)
 

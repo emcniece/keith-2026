@@ -2463,6 +2463,11 @@ $ky-progress-radius: 20px;
       display: flex;
       align-items: stretch;
     }
+
+    // Hide any text paragraphs that accompany the embed in before-the-flip content
+    p {
+      display: none;
+    }
   }
 }
 
