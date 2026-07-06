@@ -196,4 +196,49 @@
     </div>
   </section>
 
+  <!-- ── PLATFORM SECTION ───────────────────────────────────────── -->
+  <section class="ky-platform">
+
+    <!-- Top block: cream bg, rounded top-left, 3 icon features -->
+    <div class="ky-platform__top">
+      <div class="ky-platform__intro">
+        <p class="ky-platform__kicker">PLATFORM</p>
+        <h2 class="ky-platform__heading">The plan ahead</h2>
+        <p class="ky-platform__body">We've laid a strong foundation, but there is still much to do. These are the key areas where I am committed to working alongside you to build the kind of city we all deserve.</p>
+      </div>
+      <div class="ky-platform__features">
+        <div class="ky-platform__feature">
+          <div class="ky-platform__feature-icon" aria-hidden="true"></div>
+          <h3 class="ky-platform__feature-heading">Growth with purpose</h3>
+          <p class="ky-platform__feature-body">Focusing on the "Who, and who benefits?" of every development.</p>
+        </div>
+        <div class="ky-platform__feature">
+          <div class="ky-platform__feature-icon" aria-hidden="true"></div>
+          <h3 class="ky-platform__feature-heading">Lower taxes, more stability</h3>
+          <p class="ky-platform__feature-body">Moving toward a progressive tax system that lowers the burden for the majority of residents by eliminating outdated subsidies.</p>
+        </div>
+        <div class="ky-platform__feature">
+          <div class="ky-platform__feature-icon" aria-hidden="true"></div>
+          <h3 class="ky-platform__feature-heading">A vibrant downtown</h3>
+          <p class="ky-platform__feature-body">Investing in Station Avenue and community events to ensure Langford is a destination for culture and commerce, not just a bedroom community.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom block: green bg, rounded bottom-left, signup form -->
+    <div class="ky-platform__bottom">
+      <h3 class="ky-platform__soon">Full platform coming soon...</h3>
+      <div class="ky-platform__signup-row">
+        <p class="ky-platform__signup-text">I'll let you know when my full platform is released, so you can make an informed decision at the ballot box</p>
+        <form class="ky-platform__form" method="post" action="/signup">
+          <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
+          <input type="text" name="signup[first_name]" placeholder="Name" class="ky-platform__input" autocomplete="given-name" />
+          <input type="email" name="signup[email]" placeholder="Email" class="ky-platform__input" required autocomplete="email" />
+          <button type="submit" class="ky-platform__submit">Stay Informed</button>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
 </div>
