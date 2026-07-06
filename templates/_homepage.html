@@ -283,15 +283,11 @@
       <!-- Post cards + "See more" button -->
       <div class="ky-blog__content">
         <div class="ky-blog__row">
-          <!--
-            KY_DEBUG
-            page.subpages.size={{ page.subpages.size }}
-            {% for sp in page.subpages %}subpage:{{ sp.name }}|{{ sp.slug }}|{{ sp.type_slug }} {% endfor %}
-            site.blog={{ site.blog }}
-            site.blog_posts.size={{ site.blog_posts.size }}
-            site.recent_blog_posts.size={{ site.recent_blog_posts.size }}
-            site.nation.slug={{ site.nation.slug }}
-          -->
+          <div id="ky-debug" style="display:none">
+            {% for sp in page.subpages %}
+              <span>SP:{{ sp.name }}|{{ sp.slug }}|{{ sp.type_slug }}|{{ sp.headline }}|{{ sp.url }}|{{ sp.type }}</span>
+            {% endfor %}
+          </div>
         </div><!-- /.ky-blog__row -->
 
         <a href="/blog" class="ky-blog__more">See more blog posts</a>
