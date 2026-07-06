@@ -1,4 +1,4 @@
-{% for post in page.blog.most_recent_blog_posts limit: 2 %}
+{% for post in tag.most_recent_published_pages limit: 2 %}
 <article class="ky-blog__card">
 
   <a href="{{ post.url }}" class="ky-blog__card-img" aria-label="Read: {{ post.headline }}">
