@@ -2432,50 +2432,16 @@ $ky-progress-radius: 20px;
     object-fit: cover;
   }
 
-  &:hover .ky-blog__play {
-    background-color: darken(#1bd49a, 8%);
-  }
-
-  &.ky-blog__card-img--embed {
-    overflow: hidden;
-    align-items: stretch;
-
-    // Make any iframe fill the slot
-    iframe {
-      width: 100% !important;
-      height: 100% !important;
-      border: none;
-      display: block;
-    }
-
-    // Instagram blockquote before script runs — hide loading flash
-    blockquote {
-      width: 100% !important;
-      margin: 0 !important;
-    }
-
-    // NB / oEmbed wrappers
-    > div,
-    > figure,
-    > .oembed-wrapper {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: stretch;
-    }
-
-    // Hide the second paragraph (text caption) that accompanies the embed
-    p {
-      margin-bottom: 0px;
-    }
-    p + p {
-      display: none;
-    }
-  }
 }
 
 /* Play button overlay */
 .ky-blog__play {
+  // button reset
+  appearance: none;
+  border: none;
+  background-color: #1bd49a;
+  cursor: pointer;
+
   position: relative;
   z-index: 1;
   display: flex;
@@ -2483,14 +2449,78 @@ $ky-progress-radius: 20px;
   justify-content: center;
   width: 80px;
   height: 80px;
-  background-color: #1bd49a;
   border-radius: 9999px;
   transition: background-color 0.15s;
+
+  &:hover,
+  &:focus-visible {
+    background-color: darken(#1bd49a, 8%);
+  }
 
   .fa-play {
     font-size: 2rem;
     color: #001720;
     margin-left: 4px; // optical centering for play triangle
+  }
+}
+
+/* Blog embed modal */
+.ky-blog__modal {
+  .modal-dialog {
+    max-width: 560px;
+  }
+}
+
+.ky-blog__modal-content {
+  background: #001720;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ky-blog__modal-close {
+  // button reset
+  appearance: none;
+  border: none;
+  cursor: pointer;
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-radius: 9999px;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  i { font-size: 1rem; }
+}
+
+.ky-blog__modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  // Let oEmbed iframes size themselves but cap to dialog width
+  iframe {
+    max-width: 100%;
+    border: none;
+    display: block;
+  }
+
+  blockquote {
+    margin: 0 !important;
+    width: 100% !important;
   }
 }
 
