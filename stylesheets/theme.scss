@@ -2464,8 +2464,8 @@ $ky-progress-radius: 20px;
       align-items: stretch;
     }
 
-    // Hide any text paragraphs that accompany the embed in before-the-flip content
-    p {
+    // Hide the second paragraph (text caption) that accompanies the embed
+    p + p {
       display: none;
     }
   }
