@@ -1470,3 +1470,468 @@ $ky-hero-cream: #e8e3d4;
     font-size: 1.875rem;
   }
 }
+
+/* ── PROGRESS / ACHIEVEMENTS SECTION ──────────────────────────────── */
+
+$ky-progress-bg: #003144;
+$ky-progress-card-bg: #faf7ee;
+$ky-progress-tag-bg: #e8e3d4;
+$ky-progress-dark: #001720;
+$ky-progress-green: #1bd49a;
+$ky-progress-green-text: #01734f;
+$ky-progress-radius: 20px;
+
+.ky-progress {
+  background-color: $ky-progress-bg;
+  padding: 96px 0;
+}
+
+.ky-progress__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+/* Intro block */
+.ky-progress__intro {
+  max-width: 650px;
+  padding-bottom: 36px;
+}
+
+.ky-progress__kicker {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(250, 247, 238, 0.8);
+  margin: 0 0 28px;
+}
+
+.ky-progress__heading {
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #faf7ee;
+  margin: 0 0 20px;
+}
+
+.ky-progress__body {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(250, 247, 238, 0.8);
+  margin: 0;
+}
+
+/* Two-column grid */
+.ky-progress__grid {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* Right column: two stacked cards */
+.ky-progress__stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  min-width: 0;
+}
+
+/* Base card */
+.ky-progress__card {
+  background-color: $ky-progress-card-bg;
+  overflow: hidden;
+}
+
+/* Large feature card (left column): image top, text bottom */
+.ky-progress__card--feature {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: $ky-progress-radius;
+
+  .ky-progress__card-img {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: $ky-progress-radius $ky-progress-radius 0 0;
+    overflow: hidden;
+    background-color: $ky-progress-dark;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .ky-progress__card-body {
+    padding: 48px;
+  }
+
+  .ky-progress__card-heading--lg {
+    font-size: 2.25rem;
+  }
+
+  .ky-progress__card-text--lg {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+}
+
+/* Side card (right column): image left, text right */
+.ky-progress__card--side {
+  display: flex;
+  border-radius: $ky-progress-radius;
+
+  .ky-progress__card-img {
+    flex: 0 0 40%;
+    position: relative;
+    border-radius: $ky-progress-radius 0 0 $ky-progress-radius;
+    overflow: hidden;
+    background-color: $ky-progress-dark;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .ky-progress__card-body {
+    flex: 1;
+    padding: 36px 48px;
+    min-width: 0;
+  }
+}
+
+/* Shared card body elements */
+.ky-progress__tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: $ky-progress-tag-bg;
+  color: $ky-progress-dark;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.ky-progress__card-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: $ky-progress-dark;
+  margin: 0 0 16px;
+}
+
+.ky-progress__card-text {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 23, 32, 0.8);
+  margin: 0 0 32px;
+}
+
+.ky-progress__card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Feature card "Read More" button — green text variant */
+.ky-progress__card--feature .ky-btn--primary {
+  gap: 6px;
+  color: $ky-progress-green-text;
+  margin-top: 0;
+
+  &:hover {
+    color: $ky-progress-green-text;
+  }
+}
+
+/* Text-only "Read More" link (side cards) */
+.ky-progress__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $ky-progress-green-text;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($ky-progress-green-text, 10%);
+    text-decoration: none;
+  }
+
+  .fa-chevron-right {
+    font-size: 0.75rem;
+  }
+}
+
+/* Sticker badge on feature card image */
+.ky-progress__sticker {
+  position: absolute;
+  bottom: 37px;
+  left: 22px;
+  width: 96px;
+  height: 96px;
+  background-color: $ky-progress-green;
+  border-radius: 9999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.ky-progress__sticker-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $ky-progress-dark;
+}
+
+.ky-progress__sticker-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $ky-progress-dark;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .ky-progress {
+    padding: 3rem 0;
+  }
+
+  .ky-progress__inner {
+    padding: 0 1rem;
+  }
+
+  .ky-progress__intro {
+    padding-bottom: 2rem;
+  }
+
+  .ky-progress__grid {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ky-progress__stack {
+    gap: 1.5rem;
+  }
+
+  .ky-progress__card--feature {
+    .ky-progress__card-body {
+      padding: 1.5rem;
+    }
+
+    .ky-progress__card-heading--lg {
+      font-size: 1.75rem;
+    }
+  }
+
+  .ky-progress__card--side {
+    flex-direction: column;
+
+    .ky-progress__card-img {
+      flex: none;
+      height: 180px;
+      border-radius: $ky-progress-radius $ky-progress-radius 0 0;
+    }
+
+    .ky-progress__card-body {
+      padding: 1.5rem;
+    }
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .ky-progress__inner {
+    padding: 0 1.5rem;
+  }
+
+  .ky-progress__grid {
+    gap: 1.5rem;
+  }
+
+  .ky-progress__stack {
+    gap: 1.5rem;
+  }
+
+  .ky-progress__card--feature {
+    .ky-progress__card-body {
+      padding: 2rem;
+    }
+
+    .ky-progress__card-heading--lg {
+      font-size: 1.875rem;
+    }
+  }
+
+  .ky-progress__card--side {
+    .ky-progress__card-body {
+      padding: 1.5rem 2rem;
+    }
+  }
+}
+
+/* ── STATS CTA BAR ─────────────────────────────────────────────────── */
+
+.ky-stats {
+  background-color: #003144;
+  position: relative;
+
+  /* Extends the dark pill bg flush to the left viewport edge */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    right: auto;
+    width: 50vw;
+    background-color: #001720;
+  }
+}
+
+.ky-stats__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Dark pill: fills from left edge to ~right, rounded right end */
+.ky-stats__list {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background-color: #001720;
+  margin: 0;
+  padding: 48px 120px 48px 36px;
+  border-radius: 0 9999px 9999px 0;
+  list-style: none;
+}
+
+.ky-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 144px;
+  flex-shrink: 0;
+}
+
+.ky-stats__num {
+  font-family: 'Faustina', serif;
+  font-size: 3.125rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #1bd49a;
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
+
+.ky-stats__label {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #faf7ee;
+  margin: 0;
+}
+
+/* "See More" button — floats off the right end of the pill */
+.ky-stats__btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1bd49a;
+  color: #001720;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 12px 24px;
+  min-height: 48px;
+  border-radius: 9999px;
+  text-decoration: none;
+  margin-left: -44px;
+  white-space: nowrap;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: darken(#1bd49a, 8%);
+    color: #001720;
+    text-decoration: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .ky-stats::before {
+    display: none;
+  }
+
+  .ky-stats__content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+  }
+
+  .ky-stats__list {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    justify-content: flex-start;
+  }
+
+  .ky-stats__item {
+    width: calc(50% - 0.75rem);
+  }
+
+  .ky-stats__btn {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .ky-stats__list {
+    padding: 2.5rem 4rem 2.5rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .ky-stats__item {
+    width: auto;
+    flex: 1;
+  }
+
+  .ky-stats__num {
+    font-size: 2.5rem;
+  }
+}
