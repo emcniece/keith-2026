@@ -2469,6 +2469,10 @@ $ky-progress-radius: 20px;
   .modal-dialog {
     max-width: 560px;
   }
+
+  .modal-content {
+    min-height: 700px;
+  }
 }
 
 .ky-blog__modal-content {
@@ -2521,6 +2525,10 @@ $ky-progress-radius: 20px;
   blockquote {
     margin: 0 !important;
     width: 100% !important;
+  }
+
+  p + p {
+    display: none;
   }
 }
 
