@@ -283,45 +283,7 @@
       <!-- Post cards + "See more" button -->
       <div class="ky-blog__content">
         <div class="ky-blog__row">
-
-          <!-- Post 1 -->
-          <article class="ky-blog__card">
-            <a href="/blog/tax-increases-langford" class="ky-blog__card-img" aria-label="Watch: What's behind the tax increases in Langford?">
-              <img src="{{ theme['keith-placeholder.jpg'] }}" alt="Keith Yacucha discussing Langford tax increases" />
-              <div class="ky-blog__play" aria-hidden="true">
-                <i class="fa-solid fa-play"></i>
-              </div>
-            </a>
-            <div class="ky-blog__card-body">
-              <span class="ky-blog__tag">Affordability</span>
-              <h3 class="ky-blog__card-heading">What's behind the tax increases in Langford?</h3>
-              <p class="ky-blog__card-text">The progress we've made this term marks the beginning of a stronger, more sustainable Langford. A foundation built on action, not just words.</p>
-              <div class="ky-blog__card-footer">
-                <span class="ky-blog__card-date">June 26th, 2026</span>
-                <a href="/blog/tax-increases-langford" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Post 2 -->
-          <article class="ky-blog__card">
-            <a href="/blog/healthcare-access-westshore" class="ky-blog__card-img" aria-label="Watch: Healthcare access for Westshore families">
-              <img src="{{ theme['keith-placeholder.jpg'] }}" alt="Keith Yacucha on healthcare access in Langford" />
-              <div class="ky-blog__play" aria-hidden="true">
-                <i class="fa-solid fa-play"></i>
-              </div>
-            </a>
-            <div class="ky-blog__card-body">
-              <span class="ky-blog__tag">Healthcare</span>
-              <h3 class="ky-blog__card-heading">What's behind the tax increases in Langford?</h3>
-              <p class="ky-blog__card-text">The progress we've made this term marks the beginning of a stronger, more sustainable Langford. A foundation built on action, not just words.</p>
-              <div class="ky-blog__card-footer">
-                <span class="ky-blog__card-date">June 26th, 2026</span>
-                <a href="/blog/healthcare-access-westshore" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </article>
-
+          {% tag "blog" with "ky_blog_posts" %}
         </div><!-- /.ky-blog__row -->
 
         <a href="/blog" class="ky-blog__more">See more blog posts</a>
