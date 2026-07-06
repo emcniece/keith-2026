@@ -1,7 +1,3 @@
-{% assign ky_parts = post.blog_post.content | split: "<!-- more -->" %}
-{% assign ky_before_flip = ky_parts | first %}
-{% assign ky_after_flip  = ky_parts | last %}
-
 <article class="ky-blog__card">
 
   <div class="ky-blog__card-img">
@@ -10,7 +6,7 @@
     {% else %}
       <img src="{{ theme['keith-blog-card.jpg'] }}" alt="{{ post.headline }}" />
     {% endif %}
-    {% if ky_parts.size > 1 %}
+    {% if post.blog_post.content.size > 0 %}
       <button class="ky-blog__play"
               data-bs-toggle="modal"
               data-bs-target="#ky-blog-modal-{{ post.id }}"
@@ -26,7 +22,7 @@
       <span class="ky-blog__tag">{{ ky_first_tag.name }}</span>
     {% endif %}
     <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
-    <p class="ky-blog__card-text">{{ ky_after_flip | strip_html | truncatewords: 30 }}</p>
+    <p class="ky-blog__card-text">{{ post.blog_post.content_full | strip_html | truncatewords: 30 }}</p>
     <div class="ky-blog__card-footer">
       <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>
       <a href="{{ post.url }}" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
@@ -35,7 +31,7 @@
 
 </article>
 
-{% if ky_parts.size > 1 %}
+{% if post.blog_post.content.size > 0 %}
 <div class="modal fade ky-blog__modal" id="ky-blog-modal-{{ post.id }}" tabindex="-1" aria-label="{{ post.headline }}" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content ky-blog__modal-content">
@@ -43,7 +39,7 @@
         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
       </button>
       <div class="ky-blog__modal-body">
-        {{ ky_before_flip }}
+        {{ post.blog_post.content }}
       </div>
     </div>
   </div>
