@@ -1,0 +1,11 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    {% if site.footer_content.size > 0 %}
+      <div class="site-footer__disclaimer">{{ site.footer_content }}</div>
+    {% endif %}
+    {% include "social_icons" %}
+  </div>
+
+  <!-- NationBuilder attribution (required) -->
+  <div style="display:none">{{ t_general_created_with }} <a href="{{ site.attribution_url }}" target="_blank" rel="noopener">{{ t_general_nationbuilder }}</a></div>
+</footer>
