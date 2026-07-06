@@ -283,12 +283,8 @@
       <!-- Post cards + "See more" button -->
       <div class="ky-blog__content">
         <div class="ky-blog__row">
-          {% for sp in page.subpages %}
-            {% if sp.blog %}
-              {% for post in sp.blog.most_recent_blog_posts limit: 2 %}
-                {% include "ky_blog_posts" with post %}
-              {% endfor %}
-            {% endif %}
+          {% for post in site.most_recent_blog_post_pages limit: 2 %}
+            {% include "ky_blog_posts" with post %}
           {% endfor %}
         </div><!-- /.ky-blog__row -->
 
