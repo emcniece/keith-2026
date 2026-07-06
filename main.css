@@ -1,92 +1,93 @@
-/* bundled: tokens + base + components + sections — 2026-06-15 */
-/* Design tokens extracted from Figma — "resources and components" section */
+/* bundled: tokens + base + components + sections — keith-2026 */
+/* Design tokens extracted from Figma colour swatches */
 :root {
 
   /* ── Colors ─────────────────────────────────────────────── */
-  --color-pink-50:   #ffeaf5;
-  --color-pink-100:  #ffcce6;
-  --color-pink-500:  #dd147a;
-  --color-pink-600:  #bb0b64;
-  --color-pink-700:  #9e0452;
-  --color-blue-500:  #2354e3;
-  --color-blue-600:  #1a49d4;
-  --color-blue-700:  #113ec4;
-  --color-blue-900:  #0c2c8b;
-  --color-yellow-300: #efc30c;
-  --color-white:     #ffffff;
+  --color-green-50:   #a8edd7;
+  --color-green-100:  #58e4b8;
+  --color-green-500:  #1bd49a;
+  --color-green-600:  #0fb581;
+  --color-green-700:  #039164;
+  --color-blue-500:   #0091ca;
+  --color-blue-600:   #006d97;
+  --color-blue-700:   #00445e;
+  --color-blue-900:   #003144;
+  --color-teal-300:   #6cd6ff;
+  --color-cream:      #faf7ee;
+  --color-white:      #ffffff;
 
   /* ── Section backgrounds ─────────────────────────────────── */
-  --section-1-bg:    var(--color-pink-50);    /* light pink */
-  --section-2-bg:    var(--color-yellow-300); /* yellow */
-  --section-3-bg:    var(--color-blue-700);   /* blue */
-  --section-4-bg:    var(--color-pink-500);   /* pink */
+  --section-1-bg:    var(--color-cream);       /* light cream */
+  --section-2-bg:    var(--color-teal-300);    /* sky teal */
+  --section-3-bg:    var(--color-blue-700);    /* dark blue */
+  --section-4-bg:    var(--color-green-500);   /* bright green */
   --section-3-heading: var(--color-white);
-  --section-3-accent:  var(--color-yellow-300);
+  --section-3-accent:  var(--color-green-500);
   --section-2-body:  var(--color-blue-900);
 
-  /* ── Buttons — Variant 1 (pink solid / pink outline) ────── */
-  --btn-v1-solid-bg:           var(--color-pink-500);
-  --btn-v1-solid-text:         var(--color-pink-50);
-  --btn-v1-solid-bg-hover:     var(--color-pink-600);
+  /* ── Buttons — Variant 1 (green solid / green outline) ─── */
+  --btn-v1-solid-bg:           var(--color-green-500);
+  --btn-v1-solid-text:         var(--color-blue-900);
+  --btn-v1-solid-bg-hover:     var(--color-green-600);
   --btn-v1-solid-text-hover:   var(--color-white);
-  --btn-v1-solid-bg-pressed:   var(--color-pink-700);
+  --btn-v1-solid-bg-pressed:   var(--color-green-700);
   --btn-v1-solid-text-pressed: var(--color-white);
-  --btn-v1-outline-border:         var(--color-pink-500);
-  --btn-v1-outline-text:           var(--color-pink-500);
-  --btn-v1-outline-border-hover:   var(--color-pink-600);
-  --btn-v1-outline-text-hover:     var(--color-pink-600);
-  --btn-v1-outline-border-pressed: var(--color-pink-700);
-  --btn-v1-outline-text-pressed:   var(--color-pink-700);
+  --btn-v1-outline-border:         var(--color-green-500);
+  --btn-v1-outline-text:           var(--color-green-700);
+  --btn-v1-outline-border-hover:   var(--color-green-600);
+  --btn-v1-outline-text-hover:     var(--color-green-600);
+  --btn-v1-outline-border-pressed: var(--color-green-700);
+  --btn-v1-outline-text-pressed:   var(--color-green-700);
 
   /* ── Buttons — Variant 2 (blue solid / blue outline) ────── */
   --btn-v2-solid-bg:           var(--color-blue-700);
-  --btn-v2-solid-text:         var(--color-yellow-300);
-  --btn-v2-solid-bg-hover:     #0a33ab;
-  --btn-v2-solid-text-hover:   #ffdf5a;
-  --btn-v2-solid-bg-pressed:   var(--color-blue-900);
-  --btn-v2-solid-text-pressed: #ffeda2;
+  --btn-v2-solid-text:         var(--color-green-500);
+  --btn-v2-solid-bg-hover:     var(--color-blue-900);
+  --btn-v2-solid-text-hover:   var(--color-green-100);
+  --btn-v2-solid-bg-pressed:   #001720;
+  --btn-v2-solid-text-pressed: var(--color-green-50);
   --btn-v2-outline-border:         var(--color-blue-700);
   --btn-v2-outline-text:           var(--color-blue-700);
-  --btn-v2-outline-border-hover:   #0a33ab;
-  --btn-v2-outline-text-hover:     #0a33ab;
-  --btn-v2-outline-border-pressed: var(--color-blue-900);
-  --btn-v2-outline-text-pressed:   var(--color-blue-900);
+  --btn-v2-outline-border-hover:   var(--color-blue-900);
+  --btn-v2-outline-text-hover:     var(--color-blue-900);
+  --btn-v2-outline-border-pressed: #001720;
+  --btn-v2-outline-text-pressed:   #001720;
 
-  /* ── Buttons — Variant 3 (yellow solid / yellow outline) ── */
-  --btn-v3-solid-bg:           var(--color-yellow-300);
-  --btn-v3-solid-text:         var(--color-blue-700);
-  --btn-v3-solid-bg-hover:     #d8ae00;
-  --btn-v3-solid-text-hover:   #0a33ab;
-  --btn-v3-solid-bg-pressed:   #c19c03;
-  --btn-v3-solid-text-pressed: var(--color-blue-900);
-  --btn-v3-outline-border:         var(--color-yellow-300);
-  --btn-v3-outline-text:           var(--color-yellow-300);
-  --btn-v3-outline-border-hover:   #ffdf5a;
-  --btn-v3-outline-text-hover:     #ffdf5a;
-  --btn-v3-outline-border-pressed: #ffeda2;
-  --btn-v3-outline-text-pressed:   #ffeda2;
+  /* ── Buttons — Variant 3 (teal solid / teal outline) ────── */
+  --btn-v3-solid-bg:           var(--color-teal-300);
+  --btn-v3-solid-text:         var(--color-blue-900);
+  --btn-v3-solid-bg-hover:     #00b7fe;
+  --btn-v3-solid-text-hover:   var(--color-blue-900);
+  --btn-v3-solid-bg-pressed:   var(--color-blue-500);
+  --btn-v3-solid-text-pressed: var(--color-white);
+  --btn-v3-outline-border:         var(--color-teal-300);
+  --btn-v3-outline-text:           var(--color-teal-300);
+  --btn-v3-outline-border-hover:   #00b7fe;
+  --btn-v3-outline-text-hover:     #00b7fe;
+  --btn-v3-outline-border-pressed: var(--color-blue-500);
+  --btn-v3-outline-text-pressed:   var(--color-blue-500);
 
-  /* ── Buttons — Variant 4 (pale pink solid / pale outline) ─ */
-  --btn-v4-solid-bg:           var(--color-pink-50);
-  --btn-v4-solid-text:         var(--color-pink-500);
+  /* ── Buttons — Variant 4 (pale green solid / pale outline) ─ */
+  --btn-v4-solid-bg:           var(--color-green-50);
+  --btn-v4-solid-text:         var(--color-green-700);
   --btn-v4-solid-bg-hover:     var(--color-white);
-  --btn-v4-solid-text-hover:   var(--color-pink-500);
+  --btn-v4-solid-text-hover:   var(--color-green-700);
   --btn-v4-solid-bg-pressed:   var(--color-white);
-  --btn-v4-solid-text-pressed: var(--color-pink-500);
-  --btn-v4-outline-border:         var(--color-pink-50);
-  --btn-v4-outline-text:           var(--color-pink-50);
+  --btn-v4-solid-text-pressed: var(--color-green-700);
+  --btn-v4-outline-border:         var(--color-green-50);
+  --btn-v4-outline-text:           var(--color-green-50);
   --btn-v4-outline-border-hover:   var(--color-white);
   --btn-v4-outline-text-hover:     var(--color-white);
   --btn-v4-outline-border-pressed: var(--color-white);
   --btn-v4-outline-text-pressed:   var(--color-white);
 
   /* ── Menu ────────────────────────────────────────────────── */
-  --menu-color:         var(--color-pink-50);
+  --menu-color:         var(--color-green-50);
   --menu-color-hover:   var(--color-white);
   --menu-color-pressed: var(--color-white);
 
   /* ── Form inputs ─────────────────────────────────────────── */
-  --input-bg:             var(--color-pink-50);
+  --input-bg:             var(--color-green-50);
   --input-bg-hover:       var(--color-white);
   --input-bg-active:      var(--color-white);
   --input-border:         var(--color-blue-500);
@@ -102,10 +103,10 @@
   --feedback-success-subdued: #e5edeb;
 
   /* ── Checkbox ────────────────────────────────────────────── */
-  --checkbox-unchecked-bg:    var(--color-pink-50);
-  --checkbox-checked-bg:      var(--color-yellow-300);
-  --checkbox-checked-bg-hover: #c19c03;
-  --checkbox-checkmark:       var(--color-blue-500);
+  --checkbox-unchecked-bg:     var(--color-green-50);
+  --checkbox-checked-bg:       var(--color-green-500);
+  --checkbox-checked-bg-hover: var(--color-green-600);
+  --checkbox-checkmark:        var(--color-blue-900);
 
   /* ── Sizes / spacing ─────────────────────────────────────── */
   --size-half:         8px;
@@ -147,14 +148,14 @@
   --section-1-body:    var(--color-blue-900);
   --section-2-heading: var(--color-blue-900);
   --section-2-body:    var(--color-blue-900);
-  --section-3-body:    #cfdbff;
+  --section-3-body:    var(--color-green-50);
   --section-4-heading: var(--color-white);
-  --section-4-body:    var(--color-pink-50);
+  --section-4-body:    var(--color-blue-900);
 
   /* ── Header / footer ─────────────────────────────────────── */
-  --header-bg:         rgba(255, 234, 245, 0);
+  --header-bg:         rgba(250, 247, 238, 0);
   --footer-bg:         var(--color-blue-900);
-  --footer-text:       #cfdbff;
+  --footer-text:       var(--color-green-50);
 
   /* ── Typography — additional scales ─────────────────────── */
   --text-h1-size:  60px;
@@ -230,11 +231,11 @@ body {
 .section-2 { background-color: var(--section-2-bg); }
 .section-3 { background-color: var(--section-3-bg); color: var(--color-white); }
 .section-4 { background-color: var(--section-4-bg); color: var(--color-white); }
-/* Component styles — mirrors Figma "resources and components" */
+/* Component styles */
 
 /* ═══════════════════════════════════════════════════════════
    BUTTON
-   Variants: v1 (pink), v2 (blue), v3 (yellow), v4 (pale pink)
+   Variants: v1 (green), v2 (blue), v3 (teal), v4 (pale green)
    Styles: solid, outline
    States: default, hover, pressed, disabled
    ═══════════════════════════════════════════════════════════ */
@@ -267,7 +268,7 @@ body {
   pointer-events: none;
 }
 
-/* Variant 1 — pink solid */
+/* Variant 1 — green solid */
 .btn-v1 {
   background-color: var(--btn-v1-solid-bg);
   color: var(--btn-v1-solid-text);
@@ -275,7 +276,7 @@ body {
 .btn-v1:hover  { background-color: var(--btn-v1-solid-bg-hover);    color: var(--btn-v1-solid-text-hover); }
 .btn-v1:active { background-color: var(--btn-v1-solid-bg-pressed);  color: var(--btn-v1-solid-text-pressed); }
 
-/* Variant 1 — pink outline */
+/* Variant 1 — green outline */
 .btn-v1-outline {
   background-color: transparent;
   border-color: var(--btn-v1-outline-border);
@@ -301,7 +302,7 @@ body {
 .btn-v2-outline:hover  { border-color: var(--btn-v2-outline-border-hover);   color: var(--btn-v2-outline-text-hover); }
 .btn-v2-outline:active { border-color: var(--btn-v2-outline-border-pressed); color: var(--btn-v2-outline-text-pressed); }
 
-/* Variant 3 — yellow solid */
+/* Variant 3 — teal solid */
 .btn-v3 {
   background-color: var(--btn-v3-solid-bg);
   color: var(--btn-v3-solid-text);
@@ -309,7 +310,7 @@ body {
 .btn-v3:hover  { background-color: var(--btn-v3-solid-bg-hover);   color: var(--btn-v3-solid-text-hover); }
 .btn-v3:active { background-color: var(--btn-v3-solid-bg-pressed); color: var(--btn-v3-solid-text-pressed); }
 
-/* Variant 3 — yellow outline */
+/* Variant 3 — teal outline */
 .btn-v3-outline {
   background-color: transparent;
   border-color: var(--btn-v3-outline-border);
@@ -318,7 +319,7 @@ body {
 .btn-v3-outline:hover  { border-color: var(--btn-v3-outline-border-hover);   color: var(--btn-v3-outline-text-hover); }
 .btn-v3-outline:active { border-color: var(--btn-v3-outline-border-pressed); color: var(--btn-v3-outline-text-pressed); }
 
-/* Variant 4 — pale pink solid */
+/* Variant 4 — pale green solid */
 .btn-v4 {
   background-color: var(--btn-v4-solid-bg);
   color: var(--btn-v4-solid-text);
@@ -326,7 +327,7 @@ body {
 .btn-v4:hover  { background-color: var(--btn-v4-solid-bg-hover);   color: var(--btn-v4-solid-text-hover); }
 .btn-v4:active { background-color: var(--btn-v4-solid-bg-pressed); color: var(--btn-v4-solid-text-pressed); }
 
-/* Variant 4 — pale pink outline */
+/* Variant 4 — pale green outline */
 .btn-v4-outline {
   background-color: transparent;
   border-color: var(--btn-v4-outline-border);
@@ -346,14 +347,14 @@ body {
   border-radius: var(--radius-pill);
   border: none;
   background: transparent;
-  color: var(--color-yellow-300);
+  color: var(--color-green-500);
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
   font-size: 20px;
   line-height: 1;
 }
-.btn-mini:hover  { background-color: #0a33ab; color: #ffdf5a; }
-.btn-mini:active { background-color: var(--color-blue-900); color: #ffeda2; }
+.btn-mini:hover  { background-color: var(--color-blue-900); color: var(--color-green-100); }
+.btn-mini:active { background-color: #001720; color: var(--color-green-50); }
 
 /* Mobile hamburger — variant 2 solid, square */
 .btn-hamburger {
@@ -792,7 +793,7 @@ body {
 
 /* ═══════════════════════════════════════════════════════════
    FEATURE ICON
-   Colors: 1=yellow, 2=blue-600, 3=pink-100, 4=pink-700
+   Colors: 1=teal-300, 2=blue-600, 3=green-100, 4=green-700
    Sizes: medium=60px, large=84px
    ═══════════════════════════════════════════════════════════ */
 
@@ -807,10 +808,10 @@ body {
 .feature-icon--md   { width: 60px; height: 60px; font-size: 24px; }
 .feature-icon--lg   { width: 84px; height: 84px; font-size: 32px; }
 
-.feature-icon--c1   { background-color: var(--color-yellow-300); color: var(--color-blue-900); }
-.feature-icon--c2   { background-color: var(--color-blue-600);   color: var(--color-yellow-300); }
-.feature-icon--c3   { background-color: var(--color-pink-100);   color: var(--color-pink-600); }
-.feature-icon--c4   { background-color: var(--color-pink-700);   color: var(--color-pink-100); }
+.feature-icon--c1   { background-color: var(--color-teal-300);  color: var(--color-blue-900); }
+.feature-icon--c2   { background-color: var(--color-blue-600);  color: var(--color-green-500); }
+.feature-icon--c3   { background-color: var(--color-green-100); color: var(--color-green-700); }
+.feature-icon--c4   { background-color: var(--color-green-700); color: var(--color-green-50); }
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -855,12 +856,10 @@ body {
 
 
 /* ═══════════════════════════════════════════════════════════
-   COLBY LOGO
-   The logo is SVG-based with polygon decorators — use inline SVG
-   or the logo image asset from files/
+   KEITH LOGO
    ═══════════════════════════════════════════════════════════ */
 
-.colby-logo {
+.keith-logo {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -869,21 +868,21 @@ body {
 }
 
 /* Default size: 194×80px wordmark block */
-.colby-logo--default { width: 194px; }
-.colby-logo--small   { width: 155.2px; }
+.keith-logo--default { width: 194px; }
+.keith-logo--small   { width: 155.2px; }
 
-.colby-logo__wordmark {
+.keith-logo__wordmark {
   display: flex;
   align-items: flex-start;
   overflow: clip;
   position: relative;
 }
 
-.colby-logo__default .colby-logo__wordmark { width: 197px; height: 80px; }
-.colby-logo__small   .colby-logo__wordmark { width: 159.6px; height: 64.8px; }
+.keith-logo__default .keith-logo__wordmark { width: 197px; height: 80px; }
+.keith-logo__small   .keith-logo__wordmark { width: 159.6px; height: 64.8px; }
 
-/* Background color swatch behind COLBY/HARDER */
-.colby-logo__swatch {
+/* Background color swatch behind name */
+.keith-logo__swatch {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -893,26 +892,26 @@ body {
   height: 100%;
 }
 
-/* Variant colours (applied to .colby-logo) */
-.colby-logo--v1 .colby-logo__swatch { background-color: var(--color-yellow-300); color: var(--color-blue-900); }
-.colby-logo--v1 .colby-logo__re-elect { background-color: var(--color-pink-500); color: var(--color-pink-50); }
+/* Variant colours (applied to .keith-logo) */
+.keith-logo--v1 .keith-logo__swatch    { background-color: var(--color-teal-300);  color: var(--color-blue-900); }
+.keith-logo--v1 .keith-logo__sub-text  { background-color: var(--color-green-500); color: var(--color-blue-900); }
 
-.colby-logo--v2 .colby-logo__swatch { background-color: var(--color-blue-700); color: var(--color-yellow-300); }
-.colby-logo--v2 .colby-logo__re-elect { background-color: var(--color-yellow-300); color: var(--color-blue-900); }
+.keith-logo--v2 .keith-logo__swatch    { background-color: var(--color-blue-700);  color: var(--color-green-500); }
+.keith-logo--v2 .keith-logo__sub-text  { background-color: var(--color-teal-300);  color: var(--color-blue-900); }
 
-.colby-logo--v3 .colby-logo__swatch { background-color: var(--color-pink-500); color: var(--color-pink-50); }
-.colby-logo--v3 .colby-logo__re-elect { background-color: var(--color-yellow-300); color: var(--color-blue-900); }
+.keith-logo--v3 .keith-logo__swatch    { background-color: var(--color-green-500); color: var(--color-blue-900); }
+.keith-logo--v3 .keith-logo__sub-text  { background-color: var(--color-teal-300);  color: var(--color-blue-900); }
 
-.colby-logo--v4 .colby-logo__swatch { background-color: var(--color-pink-500); color: var(--color-pink-50); }
-.colby-logo--v4 .colby-logo__re-elect { background-color: var(--color-blue-900); color: var(--color-yellow-300); }
+.keith-logo--v4 .keith-logo__swatch    { background-color: var(--color-green-500); color: var(--color-blue-900); }
+.keith-logo--v4 .keith-logo__sub-text  { background-color: var(--color-blue-900);  color: var(--color-green-500); }
 
-.colby-logo__name {
+.keith-logo__name {
   font-family: var(--font-lexend);
 }
 
-.colby-logo__colby  { font-weight: 800; font-size: 16px; line-height: 18px; letter-spacing: -0.8px; }
-.colby-logo__harder { font-weight: 700; font-size: 34px; line-height: 32px; letter-spacing: -1.7px; }
-.colby-logo__re-elect-text { font-family: var(--font-lexend); font-weight: 700; font-size: 13.2px; line-height: 13.2px; letter-spacing: -0.66px; }
+.keith-logo__first  { font-weight: 800; font-size: 16px; line-height: 18px; letter-spacing: -0.8px; }
+.keith-logo__last   { font-weight: 700; font-size: 34px; line-height: 32px; letter-spacing: -1.7px; }
+.keith-logo__sub-text-label { font-family: var(--font-lexend); font-weight: 700; font-size: 13.2px; line-height: 13.2px; letter-spacing: -0.66px; }
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -1088,10 +1087,10 @@ body {
   font-weight: 300;
   font-size: 18px;
   line-height: 28px;
-  color: var(--color-pink-50);
+  color: var(--color-green-50);
 }
 
-/* Sub-hero yellow bar */
+/* Sub-hero teal bar */
 .hero__sub {
   background-color: var(--section-2-bg);
   width: 100%;
@@ -1132,7 +1131,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: #143390;
+  color: var(--color-blue-900);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1298,14 +1297,14 @@ body {
 
 .donor-progress__bar {
   height: 16px;
-  background-color: var(--color-pink-100);
+  background-color: var(--color-green-100);
   border-radius: var(--radius-pill);
   overflow: hidden;
 }
 
 .donor-progress__fill {
   height: 100%;
-  background-color: var(--color-pink-500);
+  background-color: var(--color-green-500);
   border-radius: var(--radius-pill);
   width: 17%; /* ~17/100 donors */
 }
@@ -1617,7 +1616,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: #143390;
+  color: var(--color-blue-900);
   flex: 0 0 252px;
 }
 
