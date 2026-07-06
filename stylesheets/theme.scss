@@ -2224,3 +2224,141 @@ $ky-progress-radius: 20px;
     font-size: 2.5rem;
   }
 }
+
+/* ── DONATE SECTION ────────────────────────────────────────────────── */
+
+.ky-donate {
+  background-color: #003144;
+}
+
+/* Dark pill: rounded top corners, sits over teal outer */
+.ky-donate__inner {
+  background-color: #001720;
+  border-radius: 100px 100px 0 0;
+  padding: 96px 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.ky-donate__content {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.ky-donate__heading {
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #faf7ee;
+  text-align: center;
+  margin: 0 0 48px;
+}
+
+.ky-donate__heading-accent {
+  color: #58e4b8;
+}
+
+/* Two columns */
+.ky-donate__cols {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+/* Left: intro copy */
+.ky-donate__intro {
+  flex: 1;
+  max-width: 500px;
+}
+
+.ky-donate__body {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #faf7ee;
+  margin: 0 0 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Right: amount selector */
+.ky-donate__amounts {
+  flex: 1;
+}
+
+.ky-donate__amounts-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(250, 247, 238, 0.8);
+  margin: 0 0 16px;
+}
+
+/* 3-column chip grid */
+.ky-donate__chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.ky-donate__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 24px;
+  background-color: #1bd49a;
+  color: #001720;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border-radius: 9999px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: darken(#1bd49a, 8%);
+    color: #001720;
+    text-decoration: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .ky-donate__inner {
+    border-radius: 40px 40px 0 0;
+    padding: 3rem 1rem;
+  }
+
+  .ky-donate__cols {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .ky-donate__intro {
+    max-width: none;
+  }
+
+  .ky-donate__chips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .ky-donate__inner {
+    border-radius: 64px 64px 0 0;
+    padding: 3rem 1.5rem;
+  }
+
+  .ky-donate__cols {
+    gap: 2rem;
+  }
+}
