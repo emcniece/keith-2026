@@ -930,3 +930,269 @@ h1, h2, h3, h4, h5, h6, .form-errors .errorExplanation h2, .h1, .h2, .h3, .h4, .
   background-size: cover;
   padding-bottom: 30rem;
 }
+
+/* ── HOMEPAGE HERO BANNER ──────────────────────────────────────────── */
+
+$ky-hero-green: #1bd49a;
+$ky-hero-dark: #001720;
+$ky-hero-cream: #e8e3d4;
+
+.ky-homepage {
+  font-family: 'Sora', 'Outfit', sans-serif;
+}
+
+.ky-hero {
+  position: relative;
+  background-size: cover;
+  background-position: center top;
+  background-color: $ky-xdark-primary;
+  overflow: visible;
+}
+
+/* Nav */
+.ky-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+.ky-nav__links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.ky-nav__link {
+  color: $ky-hero-cream;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.ky-nav__social {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.ky-nav__social-link {
+  color: $ky-hero-cream;
+  font-size: 1rem;
+  line-height: 1;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.ky-btn--donate {
+  background-color: $ky-hero-green;
+  color: $ky-hero-dark;
+  font-family: 'Sora', 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: darken($ky-hero-green, 8%);
+    color: $ky-hero-dark;
+    text-decoration: none;
+  }
+}
+
+/* Hero body */
+.ky-hero__body {
+  display: flex;
+  align-items: flex-end;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  min-height: 360px;
+  position: relative;
+}
+
+.ky-hero__portrait {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.ky-hero__portrait-img {
+  display: block;
+  max-height: 440px;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  max-width: 100%;
+  /* portrait overhangs the bottom of the hero */
+  margin-bottom: -60px;
+}
+
+.ky-hero__card {
+  flex: 0 0 50%;
+  background-color: $ky-hero-green;
+  border-radius: 24px;
+  padding: 2.5rem 2.5rem 2rem;
+  margin: 2rem 0 2rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Logo text treatment */
+.ky-logo {
+  margin-bottom: 1.25rem;
+  color: $ky-hero-dark;
+}
+
+.ky-logo__eyebrow {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.1rem;
+}
+
+.ky-logo__check {
+  font-size: 1rem;
+}
+
+.ky-logo__name {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.ky-logo__sub {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ky-hero__tagline {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: $ky-hero-dark;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* Bottom strip */
+.ky-hero__strip {
+  background-color: $ky-hero-dark;
+  position: relative;
+  z-index: 3;
+}
+
+.ky-hero__strip-text {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0.875rem 3rem;
+  color: $ky-hero-cream;
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .ky-nav {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .ky-nav__links {
+    display: none; /* replaced by mobile menu */
+  }
+
+  .ky-hero__body {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+    min-height: auto;
+  }
+
+  .ky-hero__portrait {
+    flex: none;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ky-hero__portrait-img {
+    max-height: 280px;
+    margin-bottom: 0;
+  }
+
+  .ky-hero__card {
+    flex: none;
+    width: 100%;
+    margin: 0 0 0 0;
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .ky-hero__strip-text {
+    padding: 0.875rem 1rem;
+    text-align: left;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .ky-nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .ky-hero__body {
+    padding: 0 1.5rem;
+    min-height: 300px;
+  }
+
+  .ky-hero__portrait-img {
+    max-height: 360px;
+    margin-bottom: -40px;
+  }
+
+  .ky-hero__card {
+    padding: 1.75rem;
+  }
+
+  .ky-logo__name {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+}
+
+/* Font Awesome brands (for social icons) */
+.fa-brands {
+  font-family: "Font Awesome 6 Brands", sans-serif;
+  font-weight: 400;
+}

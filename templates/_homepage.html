@@ -1,0 +1,61 @@
+<div class="ky-homepage">
+
+  <!-- ── HERO BANNER ─────────────────────────────────────────────── -->
+  <section class="ky-hero" style="background-image: url('{{ theme['keith-banner-bg.jpg'] }}');">
+
+    <!-- Nav bar -->
+    <nav class="ky-nav" aria-label="Main navigation">
+      <ul class="ky-nav__links">
+        <li><a href="/about" class="ky-nav__link">About Keith</a></li>
+        <li><a href="/platform" class="ky-nav__link">Platform</a></li>
+        <li><a href="/blog" class="ky-nav__link">Blog</a></li>
+        <li><a href="/volunteer" class="ky-nav__link">Volunteer</a></li>
+        <li><a href="/contact" class="ky-nav__link">Contact</a></li>
+      </ul>
+      <div class="ky-nav__social">
+        <a href="{{ site.facebook_page_url }}" class="ky-nav__social-link" aria-label="Facebook" target="_blank" rel="noopener">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="{{ site.twitter_login }}" class="ky-nav__social-link" aria-label="Instagram" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#" class="ky-nav__social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </div>
+      <a href="/donate" class="ky-btn ky-btn--donate">Donate</a>
+    </nav>
+
+    <!-- Hero body -->
+    <div class="ky-hero__body">
+
+      <!-- Portrait (left half) -->
+      <div class="ky-hero__portrait" aria-hidden="true">
+        <img src="{{ theme['keith-portrait.png'] }}" alt="Keith Yacucha" class="ky-hero__portrait-img" />
+      </div>
+
+      <!-- Green card (right half) -->
+      <div class="ky-hero__card">
+        <div class="ky-logo">
+          <div class="ky-logo__eyebrow">
+            <i class="fa-solid fa-circle-check ky-logo__check"></i>
+            Re-Elect Keith
+          </div>
+          <div class="ky-logo__name">Yacucha</div>
+          <div class="ky-logo__sub">For Langford Council</div>
+        </div>
+        <p class="ky-hero__tagline">
+          Applying an economist's lens and data-driven decisions to help make Langford <strong>a place to stay</strong>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom tagline strip -->
+    <div class="ky-hero__strip">
+      <p class="ky-hero__strip-text">Let's keep building on the strong foundation we've started</p>
+    </div>
+
+  </section>
+
+</div>
