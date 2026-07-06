@@ -2471,7 +2471,7 @@ $ky-progress-radius: 20px;
   }
 
   .modal-content {
-    min-height: 700px;
+    min-height: 640px;
   }
 }
 
@@ -2515,9 +2515,10 @@ $ky-progress-radius: 20px;
   justify-content: center;
   align-items: flex-start;
 
-  // Let oEmbed iframes size themselves but cap to dialog width
   iframe {
     max-width: 100%;
+    width: 100% !important;
+    height: 600px !important;
     border: none;
     display: block;
   }
