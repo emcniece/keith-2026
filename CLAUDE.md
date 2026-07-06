@@ -27,13 +27,9 @@ NationBuilder Liquid exposes site/page variables like `{{ site.name }}`, `{{ pag
 
 ## Stylesheet Architecture
 
-```
-stylesheets/
-  tokens.css      — all CSS custom properties (design tokens)
-  base.css        — reset, typography classes, containers, section colour variants
-  components.css  — all UI components
-  main.css        — @import chain (load this one in templates)
-```
+Custom styles are appended directly to the bottom of `stylesheets/theme.scss`, after the NB base styles. There is no separate tokens/base/components split — all Keith 2026 CSS goes into `theme.scss` as a single appended block.
+
+The `main.css` file in the repo root is a design reference only (colour tokens, component specs extracted from Figma) and is **not deployed or loaded by any template**.
 
 ### Design Tokens (tokens.css)
 
