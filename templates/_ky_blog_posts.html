@@ -22,7 +22,7 @@
 
   <div class="ky-blog__card-body">
     {% assign ky_first_tag = post.page_tags | split: "," | first | strip %}
-    {% if ky_first_tag != "" %}
+    {% if ky_first_tag != "" and ky_first_tag != "page_tags" %}
       <span class="ky-blog__tag">{{ ky_first_tag }}</span>
     {% endif %}
     <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
