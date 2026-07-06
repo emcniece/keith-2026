@@ -283,7 +283,12 @@
       <!-- Post cards + "See more" button -->
       <div class="ky-blog__content">
         <div class="ky-blog__row">
-          {% tag "homepage-blog" with "ky_blog_posts" %}
+          {% assign ky_blog_page = site.pages | where: "type_slug", "blog" | first %}
+          {% if ky_blog_page %}
+            {% for post in ky_blog_page.blog.most_recent_blog_posts limit: 2 %}
+              {% include "ky_blog_posts" with post %}
+            {% endfor %}
+          {% endif %}
         </div><!-- /.ky-blog__row -->
 
         <a href="/blog" class="ky-blog__more">See more blog posts</a>
