@@ -8,8 +8,8 @@
     {% endif %}
     {% if post.blog_post.content.size > 0 %}
       <button class="ky-blog__play"
-              data-bs-toggle="modal"
-              data-bs-target="#ky-blog-modal-{{ post.id }}"
+              data-toggle="modal"
+              data-target="#ky-blog-modal-{{ post.id }}"
               aria-label="Watch: {{ post.headline }}">
         <i class="fa-solid fa-play" aria-hidden="true"></i>
       </button>
@@ -35,7 +35,7 @@
 <div class="modal fade ky-blog__modal" id="ky-blog-modal-{{ post.id }}" tabindex="-1" aria-label="{{ post.headline }}" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content ky-blog__modal-content">
-      <button type="button" class="ky-blog__modal-close" data-bs-dismiss="modal" aria-label="Close">
+      <button type="button" class="ky-blog__modal-close" data-dismiss="modal" aria-label="Close">
         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
       </button>
       <div class="ky-blog__modal-body">
