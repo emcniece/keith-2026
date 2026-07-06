@@ -1058,40 +1058,16 @@ $ky-hero-cream: #e8e3d4;
   z-index: 2;
 }
 
-/* Logo text treatment */
+/* Logo image */
 .ky-logo {
   margin-bottom: 1.25rem;
-  color: $ky-hero-dark;
 }
 
-.ky-logo__eyebrow {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.1rem;
-}
-
-.ky-logo__check {
-  font-size: 1rem;
-}
-
-.ky-logo__name {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-.ky-logo__sub {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.ky-logo__img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
 }
 
 .ky-hero__tagline {
