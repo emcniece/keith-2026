@@ -1197,6 +1197,119 @@ $ky-hero-cream: #e8e3d4;
   font-weight: 400;
 }
 
+/* ── CTA / SIGNUP STRIP ────────────────────────────────────────────── */
+
+.ky-cta {
+  background-color: $ky-xlight-neutral;
+  padding: 24px 0;
+  overflow: hidden;
+}
+
+.ky-cta__pill {
+  background-color: #001720;
+  margin-left: clamp(200px, 44%, 634px);
+  padding: 48px 64px;
+  border-radius: 999px 0 0 999px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ky-cta__tagline {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: $ky-xlight-neutral;
+  margin: 0;
+}
+
+.ky-cta__form-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ky-cta__form {
+  display: flex;
+  flex: 1;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+}
+
+.ky-cta__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 24px;
+  background-color: #e8e3d4;
+  border: none;
+  border-radius: 100px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #00445e;
+  outline: none;
+
+  &::placeholder {
+    color: #00445e;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $ky-hero-green;
+  }
+}
+
+.ky-cta__submit {
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.ky-cta__disclaimer {
+  flex-shrink: 0;
+  width: 252px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(250, 247, 238, 0.8);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .ky-cta__pill {
+    margin-left: 0;
+    border-radius: 0;
+    padding: 2rem 1rem;
+  }
+
+  .ky-cta__form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ky-cta__form {
+    flex-direction: column;
+  }
+
+  .ky-cta__disclaimer {
+    width: auto;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .ky-cta__pill {
+    margin-left: clamp(100px, 30%, 400px);
+    padding: 2rem 2.5rem;
+  }
+
+  .ky-cta__disclaimer {
+    width: 180px;
+  }
+}
+
 /* ── ABOUT SECTION ─────────────────────────────────────────────────── */
 
 .ky-about {

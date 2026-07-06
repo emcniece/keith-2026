@@ -58,6 +58,22 @@
 
   </section>
 
+  <!-- ── CTA / SIGNUP STRIP ──────────────────────────────────────── -->
+  <section class="ky-cta">
+    <div class="ky-cta__pill">
+      <p class="ky-cta__tagline">Let's keep building on the strong foundation we've started</p>
+      <div class="ky-cta__form-row">
+        <form class="ky-cta__form" method="post" action="/signup">
+          <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
+          <input type="text" name="signup[first_name]" placeholder="Name" class="ky-cta__input" autocomplete="given-name" />
+          <input type="email" name="signup[email]" placeholder="Email" class="ky-cta__input" required autocomplete="email" />
+          <button type="submit" class="ky-btn ky-btn--primary ky-cta__submit">Join the Effort</button>
+        </form>
+        <p class="ky-cta__disclaimer">Sign up here to receive campaign updates. Opt out anytime</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ── ABOUT SECTION ───────────────────────────────────────────── -->
   <section class="ky-about">
     <div class="ky-about__inner">
