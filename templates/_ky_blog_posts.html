@@ -12,8 +12,9 @@
   </a>
 
   <div class="ky-blog__card-body">
-    {% if post.page_tags.first %}
-      <span class="ky-blog__tag">{{ post.page_tags.first.name }}</span>
+    {% assign ky_first_tag = post.page_tags | split: "," | first | strip %}
+    {% if ky_first_tag != "" %}
+      <span class="ky-blog__tag">{{ ky_first_tag }}</span>
     {% endif %}
     <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
     <p class="ky-blog__card-text">{{ post.blog_post.content | strip_html | truncatewords: 30 }}</p>
