@@ -20,7 +20,9 @@
 }
 
 .custom-control-input {
-  @include sr-only;
+  position: absolute;
+  z-index: -1; // Put the input behind the label so it doesn't overlay text
+  opacity: 0;
 
   &:checked ~ .custom-control-label::before {
     color: $custom-control-indicator-checked-color;
@@ -68,11 +70,12 @@
   position: relative;
   margin-bottom: 0;
   vertical-align: top;
+  font-size: $font-size-base * .9; // 18px
 
   // Background-color and (when enabled) gradient
   &::before {
     position: absolute;
-    top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
+    top: (($font-size-base * .9) * $line-height-base - $custom-control-indicator-size) / 2;
     left: -($custom-control-gutter + $custom-control-indicator-size);
     display: block;
     width: $custom-control-indicator-size;
@@ -87,7 +90,7 @@
   // Foreground (icon)
   &::after {
     position: absolute;
-    top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
+    top: (($font-size-base * .9) * $line-height-base - $custom-control-indicator-size) / 2;
     left: -($custom-control-gutter + $custom-control-indicator-size);
     display: block;
     width: $custom-control-indicator-size;
@@ -121,6 +124,7 @@
     }
     &::after {
       background-image: $custom-checkbox-indicator-icon-indeterminate;
+      background-size: $custom-checkbox-indicator-bg-size-indeterminate;
     }
   }
 
@@ -144,6 +148,11 @@
     border-radius: $custom-radio-indicator-border-radius;
   }
 
+  .custom-control-label::after {
+    // stylelint-disable-next-line property-blacklist
+    background: no-repeat 50% / #{$custom-radio-indicator-bg-size};
+  }
+
   .custom-control-input:checked ~ .custom-control-label {
     &::after {
       background-image: $custom-radio-indicator-icon-checked;
@@ -154,6 +163,52 @@
     &:checked ~ .custom-control-label::before {
       background-color: $custom-control-indicator-checked-disabled-bg;
     }
+  }
+}
+
+.custom-radio-btn {
+  padding-left: 0;
+
+  .custom-control-label {
+    @extend .btn;
+    background-color: $secondary;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      background-color: darken($secondary, 10%);
+    }
+  }
+
+  &.custom-radio-btn-lg .custom-control-label {
+    @extend .btn-lg;
+  }
+
+  &.custom-radio-btn-sm .custom-control-label {
+    @extend .btn-sm;
+  }
+
+  .custom-control-input:checked ~ .custom-control-label {
+    background-color: $primary;
+    color: #ffffff;
+
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
+
+  .custom-control-input:focus ~ .custom-control-label {
+    outline: 0;
+    box-shadow: 0 0 0 $input-btn-focus-width rgba($primary, .25);
+  }
+
+  .custom-control-input:disabled ~ .custom-control-label {
+    opacity: 0.4;
+    pointer-events: none;
   }
 }
 
@@ -227,6 +282,7 @@
 
   &:focus {
     border-color: $custom-select-focus-border-color;
+    background-color: $custom-select-focus-bg;
     outline: 0;
     @if $enable-shadows {
       box-shadow: $custom-select-box-shadow, $custom-select-focus-box-shadow;
@@ -260,13 +316,6 @@
   // Hides the default caret in IE11
   &::-ms-expand {
     display: none;
-  }
-}
-
-// Firefox adds extra spacing around it's select boxes
-@-moz-document url-prefix() {
-  .custom-select {
-    padding-left: ($custom-select-padding-x - 0.2rem);
   }
 }
 
@@ -309,7 +358,12 @@
 
   &:focus ~ .custom-file-label {
     border-color: $custom-file-focus-border-color;
+    background-color: $custom-file-focus-bg;
     box-shadow: $custom-file-focus-box-shadow;
+
+    &::after {
+      box-shadow: inset 0 0 0 2px $primary;
+    }
   }
 
   &:disabled ~ .custom-file-label {
@@ -336,11 +390,15 @@
   height: $custom-file-height;
   padding: $custom-file-padding-y $custom-file-padding-x;
   font-family: $custom-file-font-family;
+  font-size: $custom-file-font-size;
   font-weight: $custom-file-font-weight;
   line-height: $custom-file-line-height;
   color: $custom-file-color;
   background-color: $custom-file-bg;
   border: $custom-file-border-width solid $custom-file-border-color;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   @include border-radius($custom-file-border-radius);
   @include box-shadow($custom-file-box-shadow);
 
@@ -355,10 +413,13 @@
     padding: $custom-file-padding-y $custom-file-padding-x;
     line-height: $custom-file-line-height;
     color: $custom-file-button-color;
+    font-size: $custom-file-font-size;
+    font-weight: $custom-file-button-font-weight;
     content: "Browse";
     @include gradient-bg($custom-file-button-bg);
     border-left: inherit;
     @include border-radius(0 $custom-file-border-radius $custom-file-border-radius 0);
+    transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
   }
 }
 

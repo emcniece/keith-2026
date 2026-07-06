@@ -1,50 +1,30 @@
 {% include "translation" %}
 
-<section class="activities-stream" aria-label="Activities stream">
-  {% if page.activity_stream.activities.size > 0 %}
+<div class="page">
+  <div class="page-inner">
+    {% include "breadcrumbs" %}
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        {% if page.headline.size > 0 %}
+          <h2 class="mb-3 h3">{{ page.headline }}</h2>
+        {% endif %}
 
-    <div id="reactions" class="content-list my-3">
-      <ul class="list-unstyled mb-4 activities">
-        {% for activity in page.activity_stream.activities %}
-          <li class="activity d-block w-100 position-relative {% unless forloop.last %}pb-5 pb-md-4{% endunless %}">
-            {% unless forloop.last %}
-              <div class="activity-vertical-hr d-none d-md-block position-absolute"></div>
-            {% endunless %}
-
-            <div class="d-flex flex-column flex-md-row align-items-top">
-              <div class="position-relative flex-shrink-0 text-center mb-2 mb-md-0 mr-md-3">
-                {% include "avatar_with_activity" signup: activity.signup, size: 72, activity_name: activity.type_name %}
+        {% if request.logged_in? %}
+          <div class="page-stream bg-light rounded-xl mx-n4 mx-md-auto">
+            <div id="reactions" class="py-5 px-4 px-sm-5">
+              <div class="mb-4 d-flex flex-wrap align-items-center justify-content-between">
+                <h3 class="my-0 mr-4 text-serif h4 font-weight-medium">{{ t_activity_recent_responses }}</h3>
               </div>
-
-              <div class="w-100 ml-md-3">
-                {% include "activity_show" %}
-              </div>
+              <ul id="page-stream" class="list-unstyled space-y-4">
+                {% for activity in page.activity_stream.activities_following %}
+                  {% include "activity_show" i18n:current_language, activity_stream:true %}
+                {% endfor %}
+              </ul>
+              {{ page.activity_stream.activities_following | paginate prev_label: t_prev next_label: t_next }}
             </div>
-          </li>
-        {% endfor %}
-      </ul>
-
-      {% include "pagination" source: page.activity_stream.activities %}
+          </div>
+        {% endif %}
+      </div>
     </div>
-
-  {% else %}
-
-    <i>{{ t_general_no_recent_activity }}</i>
-
-  {% endif %}
-</section>
-
-<script>
-  ;(function() {
-    var previous = document.scripts[document.scripts.length - 1].previousElementSibling;
-
-    previous.querySelectorAll('.activity-content').forEach(function(content) {
-      if (!content.textContent.trim()) {
-        var parent = getParents(content, '.align-items-top')[0];
-
-        parent.classList.remove('align-items-top');
-        parent.classList.add('align-items-center');
-      }
-    });
-  })();
-</script>
+  </div>
+</div>

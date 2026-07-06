@@ -1,41 +1,48 @@
 {% include "translation" %}
+{% include "social_share_widget" %}
 
-<div class="press-release">
-  <header class="header mb-3">
-    <div class="released-at">
-      {{ page.published_at | date: '%B %d, %Y' }}
-    </div>
+<div class="page">
+  <div class="page-inner">
+    {% include "breadcrumbs" %}
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <header class="mb-3 header">
+          {% if page.has_author? %}
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <strong>{{ t_contact }}:</strong> {{ page.author.published_name }}
+              </li>
+              {% if page.author.has_phone? %}
+                <li class="breadcrumb-item">
+                  <a href="tel:{{ page.author.phone_number }}" class="tel">
+                    {{ page.author.phone_format }}
+                  </a>
+                </li>
+              {% endif %}
+              {% if page.author.has_email? %}
+                <li class="breadcrumb-item">
+                  {{ page.author.email | enkode_email }}
+                </li>
+              {% endif %}
+            </ul>
+          {% endif %}
 
-    {% if page.has_author? %}
-      <div class="contact vcard">
-        <div class="contact-name">
-          {{ t_contact }}: <span class="n">{{ page.author.published_name }}</span>
+          <h2 class="mt-3 page-headline">{{ page.headline }}</h2>
+        </header>
+
+        <div class="page-content">
+          {{ page.press_release.content }}
         </div>
-        
-        {% if page.author.has_phone? %}
-          <a href="tel:{{ page.author.phone_number }}" class="tel">
-            {{ page.author.phone_number }}
-          </a>
+
+        {% if page.tags_count > 0 %}
+          {% include "page_tags" with page %}
         {% endif %}
 
-        {% if page.author.has_email? %}
-          <div class="email">
-            {{ page.author.email | enkode_email }}
-          </div>
+        {% if page.show_stream? %}
+          {% include "page_stream" %}
         {% endif %}
       </div>
-    {% endif %}
-  </header>
-</div>
-
-<div id="intro" class="intro">
-  {{ page.press_release.content }}
-</div>
-
-{% if page.tags_count > 0 %}
-  <div id="page-tags" class="page-tags">
-    {% include "page_tags" with page %}
+    </div>
   </div>
-{% endif %}
+</div>
 
-{% include "like_page" %}

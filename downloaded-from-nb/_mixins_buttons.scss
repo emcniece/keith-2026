@@ -16,11 +16,13 @@
   }
 
   &:focus,
-  &:focus-visible,
   &.focus {
-    outline: 2px solid transparent; // reserve space for the custom focus ring
-    outline-offset: 2px;
-    box-shadow: 0 0 0 ($btn-focus-width * 2) rgb(94, 158, 214);
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+    } @else {
+      box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+    }
   }
 
   // Disabled comes first so active can properly restyle
@@ -67,11 +69,8 @@
   }
 
   &:focus,
-  &:focus-visible,
   &.focus {
-    outline: 2px solid transparent; // reserve space for the custom focus ring
-    outline-offset: 2px;
-    box-shadow: 0 0 0 ($btn-focus-width * 2) rgb(94, 158, 214);
+    box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
   }
 
   &.disabled,

@@ -1,126 +1,68 @@
-{% include "translation" %}
+{% include 'translation' %}
 
-{% if page.blog.is_posting_public? %}
-  <div class="row">
-    <div class="col-12 col-lg-9 mx-auto">
-
-      {% if request.logged_in? %}
-
-        <h2 class="h5">{{ t_general_create_a_new_post }}</h2>
-
-        <div class="card mb-5">
-          <div class="card-body p-0">
-
-            <div class="form-wrap">
-              {% form_for blog_post_page %}
-                <div class="form-errors" role="alert">{% error_messages_for blog_post_page %}</div>
-
-                <div class="form-group d-flex align-items-md-center">
-                  <div class="flex-shrink-0 d-none d-md-block mr-md-3">
-                    {% include "avatar" signup: request.current_signup, size: 72 %}
-                  </div>
-
-                  <div id="blog-post-page-page-headline-input" class="blog-post-page-page-headline-input form-group flex-grow-1 mb-0">
-                    <div class="form-control-material">
-                      <label for="blog_post_page_page_headline" class="floating-label floating-label--float-above">{{ page.blog.public_posting_prompt }}</label>
-                      {% text_field "page_headline", class:"form-control text" %}
-                    </div>
-                  </div>
-                </div>
-
-                <div id="blog-post-page-form-expanded" class="blog-post-page-form-expanded mt-4 hide">
-                  <div class="form-group">
-                    <label for="mceu_13">{{ t_general_your_post_content }}</label>
-                    {% text_area "content_editable", class:"form-control textarea-tinymce" %}
-                  </div>
-
-                  {% if page.show_consent_form? %}
-                    {% include "consent_form" %}
-                  {% endif %}
-
-                  <div class="form-group">
-                    {% submit_tag t_post, class:"btn btn-primary submit-button" %}
-                    <div class="form-submit"></div>
-                  </div>
-                </div>
-
-                <script>
-                  ;(function() {
-                    var previous = document.scripts[document.scripts.length - 1].previousElementSibling;
-                    var headline = previous.previousElementSibling.querySelector('#blog_post_page_page_headline');
-
-                    headline.addEventListener('focusin', onFocus);
-
-                    function onFocus() {
-                      previous.classList.remove('hide');
-
-                      headline.removeEventListener('focusin', onFocus);
-                    }
-                  })();
-                </script>
-              {% endform_for %}
-            </div><!--/.form-wrap -->
-
-          </div><!--/.card-body -->
-        </div><!--/.card -->
-
-      {% else %}
-
-        <div class="form-wrap mb-5">
-          <h2 class="h5">{{ t_auth_sign_in_to_create_a_post }}</h2>
-
-          {% form_for blog_post_page %}
-            <div class="form-errors" role="alert">{% error_messages_for blog_post_page %}</div>
-
-            <div class="form-group d-flex align-items-md-center">
-              <div class="flex-shrink-0 d-none d-md-block mr-md-3">
-                {% include "avatar" signup: nil, anon: true, size: 72 %}
-              </div>
-
-              <div class="flex-grow-1">
-                <div class="form-control-material">
-                  <label for="blog_post_page_page_headline" class="floating-label floating-label--float-above">{{ page.blog.public_posting_prompt }}</label>
-                  {% text_field "page_headline", class:"form-control text" %}
-                </div>
-              </div>
-            </div>
-
-          {% endform_for %}
-          <div class="user-session-form-container">
-            {% include "user_session_form" %}
+<div class="blog-features">
+  <div class="page">
+    <div class="page-inner bg-light{% if page.blog.most_recent_blog_posts.size > 1 %} mb-0 rounded-bottom-0 border-bottom-0{% endif %}">
+      <div class="row">
+        <div class="col">
+          {% if page.headline.size > 0 %}
+            <h2 class="mb-3 text-bold">{{ page.headline }}</h2>
+          {% endif %}
+        </div>
+        {% if page.blog.is_posting_public? %}
+          <div class="col-auto">
+            <button class="btn btn-primary d-inline-flex align-items-center" data-toggle="modal" data-target="{% if request.logged_in? %}#postFormModal-{{ page.id }}{% else %}#signinModal{% endif %}">
+              <svg class="mr-1" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 28H6.99902c-.26521 0-.51957-.1054-.7071-.2929-.18754-.1875-.2929-.4419-.2929-.7071V5c0-.26522.10536-.51957.2929-.70711C6.47945 4.10536 6.73381 4 6.99902 4H19l7 7v16c0 .1313-.0259.2614-.0761.3827-.0503.1213-.1239.2316-.2168.3244-.0928.0929-.2031.1665-.3244.2168-.1213.0502-.2514.0761-.3827.0761z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 4v7h7.001M13 19h6M16 16v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {{ t_blog_public_post_cta }}
+            </button>
           </div>
-        </div><!--/.form-wrap -->
-
+        {% endif %}
+      </div>
+      {% if first_page %}
+        {% if site.page_tags contains "featured_post" %}
+          {% tag 'featured_post' with 'featured_blog_post' %}
+        {% else %}
+          {% for post in page.blog.most_recent_blog_posts limit:1 %}
+            {% include 'featured_blog_post' post: post %}
+          {% endfor %}
+        {% endif %}
       {% endif %}
+    </div>
+  </div>
+</div>
 
-    </div><!--/.col-lg-9 -->
-  </div><!--/.row -->
+{% if page.blog.most_recent_blog_posts.size > 1 or first_page == false %}
+  <div class="page">
+    <div class="page-inner rounded-top-0 py-0">
+      <div class="content-{{ request.template  | replace: '_', '-' }} {{ main_container_classes | strip_newlines | strip }}">
+        <div id="content" class="py-5">
+          <ul class="list-unstyled mb-0" data-masonry id="blog-page-{{ page.id }}">
+            {% for post in page.blog.most_recent_blog_posts %}
+              <li class="card mb-4{% if first_page and forloop.index == 1 %}{% unless site.page_tags contains 'featured_post' %} hide{% endunless %}{% endif %}" id="blog-post-page-{{ post.id }}">
+                {% if post.has_meta_image? %}
+                  <a href="{{ post.url }}"><img src="{{ post.meta_image_url }}" class="card-img-top" /></a>
+                {% endif %}
+                <div class="card-body">
+                  <h3 class="h4 mb-0"><a href="{{ post.url }}">{{ post.headline }}</a></h3>
+                  {% if post.blog_post.content.size > 0 %}
+                    <div class="mt-2">{{ post.blog_post.content }}</div>
+                  {% endif %}
+                </div>
+                <div class="card-footer">
+                  {% include 'page_byline' page:post, author: post.author, published_at: post.published_at %}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+          {{ page.blog.most_recent_blog_posts | paginate prev_label: t_prev next_label: t_next }}
+        </div>
+      </div>
+    </div>
+  </div>
 {% endif %}
 
-<div class="row">
-  <div class="col-12">
-    <div id="blog-page-{{ page.id }}" class="row">
-      {% for post in page.blog.most_recent_blog_posts %}
-        <div class="col-md-6 col-lg-4 mb-4">
-          {% include "blog_excerpt" page: post %}
-        </div>
-      {% endfor %}
-    </div>
-
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12 col-lg-9 mx-auto">
-
-    {% include "pagination" source: page.blog.most_recent_blog_posts %}
-
-    {% if page.tags_count > 0 %}
-      <div id="page-tags" class="page-tags">
-        {% include "page_tags" with page %}
-      </div>
-    {% endif %}
-
-    {% include "like_page" %}
-  </div>
-</div>
+{% include "post_form" %}
+{% include "signin_modal" %}

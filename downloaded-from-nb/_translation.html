@@ -14,6 +14,12 @@
 {% elsif tag_list contains 'lang_es' %}
   {% include 'translation_es' %}
   {% assign current_language = 'es' %}
+{% elsif tag_list contains 'lang_et' %}
+  {% include 'translation_et' %}
+  {% assign current_language = 'et' %}
+{% elsif tag_list contains 'lang_pt' %}
+  {% include 'translation_pt' %}
+  {% assign current_language = 'pt' %}
 {% else %}
   {% assign current_language = site.language %}
   {% if site.language contains 'en' %}
@@ -22,6 +28,10 @@
     {% include 'translation_fr' %}
   {% elsif site.language contains 'es' %}
     {% include 'translation_es' %}
+  {% elsif site.language contains 'et' %}
+    {% include 'translation_et' %}
+  {% elsif site.language contains 'pt' %}
+    {% include 'translation_pt' %}
   {% else %}
     {% include 'translation_en' %}
   {% endif %}

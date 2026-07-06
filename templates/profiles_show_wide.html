@@ -1,93 +1,113 @@
 {% include "translation" %}
 
-<div class="row">
-  <div class="col-12 col-md-4 pt-4 pt-md-0">
+<div class="page">
+  <div class="page-inner">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card overflow-hidden">
+          <div class="bg-light text-center p-4">
+            {% include "avatar" signup: profile, size: 100 %}
+            <h2 class="m-0 mt-3 h4">{{ profile.published_name }}</h2>
+            <span class="mt-2 badge badge-dark badge-pill">{{ profile.capital_amount_format }}</span>
+            {% if profile.has_membership_level_badge %}
+              <span class="mt-2 badge badge-dark badge-pill">{{ profile.membership_level_badge }}</span>
+            {% endif %}
+          </div>
+          <div class="card-body space-y-4">
+            {% if profile.has_website? or profile.has_twitter_info? or profile.has_facebook_info? %}
+              <ul class="list-unstyled d-flex justify-content-center align-items-center space-x-4">
+                {% if profile.has_website? %}
+                  <li>
+                    <a href="{{ profile.website }}">
+                      <span class="sr-only">{{ t_website }}</span>
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 28c6.627 0 12-5.373 12-12S22.627 4 16 4 4 9.373 4 16s5.373 12 12 12z" stroke="#000" stroke-width="2" stroke-miterlimit="10"/><path d="M4.683 12h22.634M4.684 20h22.633" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 27.678c2.761 0 5-5.229 5-11.678 0-6.45-2.239-11.678-5-11.678S11 9.55 11 16c0 6.45 2.239 11.678 5 11.678z" stroke="#000" stroke-width="2" stroke-miterlimit="10"/></svg>
+                    </a>
+                  </li>
+                {% endif %}
+                {% if profile.has_twitter_info? %}
+                  <li>
+                    <a href="{{ profile.twitter_profile_url }}">
+                      <span class="sr-only">Twitter</span>
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 7.583a15.967 15.967 0 01-4.01 3.99h0A16.005 16.005 0 012.247 25l.001-.002A15.921 15.921 0 0011 22.231h0A16.026 16.026 0 014.58 4.716h0a15.998 15.998 0 0011.524 7.173h0a5.001 5.001 0 019.254-3.476h0a16.08 16.08 0 004.643-.83" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                  </li>
+                {% endif %}
+                {% if profile.has_facebook_info? %}
+                  <li>
+                    <a href="{{ profile.facebook_profile_url }}">
+                      <span class="sr-only">Facebook</span>
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 28c6.627 0 12-5.373 12-12S22.627 4 16 4 4 9.373 4 16s5.373 12 12 12z" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 11h-2a3 3 0 00-3 3v14M12 18h8" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+            {% endif %}
 
-    {% include "profile_card" profile: profile %}
+            {% if profile.has_bio? %}
+              <div class="text-black-75">
+                {{ profile.bio | link_urls }}
+              </div>
+            {% endif %}
 
-    <!-- twitter timeline -->
-    {% if profile.has_twitter_info? %}
-      <div class="my-5">
-        <h5><i class="fab fa-twitter"></i> <a href="{{ profile.twitter_profile_url }}" target="_blank">@{{ profile.twitter_login }}</a></h5>
-        <a class="twitter-timeline" href="{{ profile.twitter_profile_url }}?ref_src=twsrc%5Etfw" data-tweet-limit="1" data-chrome="noheader nofooter noborders">{{ t_social_latest_tweet }}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
-    {% endif %}
-    <!-- .twitter timeline -->
-
-  </div>
-
-  <div class="col-12 col-md pt-4 pt-md-0">
-
-    <!-- fundraising -->
-
-    {% if settings.is_donor? and profile.has_fundraising_goal? %}
-      <div class="card border-0 shadow-sm rounded mb-5">
-        <div class="card-header border-0">
-          <h6 class="text-muted mb-0">{{ t_general_my_fundraiser }}</h6>
+            {% if request.sorta_logged_in? %}
+              {% if request.current_signup.id == profile.id %}
+                <div class="text-center">
+                  <a href="{{ request.current_signup.settings_url }}" class="btn btn-secondary btn-sm">{{ t_account_edit_profile }}</a>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
         </div>
+      </div>
+      <div class="col-lg-8 mt-5 mt-lg-0">
+        {% if profile.profile_headline.size > 0 or profile.profile_content.size > 0%}
+          <div class="mb-4">
+            {% if profile.profile_headline.size > 0 %}
+              <h2 class="font-weight-bold">{{ profile.profile_headline }}</h2>
+            {% endif %}
+            {% if profile.profile_content.size > 0 %}
+              <div class="lead">
+                {{ profile.profile_content }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
 
-        <div class="card-body">
-          {% if profile.profile_headline.size > 0 %}
-            <h2 class="mb-3">{{ profile.profile_headline }}</h2>
-          {% endif %}
-
-          <div class="mb-3">
+        {% if settings.is_donor? and profile.has_fundraising_goal? %}
+          <div class="mb-4">
+            <p class="mb-3 h5 text-sans-serif font-weight-semi-bold">{{ t_donation_amount_raised_so_far | replace: '$amount', profile.donations_raised_amount_format | replace: '$goal', profile.donations_to_raise_amount_format }}</p>
             {% include "progress"
               percent: profile.percent_of_fundraising_goal,
               amount: profile.donations_raised_amount_format,
               goal: profile.donations_to_raise_amount_format
             %}
-          </div>
 
-          {% if profile.profile_content.size > 0 %}
-            <div id="intro" class="intro">
-              {{ profile.profile_content }}
-            </div>
-          {% endif %}
-
-          {% if site.has_donation_page? %}
-            <a href="{{ site.donation_page.full_url }}?recruiter_id={{ profile.id }}" class="btn btn-primary mb-3">{{ t_donate }}</a>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
-
-    <!-- .fundraising -->
-
-    <section class="activities-stream" aria-label="Activities stream">
-      <h2 class="mb-5">{{ t_general_recent_activity }}</h2>
-
-      {% if profile.most_recent_posts.size > 0 %}
-        <ul class="list-unstyled mb-4 activities">
-          {% for post in profile.most_recent_posts %}
-            <li class="activity d-block w-100 position-relative {% unless forloop.last %}pb-5 pb-md-4{% endunless %}">
-              {% unless forloop.last %}
-                <div class="activity-vertical-hr d-none d-md-block position-absolute"></div>
-              {% endunless %}
-
-              <div class="d-flex flex-column flex-md-row align-items-top">
-                <div class="position-relative flex-shrink-0 text-center mb-2 mb-md-0 mr-md-3">
-                  {% include "avatar_with_activity" signup: profile, size: 72, activity_name: post.activity.type_name %}
-                </div>
-
-                <div class="w-100 ml-md-3 mt-md-2">
-                  {% include "post_activity_show" %}
-                </div>
+            {% if site.has_donation_page? %}
+              <div class="mt-4">
+                <a class="submit-button btn btn-primary" href="{{ site.donation_page.url | append: '?recruiter_id=' | append: profile.id }}">{{ t_forms_donate }}</a>
               </div>
-            </li>
-          {% endfor %}
-        </ul>
+            {% endif %}
+          </div>
+        {% endif %}
 
-        {% include "pagination" source: profile.most_recent_posts %}
-
-      {% else %}
-
-        <div class="mb-4">
-          <i>{{ t_general_no_recent_activity }}</i>
-        </div>
-
-      {% endif %}
-    </section>
-
-  </div><!--/.col-12 -->
-</div><!--/.row -->
+        {% if profile.most_recent_posts.size > 0 %}
+          {% if profile.profile_headline.size > 0 or profile.profile_content.size > 0 or (settings.is_donor? and profile.has_fundraising_goal?) %}
+          <div class="mt-5">
+          {% else %}
+          <div>
+          {% endif %}
+            <h2 class="h3">Recent Activity</h2>
+            <div class="mt-4 bg-light px-4 px-md-5 py-5 rounded-xl">
+              <ul class="list-unstyled space-y-4 mb-0">
+                {% for activity in profile.most_recent_posts %}
+                  {% include "activity_show" i18n:current_language activity:activity.activity %}
+                {% endfor %}
+              </ul>
+              {{ profile.most_recent_posts | paginate prev_label: t_prev next_label: t_next }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

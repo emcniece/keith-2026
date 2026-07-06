@@ -7,10 +7,22 @@
 }
 
 .dropdown-toggle {
+  display: flex !important;
+  align-items: center;
   white-space: nowrap;
 
-  // Generate the caret automatically
   @include caret;
+
+  &::after {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    margin-left: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 6L8 11L3 6' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+    transform: translateY(1px);
+  }
 }
 
 // The dropdown menu
@@ -32,7 +44,7 @@
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($dropdown-border-radius);
-  @include box-shadow($dropdown-box-shadow);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 @each $breakpoint in map-keys($grid-breakpoints) {
@@ -125,7 +137,8 @@
   width: 100%; // For `<button>`s
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   clear: both;
-  font-weight: $font-weight-normal;
+  font-size: $dropdown-font-size;
+  font-weight: $dropdown-font-weight;
   color: $dropdown-link-color;
   text-align: inherit; // For `<button>`s
   white-space: nowrap; // prevent links from randomly breaking onto new lines

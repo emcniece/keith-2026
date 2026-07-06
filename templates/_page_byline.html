@@ -1,5 +1,36 @@
-{% assign words = page.blog_post.content_full | number_of_words | minus:250 %}
+{% include "translation" %}
 
-<div class="byline text-muted small d-flex align-items-center flex-wrap my-3">
-  {{ t_general_by }} <img src="{{ page.author.profile_image_url }}" class="flex-shrink-0 rounded-circle ml-1" width="{{ size | default: 30 }}" height="{{ size | default: 30 }}" /> <span class="mx-1">{{ page.author.published_name_linked }}</span><div class="d-flex align-items-center flex-wrap">{{ t_general_on }} {{ page.published_at | date: '%B %d, %Y' }}<i class="fas fa-clock ml-4 mr-1"></i> {% if words < 0 %}{{ t_general_1_min_read }}{% else %}{{ words | plus: 250 | divided_by: 180 | append: " " | append: t_general_min_read }}{% endif %}</div>
+{% case page.type_slug %}
+  {% when 'blog_post' %}
+    {% if page and page.is_editing_available? %}
+      {% assign show_edit = true %}
+    {% endif %}
+    {% assign page_action = t_blog_byline %}
+  {% when 'suggestion' %}
+    {% assign page_action = t_suggestion_byline %}
+  {% else %}
+    {% assign page_action = t_blog_byline %}
+{% endcase %}
+
+{% unless author %}
+  {% assign author = page.author %}
+{% endunless %}
+
+{% unless published_at %}
+  {% assign published_at = page.published_at %}
+{% endunless %}
+
+{% include "date_format" date:published_at %}
+
+<div class="byline">
+  {% if author %}
+    <div class="media">
+      {% include "avatar" signup: author, size: 50, class: 'mr-3' %}
+      <div class="media-body">
+        <p class="mb-0">{{ page_action | replace: '$author', author.published_name_linked }}<br><small>{{ mdy_date }}{% if show_edit %} <a href="{{ page.edit_url }}">{{ t_edit_post }}</a>{% endif %}{% if site.has_rule_page? and request.logged_in? %} <a href="{{ page.flag_url }}" class="flag get">{{ t_flag }}</a>{% endif %}</small></p>
+      </div>
+    </div>
+  {% else %}
+    <small>{{ mdy_date }}{% if show_edit %} <a href="{{ page.edit_url }}">{{ t_edit_post }}</a>{% endif %}{% if site.has_rule_page? and request.logged_in? %} <a href="{{ page.flag_url }}" class="flag get">{{ t_flag }}</a>{% endif %}</small>
+  {% endif %}
 </div>

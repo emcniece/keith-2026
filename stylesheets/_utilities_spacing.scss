@@ -25,6 +25,16 @@
         .#{$abbrev}x#{$infix}-#{$size} {
           #{$prop}-left: $length !important;
         }
+        .space-x#{$infix}-#{$size} {
+          & > * + * {
+            margin-left: $length !important;
+          }
+        }
+        .space-y#{$infix}-#{$size} {
+          & > * + * {
+            margin-top: $length !important;
+          }
+        }
       }
     }
 

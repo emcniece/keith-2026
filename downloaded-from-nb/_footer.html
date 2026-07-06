@@ -1,78 +1,43 @@
-<footer class="footer text-center position-relative">
-  <div class="container">
+{% include "translation" %}
+{% assign splash = splash | default: false %}
 
-    {% if site.footer_content.size > 0 %}
-      <div class="row">
-        <div class="col-md-8 mx-auto">
-          <div class="footer-content my-2">
-            {{ site.footer_content }}
+<footer class="bg-dark text-white">
+  {% if site.page_tags contains "footer_nav" and splash != true %}
+    <div class="footer-nav py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+              {% tag "footer_nav" with "footer_nav_list" %}
           </div>
-          <hr class="footer-ruler mt-5 mb-4" />
         </div>
       </div>
-    {% endif %}
-
-    <div class="row">
-      <div class="col">
-
-        {% if site.long_name.size > 0 %}
-          <h5>{{ site.long_name }}</h5>
-        {% endif %}
-
-        {% if settings.has_address? %}
-          <div class="my-3">
-            {% assign address = settings.address %}
-
-           {% if address.one_line != empty %}
-              <div>
-                <i class="fas fa-map-marker-alt mr-2"></i>
-                {{ address.one_line }}
-              </div>
-            {% endif %}
-
-            {% if address.phone_number != empty %}
-              <a href="tel:{{ address.phone_number }}"><i class="fas fa-phone-alt mr-2"></i>{{ address.phone_number }}</a>
-            {% endif %}
-          </div>
-        {% endif %}
-
-        {% comment %} New redirect page-based social media icons {% endcomment %}
-        {% if site.page_tags contains "footer social media icon" %}
-          {% tag "footer_social_media_icon" with "social_footer_icons" %}
-        {% endif %}
-
-        {% comment %} Fallback to broadcaster icons if no redirect pages are tagged {% endcomment %}
-        {% capture social_icons_check %}{% tag "footer_social_media_icon" with "social_footer_icons" %}{% endcapture %}
-        {% if social_icons_check == blank %}
-          {% if site.has_broadcaster? %}
-            {% if site.broadcaster.has_facebook? or site.broadcaster.has_twitter? %}
-              <ul class="list-inline my-3">
-                {% if site.broadcaster.has_facebook? %}
-                  <li class="list-inline-item"><a href="{{ site.broadcaster.facebook_page_profile_url }}" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
-                {% endif %}
-
-                {% if site.broadcaster.has_twitter? %}
-                  <li class="list-inline-item"><a href="{{ site.broadcaster.twitter_profile_url }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                {% endif %}
-              </ul>
-            {% endif %}
+    </div>
+  {% endif %}
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 text-center">
+        {% unless splash %}
+          {% if site.footer_content.size > 0 %}
+            {{ site.footer_content }}
           {% endif %}
-        {% endif %}
-
-        <div class="footer-fineprint text-muted">
-          {% if request.logged_in? %}
-            {{ t_general_hi_user }} <a href="{{ request.current_signup.settings_url }}" class="text-muted">{{ request.current_signup.name_or_email }}</a>.
-            {{ t_ui_view_your }} {% if site.show_public_profiles? %}<a href="{{ request.current_signup.profile_url }}" class="text-muted">{{ t_general_public_profile }}</a>, {% endif %}
-            <a href="{{ request.current_signup.settings_url }}" class="text-muted">{{ t_auth_account_settings }}</a>,
-            <a href="{{ request.current_signup.logout_url }}" class="text-muted">{{ t_footer_or_logout }}</a>.
-          {% else %}
-          <a href="/login" class="text-muted">{{ t_login }}</a>
-          {% endif %}
-        </div>
-
-        <!-- The NationBuilder link below is required. If it is removed, we may add it back ourselves.
-             You can style it or move it in different ways, but please leave it in the footer. -->
-        <div class="footer-fineprint text-muted">{{ t_general_created_with }} <a href="{{ site.attribution_url }}" target="_blank" rel="noopener" class="text-muted">{{ t_general_nationbuilder }}</a></div>
+          <ul class="footer-social-links list-inline">
+            {% if site.has_facebook_page? %}
+              <li class="list-inline-item">
+                <a href="{{ site.broadcaster.facebook_page_profile_url }}">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21c4.9706 0 9-4.0294 9-9 0-4.97056-4.0294-9-9-9-4.97056 0-9 4.02944-9 9 0 4.9706 4.02944 9 9 9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.75 8.25h-1.5c-.5967 0-1.169.23705-1.591.65901C12.2371 9.33097 12 9.90326 12 10.5V21M9 13.5h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        {% endunless %}
+        <!--
+        The NationBuilder link below is required. If it is removed, we may add it back ourselves.
+        You can style it or move it in different ways, but please leave it in the footer.
+        -->
+        <div id="created-with-nb" {% unless splash %}class="mt-5"{% endunless %}><p class="text-sans-serif">{{ t_created_with_nationbuilder }}</p></div>
       </div>
     </div>
   </div>

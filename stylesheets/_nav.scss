@@ -11,6 +11,22 @@
   list-style: none;
 }
 
+.nav-item-login {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: block;
+    margin-right: 0.9375rem;
+    margin-left: 0.9375rem;
+    width: 0.125rem;
+    height: 2.5rem;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
 .nav-link {
   display: block;
   padding: $nav-link-padding-y $nav-link-padding-x;

@@ -160,12 +160,4 @@
       pointer-events: none;
     }
   }
-
-  // Style the input labels like buttons
-  .input__label--btn {
-    @extend .btn-color-2;
-    @extend .mb-3;
-    @extend .p-3;
-    @extend .mr-sm-3;
-  }
 }

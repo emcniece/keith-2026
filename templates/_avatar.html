@@ -1,29 +1,9 @@
-{% comment %}
-	Display the avatar
-	
-	@param {Object} signup 				- User object
-	@param {number} size 					- Image size
-	@param {boolean} anon 				- Display user as anonymous?
-	@param {boolean} with_points	- Display with social points?
-	@returns {void}
-{% endcomment %}
-
 {% if signup.profile_image_url contains "profile-avatar.png" %}
-	{% assign avatar_url = theme['profile-avatar.png'] %}
+	<svg class="flex-shrink-0 {{ class | default: '' }}" width="{{ size | default: 48 }}" height="{{ size | default: 48 }}" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="25" cy="25" r="24.5" fill="#fff" stroke="#E3E4E6"/>
+    <path d="M25 29a8 8 0 100-16 8 8 0 000 16z" stroke="#000" stroke-width="2" stroke-miterlimit="10"/>
+    <path d="M12.873 35.999a14.005 14.005 0 0124.253 0" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
 {% else %}
-	{% assign avatar_url = signup.profile_image_url %}
-{% endif %}
-
-{% if with_points %}
-  <div class="avatar-container d-flex flex-column position-relative align-items-center">
-{% endif %}
-
-    <img src="{% if anon %}{{ theme['profile-avatar.png'] }}{% else %}{{ avatar_url }}{% endif %}" alt="{% if anon %}{{ t_auth_anonymous }}{% else %}{{ signup.full_name_or_friend }}{% endif %}" class="avatar flex-shrink-0 rounded-circle bg-white" width="{{ size | default: 48 }}" height="{{ size | default: 48 }}" />
-
-    {% if with_points %}
-      <div class="points position-absolute badge badge-color-2">{{ signup.capital_amount_in_cents }} {{ t_general_political_capital_abbr }}</div>
-    {% endif %}
-
-{% if with_points %}
-  </div>
+  <img src="{{ signup.profile_image_url }}" alt="{{ signup.full_name_or_friend }}" class="flex-shrink-0 rounded-circle {{ class | default: '' }}" width="{{ size | default: 48 }}" height="{{ size | default: 48 }}" />
 {% endif %}

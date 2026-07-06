@@ -23,11 +23,9 @@
   }
 
   &:focus,
-  &:focus-visible,
   &.focus {
-    outline: 2px solid transparent; // reserve space for the custom focus ring
-    outline-offset: 2px;
-    box-shadow: 0 0 0 ($btn-focus-width * 2) rgb(94, 158, 214);
+    outline: 0;
+    box-shadow: $btn-focus-box-shadow;
   }
 
   // Disabled comes first so active can properly restyle
@@ -70,6 +68,15 @@ fieldset:disabled a.btn {
   }
 }
 
+.btn-secondary {
+  @include button-variant($secondary, $secondary);
+  color: $primary !important;
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 $btn-focus-width rgba($primary, .5);
+  }
+}
+
 
 //
 // Link buttons
@@ -77,8 +84,10 @@ fieldset:disabled a.btn {
 
 // Make a button look and behave like a link
 .btn-link {
-  font-weight: $font-weight-normal;
   color: $link-color;
+  display: inline;
+  font-weight: $font-weight-normal;
+  padding: inherit;
   text-decoration: $link-decoration;
 
   @include hover {
@@ -118,6 +127,7 @@ fieldset:disabled a.btn {
 //
 // Block button
 //
+
 .btn-block {
   display: block;
   width: 100%;
@@ -135,12 +145,4 @@ input[type="button"] {
   &.btn-block {
     width: 100%;
   }
-}
-
-// Rounded button
-.btn-rounded:has(.avatar) {
-  display: block;
-  background-color: transparent;
-  border: none;
-  border-radius: 50%;
 }

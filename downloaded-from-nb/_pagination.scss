@@ -1,7 +1,15 @@
 .pagination {
+  margin-top: $spacer * 4;
+  margin-bottom: 0;
   display: flex;
+  justify-content: center;
   @include list-unstyled();
   @include border-radius();
+
+  .page-type-blog &,
+  .page-type-suggestion-box & {
+    margin-top: 0;
+  }
 }
 
 .page-link {
@@ -30,6 +38,8 @@
 }
 
 .page-item {
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
   &:first-child {
     .page-link {
       margin-left: 0;

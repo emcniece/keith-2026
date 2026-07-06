@@ -1,122 +1,84 @@
+{% include "translation" %}
+{% include 'tag_list' %}
+
+{% capture body_classes %}
+momentum-theme v3-theme js {{ page.page_class_name }} page-{{ request.template | replace: '_', '-' }}
+{% if page.is_homepage? %} homepage{% endif %}
+{% if site.has_background_image? %} bg-image{% endif %}
+{% if site.has_header_image? %} has-header-image{% endif %}
+{% if page.features_count > 0 %} featured-content{% endif %}
+{% unless page.is_homepage? or page.level == 0 or page.level == nil %} has-breadcrumbs{% endunless %}
+{% case page.type_slug %}
+{% when "blog" or "suggestion_box" or "calendar" %} bg-light
+{% when "event" %} bg-dark
+{% endcase %}
+{% if tag_list contains "fixed_header" %} fixed-header{% endif %}
+{% endcapture %}
+
 <!DOCTYPE html>
-<html lang="en">
-  {% assign is_session = false %}
-  {% if request.template contains "sessions_new"
-    or request.template contains "password_resets"
-    or request.template contains "passwords_new"
-    or request.template contains "users_activations_new_wide" %}
-
-    {% assign is_session = true %}
-  {% endif %}
-
-  {% assign tags_list = "" %}
-  {% for tag in page.tags %}
-    {% assign tags_list = tag.name | downcase | append: ", " | append: tags_list %}
-  {% endfor %}
+<html lang="{{ current_language }}">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>{{ page_title }}</title>
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Source+Code+Pro:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link href="theme.scss" rel="stylesheet" />
-
-    <!-- start of content for header -->
+    <!-- start of content_for_header -->
     {{ content_for_header }}
-    <!-- end of content for header -->
-
-    <script>
+    <!-- end of content_for_header -->
+    <script type="text/javascript">
       NB.appConfig.userIsLoggedIn = {{ request.logged_in? }};
-      NB.appConfig.pageTagsList = "{{ tags_list }}";
     </script>
-
-    <!-- Pre-loaded popular Google Fonts for theme customization -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Montserrat:400,700|Roboto:400,400i,700,700i|Open+Sans:400,400i,700,700i|Raleway:400,700|Poppins:400,700|Merriweather:400,400i,700,700i|Playfair+Display:400,700|Lora:400,400i,700,700i|Source+Serif+Pro:400,700&display=swap" rel="stylesheet" />
-
-    <!-- Bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=NodeList.prototype.forEach%2CMap%2CObject.values%2CArray.from%2CElement.prototype.closest%2CElement.prototype.matches%2CMutationObserver"></script>
-
-    <!-- VCS dependencies -->
-    <script src="simple-scrollbar.js"></script>
-    <script src="lodash.custom.min.js"></script>
-    <script src="bezier-easing.js"></script>
-    <!--/-->
-
-    <!-- VCS main scripts -->
-    <script src="vcs-helper.js"></script>
-    <script src="vcs-media.js"></script>
-    <script src="vcs-nav.js"></script>
-    <!--/-->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.4/ofi.min.js" integrity="sha384-GOTasnp7a/eSjnwcNDne3AqLTCR1Ax6dwWrZsPhBvSGDwp6XkOyJ2dTvSM2IGOnE" crossorigin="anonymous"></script>
   </head>
-  <body class="bootstrap-theme v3-theme {%if page.is_homepage? %}homepage{% elsif is_session %}session-page{% endif %} {{ page.page_class_name }} page-{{ request.template | replace: '_', '-' }} js">
 
-    {% unless page.type_name == "Donation (v2)" %}
-      {% include "header" %}
+  <body class="{{ body_classes | strip_newlines | strip }}">
+    {% if
+      request.template == 'signups_edit' or
+      request.template == 'users_password_resets_new' or
+      request.template == 'users_password_resets_new_wide' or
+      request.template == 'users_passwords_new_wide' or
+      request.template == 'user_sessions_new' or
+      request.template == 'user_sessions_new_wide' or
+      request.template == 'users_account_new' or
+      request.template == 'users_account_new_wide' or
+      request.template == 'users_activations_new_wide'
+    %}
+      {% include "layout_slim" %}
+    {% else %}
 
-      <main id="content"
-        {% if is_session and site.has_background_image? %}
-          class="d-flex flex-column justify-content-center position-relative py-5 w-100"
-        {% elsif is_session %}
-          class="d-flex flex-column justify-content-center py-5 w-100 bg-color-2"
-        {% endif %}
-        role="main"
-      >
-        {% include "content", sidebar: request.is_sidebar? %}
-      </main>
+      {% unless
+        page.type_slug == "donation_v2" or
+        page.type_slug == "donation" or
+        request.template == 'users_event_pages_new' or
+        request.template == 'users_event_pages_edit'
+      %}
+        {% include "header" %}
+      {% endunless %}
 
-      {% if is_session %}
-        {% if site.has_background_image? %}
-          <div class="background-image" style="background-image: url('{{ site.background_image_url }}');"></div>
-        {% endif %}
-      {% endif %}
+      {% include "content" %}
 
-      {% unless is_session %}
+      {% unless
+        page.type_slug == "donation_v2" or
+        page.type_slug == "donation"
+      %}
         {% include "footer" %}
       {% endunless %}
-    {% else %}
-      {% yield %}
-    {% endunless %}
 
-    {{ content_for_notifications }}
+      {% if site.has_background_image? %}
+        <style>body{background-image:url('{{ site.background_image_url }}');}</style>
+      {% endif %}
 
-    {{ content_for_footer }}
-
-    {% if site.has_background_image? %}
-      <style>
-        body {
-          background: url('{{ site.background_image_url }}') no-repeat center center fixed;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
-        }
-      </style>
     {% endif %}
 
-    <script src="adjust-offset.js"></script>
+    {{ content_for_notifications }}
+    {{ content_for_footer }}
 
+    <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
-    <script src="bs-custom-file-input.min.js"></script>
-    <script>
-      ;$(document).ready(function () {
-        bsCustomFileInput.init()
-      })
-    </script>
-    <!-- VCS Form related scripts -->
-    <script src="vcs-slider.js"></script>
-
-    <script src="exif.js"></script>
-    <script src="vcs-dropzone.js"></script>
-
-    <script src="vcs-custom-controls.js"></script>
-
-    <script src="init-forms.js"></script>
-    <!--/-->
-
-    <!-- ActionButton handling -->
-    <script src="vcs-actionbutton.js"></script>
+    <script src="vendor.js"></script>
+    {{ img_cropper_js }}
+    <script src="theme.js"></script>
   </body>
 </html>

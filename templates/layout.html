@@ -1,283 +1,90 @@
 {% include "translation" %}
+{% include 'tag_list' %}
 
-{% assign tags_list = "" %}
-{% for tag in page.tags %}
-  {% assign tags_list = tag.name | downcase | append: ", " | append: tags_list %}
-{% endfor %}
-
-{% assign homepage_tags_list = "" %}
-{% for tag in site.homepage.tags %}
-  {% assign homepage_tags_list = tag.name | downcase | append: ", " | append: homepage_tags_list %}
-{% endfor %}
-
-{% assign is_session = false %}
-{% if request.template contains "sessions_new"
-  or request.template contains "password_resets"
-  or request.template contains "passwords_new"
-  or request.template contains "users_activations_new_wide" %}
-
-  {% assign is_session = true %}
-{% endif %}
-
-{% assign is_donation = false %}
-{% if page.type_slug == 'donation_v2' or page.type_slug == 'donation' %}
-  {% assign is_donation = true %}
-{% endif %}
+{% capture body_classes %}
+momentum-theme v3-theme js {{ page.page_class_name }} page-{{ request.template | replace: '_', '-' }}
+{% if page.is_homepage? %} homepage{% endif %}
+{% if site.has_background_image? %} bg-image{% endif %}
+{% if site.has_header_image? %} has-header-image{% endif %}
+{% if page.features_count > 0 %} featured-content{% endif %}
+{% unless page.is_homepage? or page.level == 0 or page.level == nil %} has-breadcrumbs{% endunless %}
+{% case page.type_slug %}
+{% when "blog" or "suggestion_box" or "calendar" %} bg-light
+{% when "event" %} bg-dark
+{% endcase %}
+{% if tag_list contains "fixed_header" %} fixed-header{% endif %}
+{% endcapture %}
 
 <!DOCTYPE html>
-<html lang="{{ current_language | default: 'en' }}">
-
+<html lang="{{ current_language }}">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page_title }}</title>
-
-    {% assign og_title = page.headline | default: site.name %}
-    {% assign og_description = page.excerpt | strip_html | truncate: 200 %}
-    {% if og_description == blank %}{% assign og_description = site.description %}{% endif %}
-    {% assign og_url = site.url | append: page.url %}
-    {% unless og_url contains "://" %}{% assign og_url = "https://" | append: og_url %}{% endunless %}
-    {% assign og_image = page.featured_image | default: "" %}
-
-    {% unless og_description == blank %}
-      <meta name="description" content="{{ og_description | truncate: 160 }}" />
-    {% endunless %}
-    <link rel="canonical" href="{{ og_url }}" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="{{ site.name }}" />
-    <meta property="og:title" content="{{ og_title }}" />
-    <meta property="og:description" content="{{ og_description }}" />
-    <meta property="og:url" content="{{ og_url }}" />
-    {% if og_image.size > 0 %}
-      <meta property="og:image" content="{{ og_image }}" />
-    {% endif %}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ og_title }}" />
-    <meta name="twitter:description" content="{{ og_description }}" />
-    {% if og_image.size > 0 %}
-      <meta name="twitter:image" content="{{ og_image }}" />
-    {% endif %}
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Caveat:wght@400..700&family=Chivo:ital,wght@0,100..900;1,100..900&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Lexend:wght@100..900&family=Nothing+You+Could+Do&family=Oooh+Baby&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Syne:wght@400..800&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link href="theme.scss" rel="stylesheet" />
-
-    <!-- Preload LCP image on homepage -->
-    {% if page.is_homepage? and page.type_slug == 'basic' %}
-      <link rel="preload" as="image" href="{{ theme['hero-background.webp'] }}" type="image/webp" />
-      <link rel="preload" as="image" href="{{ theme['colby-portrait.webp'] }}" type="image/webp" />
-    {% endif %}
-
-    <!-- Colby 2026 custom fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://syndication.twitter.com" />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lexend:wght@700;800&family=Quattrocento&family=Questrial&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lexend:wght@700;800&family=Quattrocento&family=Questrial&display=swap" rel="stylesheet" /></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
-
-    <!-- start of content for header -->
+    <!-- start of content_for_header -->
     {{ content_for_header }}
-    <!-- end of content for header -->
-
-    <script>
+    <!-- end of content_for_header -->
+    <script type="text/javascript">
       NB.appConfig.userIsLoggedIn = {{ request.logged_in? }};
-      NB.appConfig.pageTagsList = "{{ tags_list }}";
+      NB.translate = {
+        follow: "{{ t_follow }}",
+        unfollow: "{{ t_unfollow }}",
+      }
     </script>
-
-    <!-- Bootstrap polyfill -->
-    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=NodeList.prototype.forEach%2CMap%2CObject.values%2CArray.from%2CElement.prototype.closest%2CElement.prototype.matches%2CMutationObserver"></script>
-
-    <!-- VCS dependencies — synchronous: NB core scripts and body scripts depend on these -->
-    <script src="simple-scrollbar.js"></script>
-    <script src="lodash.custom.min.js"></script>
-    <script src="bezier-easing.js"></script>
-    <!--/-->
-
-    <!-- VCS main scripts — deferred: only used after DOMContentLoaded -->
-    <script defer src="vcs-helper.js"></script>
-    <script defer src="vcs-media.js"></script>
-    <script defer src="vcs-nav.js"></script>
-    <!--/-->
-
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.4/ofi.min.js" integrity="sha384-GOTasnp7a/eSjnwcNDne3AqLTCR1Ax6dwWrZsPhBvSGDwp6XkOyJ2dTvSM2IGOnE" crossorigin="anonymous"></script>
   </head>
-  <body class="bootstrap-theme v3-theme {%if page.is_homepage? %}homepage{% elsif is_session %}session-page{% endif %} {{ page.page_class_name }} page-{{ request.template | replace: '_', '-' }} page-slug-{{ page.slug }} js {% if homepage_tags_list contains "site: disable sticky nav" or tags_list contains "disable sticky nav" %}disable-sticky-nav{% endif %}">
 
-    <a id="skip-to-main-content" href="#main-content" class="sr-only sr-only-focusable p-3">{{ t_accessibility_skip_to_main_content }}</a>
-
-    {% unless page.is_homepage? and page.type_slug == 'basic' %}
-      {% include "header" %}
-    {% endunless %}
-
-    {% if page.is_homepage? and page.type_slug == 'basic' %}
-
-      {% include "homepage" %}
-
+  <body class="{{ body_classes | strip_newlines | strip }}">
+    {% if
+      request.template == 'signups_edit' or
+      request.template == 'users_password_resets_new' or
+      request.template == 'users_password_resets_new_wide' or
+      request.template == 'users_passwords_new_wide' or
+      request.template == 'user_sessions_new_wide' or
+      request.template == 'users_account_new' or
+      request.template == 'users_account_new_wide' or
+      request.template == 'users_activations_new_wide'
+    %}
+      {% include "layout_slim" %}
     {% else %}
 
-      {% unless is_session
-        or request.template contains "signups_edit"
-        or request.template contains "profiles_show_wide"
-        or request.template contains "profiles_show"
-        or page.type_slug == "donation_v2"
-        or page.type_slug == "donation"
-        or request.template == "page_not_found"
+      {% unless
+        page.type_slug == "donation_v2" or
+        page.type_slug == "donation" or
+        request.template == 'users_event_pages_new' or
+        request.template == 'users_event_pages_edit' or
+        request.template == 'users_blog_post_pages_edit'
       %}
-        {% include "hero" %}
+        {% include "header" %}
       {% endunless %}
 
-      {% if page.slug == 'about' %}
+      {% include "content" %}
 
-        <main id="content" role="main">
-          {{ content_for_notifications }}
-          {% include "about" %}
-        </main>
+      {% unless
+        page.type_slug == "donation_v2" or
+        page.type_slug == "donation"
+      %}
+        {% include "footer" %}
+      {% endunless %}
 
-      {% elsif page.slug == 'progress' %}
-
-        <main id="content" class="py-3 mb-5" role="main">
-          {{ content_for_notifications }}
-          <div class="container">
-            {% include "progress_page" %}
-          </div>
-        </main>
-
-      {% else %}
-
-        <main id="content"
-          {% if is_session and site.has_background_image? %}
-            class="d-flex flex-column justify-content-center position-relative py-5 w-100"
-          {% elsif is_session %}
-            class="d-flex flex-column justify-content-center py-5 w-100 bg-color-2"
-          {% elsif is_donation %}
-            class="position-relative bg-color-3 pt-4 pb-5"
-          {% elsif site.has_background_image? %}
-            class="position-relative pt-4 pb-5"
-          {% else %}
-            class="py-3 mb-5"
-          {% endif %}
-
-          role="main"
-        >
-          {% if is_session %}
-            <div id="main-content"></div>
-          {% endif %}
-
-          {{ content_for_notifications }}
-
-          {% if is_session or is_donation %}
-            {% if site.has_background_image? %}
-              <div class="background-image" style="background-image: url('{{ site.background_image_url }}');"></div>
-
-              {% if is_donation %}
-                <div class="background-overlay position-absolute"></div>
-              {% endif %}
-            {% endif %}
-          {% endif %}
-
-          <script src="adjust-offset.js"></script>
-
-          {% if is_donation %}
-            {% yield %}
-          {% else %}
-            {% include "content", sidebar: request.is_sidebar? %}
-          {% endif %}
-        </main>
-
-        {% if page.show_stream? and is_donation == false and page.type_slug != 'blog_post' %}
-          {% if page.type_slug == "petition" %}
-            {% include "page_stream" hide_form: true %}
-          {% else %}
-            {% include "page_stream" %}
-          {% endif %}
-        {% endif %}
-
+      {% if site.has_background_image? %}
+        <style>body{background-image:url('{{ site.background_image_url }}');}</style>
       {% endif %}
 
     {% endif %}
 
-    <script src="vcs-components.js"></script>
-    <script src="image-fade.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('input[id$="_is_private"]').forEach(function (cb) {
-          var before = cb.checked;
-          cb.checked = true;
-          console.log('[is_private] #' + cb.id + ': ' + before + ' → true');
-        });
-      });
-    </script>
-
-    {% if page.is_homepage? and page.type_slug == 'basic' %}
-      <script src="accordion.js"></script>
-      <script src="counter-animation.js"></script>
-    {% endif %}
-
-    {% if request.template contains "signups_edit"
-      or request.template contains "profiles_show_wide"
-      or request.template contains "profiles_show"
-      or page.show_stream?
-      or page.show_social_slider?
-      or request.template contains "recruiting"
-      or request.template contains "activity_stream"
-    %}
-      <script src="adjust-activity-stream.js"></script>
-    {% endif %}
-
-    {% if page.type_slug == "blog" or page.type_slug == "calendar" %}
-      <script src="adjust-pattern.js"></script>
-    {% endif %}
-
-    {% unless is_session %}
-      {% include "footer" %}
-    {% endunless %}
-
+    {{ content_for_notifications }}
     {{ content_for_footer }}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
-    <script src="bootstrap-4.3.1-modal-patch.js"></script>
-    <script src="bs-custom-file-input.min.js"></script>
-    <script>
-      ;$(document).ready(function () {
-        bsCustomFileInput.init()
-
-        $('#flash-share').modal('show');
-      });
-    </script>
-
-    <!-- VCS Form related scripts -->
-    <script src="vcs-slider.js"></script>
-
-    <script src="exif.js"></script>
-    <script src="vcs-dropzone.js"></script>
-
-    <script src="vcs-custom-controls.js"></script>
-
-    <script src="init-forms.js"></script>
-    <!--/-->
-
-    <div style="display:none!important;" id="default-share-text">{{ page.default_face_tweet_text | strip_html }}</div>
-    <div style="display:none!important;" id="default-share-headline">{{ page.headline | strip_html }}</div>
-    <div style="display:none!important;" id="default-profile-share-headline">{{ profile.profile_headline | strip_html }}</div>
-    <div style="display:none!important;" id="default-profile-share-text">{{ profile.bio | strip_html }}</div>
-    <div style="display:none!important;" id="default-homepage-share-text">{{ site.homepage.default_face_tweet_text | strip_html }}</div>
-    <div style="display:none!important;" id="default-recruiting-text">{{ page.recruiting.default_tweet_text | strip_html }}</div>
-    <div style="display:none!important;" id="default-recruiting-headline">{{ page.recruiting.featured_page.headline | strip_html }}</div>
-
-    {% include "supporter_nav" %}
-
-    <script>
-      ;(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-      })();
-      setTimeAgo('{{ current_language }}');
-    </script>
-
-    <!-- ActionButton handling -->
-    <script src="vcs-actionbutton.js"></script>
+    <script src="vendor.js"></script>
+    {{ img_cropper_js }}
+    <script src="theme.js"></script>
   </body>
 </html>

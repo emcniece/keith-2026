@@ -18,6 +18,10 @@
   background-clip: padding-box;
   border: $input-border-width solid $input-border-color;
 
+  .bg-info & {
+    background-color: #fff;
+  }
+
   // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
   @include border-radius($input-border-radius, 0);
 
@@ -176,9 +180,6 @@ textarea.form-control {
   margin-top: $form-text-margin-top;
 }
 
-.form-hint {
-  margin-left: 2em;
-}
 
 // Form grid
 //
@@ -214,7 +215,7 @@ textarea.form-control {
   margin-left: -$form-check-input-gutter;
 
   &:disabled ~ .form-check-label {
-    color: $gray-600;
+    color: $text-muted;
   }
 }
 

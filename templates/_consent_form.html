@@ -1,35 +1,34 @@
-{% comment %}
-  Display the consent form
+{% include "translation" %}
 
-  @param {string} [headline_class='h6']
-{% endcomment %}
+<div class="consent-form-container">
 
-<section class="consent-form-container mb-4" aria-label="Consent form">
-
-  {% if page.consent_form.headline.size > 0 %}
-    <h1 class="{{ headline_class | default: 'h6' }}">{{ page.consent_form.headline }}</h1>
+  {% if page.consent_form.headline != "" %}
+    <h3 class="h5 text-sans-serif font-weight-semi-bold">{{page.consent_form.headline}}</h3>
   {% endif %}
 
-  {% if page.consent_form.content.size > 0 %}
-    <div class="consent-form__content small">
-      {{ page.consent_form.content }}
+  {% if page.consent_form.content != "" %}
+    <div class="consent-form__content">
+      {{page.consent_form.content}}
     </div>
   {% endif %}
 
   {% for consent_option in page.consent_form.consent_options %}
     <div class="consent-form__option">
       <div class="form-group">
-        <p class="mb-1 option-heading">{{ consent_option.description }}</p>
+        {% if consent_option.description != "" %}
+          <p class="mb-1 option-heading font-weight-semi-bold">{{consent_option.description}}</p>
+        {% endif %}
         <div class="custom-control custom-radio custom-control-inline">
-          <input class="custom-control-input" type="radio" name="consents[{{consent_option.input_id}}]" id="{{consent_option.yes_radio_name}}" value="1"/>
-          <label class="custom-control-label radio" for="{{consent_option.yes_radio_name}}">
+          {% capture yes_option_id %}{{ consent_option.yes_radio_name }}_{{ page.slug}}{% endcapture %}
+          {{ consent_option.yes_radio_button | replace: consent_option.yes_radio_name, yes_option_id  }}
+          <label class="custom-control-label radio" for="{{yes_option_id}}">
             {{ t_yes }}
           </label>
         </div>
-
         <div class="custom-control custom-radio custom-control-inline">
-          <input class="custom-control-input" type="radio" name="consents[{{consent_option.input_id}}]" id="{{consent_option.no_radio_name}}" value="0"/>
-          <label class="custom-control-label radio" for="{{consent_option.no_radio_name}}">
+          {% capture no_option_id %}{{ consent_option.no_radio_name }}_{{ page.slug}}{% endcapture %}
+          {{ consent_option.no_radio_button | replace: consent_option.no_radio_name, no_option_id }}
+          <label class="custom-control-label radio" for="{{no_option_id}}">
             {{ t_no }}
           </label>
         </div>
@@ -37,4 +36,4 @@
     </div>
   {% endfor %}
 
-</section>
+</div>

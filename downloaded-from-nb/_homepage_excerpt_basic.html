@@ -1,19 +1,16 @@
-<div class="row">
-  <div class="col-12 col-lg-9 mx-auto">
+{% include "translation" %}
 
-    {% if page.headline.size > 0 %}
-      {% if page.is_homepage? and page.features_count == 0 %}
-        <h1 class="headline">{{ page.headline }}</h1>
-      {% else %}
-        <h2 class="headline">{{ page.headline }}</h2>
-      {% endif %}
-    {% endif %}
-
-    {% if page.basic.content.size > 0 %}
-      <div id="intro" class="intro">
-        {{ page.basic.content }}
+<section class="homepage-excerpt-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        {% if page.headline.size > 0 %}
+          <h2 class="h3 m-0">{{ page.headline }}</h2>
+        {% endif %}
+        <div class="{% if page.headline.size > 0 %}mt-4{% endif %}">{{ page.basic.content | truncatewords: 80 }}</div>
+        <div class="mt-4"><a href="{{ page.url }}">{{ t_excerpt_read_more }}</a></div>
+        {% include "page_tags" with homepage_excerpt %}
       </div>
-    {% endif %}
-
-  </div><!--/.col-12 -->
-</div><!--/.row -->
+    </div>
+  </div>
+</section>

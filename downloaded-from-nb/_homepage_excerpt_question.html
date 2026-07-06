@@ -1,26 +1,28 @@
-<div class="row">
-  <div class="col-12 col-lg-9 mx-auto">
-    {% if page.headline.size > 0 %}
-      {% if page.is_homepage? and page.features_count == 0 %}
-        <h1 class="headline">{{ page.headline }}</h1>
-      {% else %}
-        <h2 class="headline">{{ page.headline }}</h2>
-      {% endif %}
-    {% endif %}
+{% include "translation" %}
 
-    {% if page.question.content.size > 0 %}
-      <div id="intro" class="intro">
-        {{ page.question.content }}
-      </div>
-    {% endif %}
-
-    {% if page.question.answer.size > 0 %}
-      <div class="intro my-4 card">
-        <p class="card-header">{{ t_answer }}</p>
-        <div class="card-body">
-          {{ page.question.answer }}
+<section class="homepage-excerpt-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        {% if page.headline.size > 0 %}
+          <h2 class="h3 m-0">{{ page.headline }}</h2>
+        {% endif %}
+        {% if page.question.content.size > 0 or page.question.answer.size > 0 %}
+          <div class="mt-4">
+            {% if page.question.content.size > 0 %}
+              <div class="text-black-75 lead">
+                {{ page.question.content | truncatewords: 40 }}
+              </div>
+            {% endif %}
+            {% if page.question.answer.size > 0 %}
+              {{ page.question.answer | truncatewords: 80 }}
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="mt-3">
+          <a href="{{ page.url }}">{{ t_excerpt_read_more }}</a>
         </div>
       </div>
-    {% endif %}
+    </div>
   </div>
-</div>
+</section>

@@ -5,18 +5,24 @@
   padding: .6rem 0 0 0;
 }
 
-.StripeElement[data-payments-element-type="card"] {
+.StripeElement[data-payments-element-type="card"], #payment-methods .StripeElement {
   @extend .form-control;
-  padding-top: 0.475rem; // fix for input alignment
-  .StripeElement--focus {
-    color: $input-focus-color;
-    background-color: $input-focus-bg;
-    border-color: $input-focus-border-color;
-    outline: 0;
-    box-shadow: $input-focus-box-shadow;
+  display: flex;
+  align-items: center;
+  & > * {
+    width: 100%;
   }
-  .StripeElement--invalid {
-    border-color: $danger;
-    box-shadow: 0 0 0 $input-focus-width rgba($danger, .25);
-  }
+}
+
+// .StripeElement--empty {}
+.StripeElement--focus[data-payments-element-type="card"] {
+  color: $input-focus-color;
+  background-color: $input-focus-bg;
+  border-color: $input-focus-border-color;
+  outline: 0;
+  box-shadow: $input-focus-box-shadow;
+}
+.StripeElement--invalid[data-payments-element-type="card"] {
+  border-color: $danger;
+  box-shadow: 0 0 0 $input-focus-width rgba($danger, .25);
 }
