@@ -283,11 +283,13 @@
       <!-- Post cards + "See more" button -->
       <div class="ky-blog__content">
         <div class="ky-blog__row">
-          <div id="ky-debug" style="display:none">
-            {% for sp in page.subpages %}
-              <span>SP:{{ sp.name }}|{{ sp.slug }}|{{ sp.type_slug }}|{{ sp.headline }}|{{ sp.url }}|{{ sp.type }}</span>
-            {% endfor %}
-          </div>
+          {% for sp in page.subpages %}
+            {% if sp.blog %}
+              {% for post in sp.blog.most_recent_blog_posts limit: 2 %}
+                {% include "ky_blog_posts" with post %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
         </div><!-- /.ky-blog__row -->
 
         <a href="/blog" class="ky-blog__more">See more blog posts</a>
