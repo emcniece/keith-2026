@@ -2465,6 +2465,9 @@ $ky-progress-radius: 20px;
     }
 
     // Hide the second paragraph (text caption) that accompanies the embed
+    p {
+      border-bottom: 0px;
+    }
     p + p {
       display: none;
     }
