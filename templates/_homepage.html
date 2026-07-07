@@ -80,63 +80,10 @@
         <p class="ky-progress__body">The progress we've made this term marks the beginning of a stronger, more sustainable Langford. A foundation built on action, not just words.</p>
       </div>
 
-      <!-- Cards grid -->
-      <div class="ky-progress__grid">
-
-        <!-- LEFT: Large feature card (Healthcare) -->
-        <article class="ky-progress__card ky-progress__card--feature">
-          <div class="ky-progress__card-img">
-            <img src="{{ theme['keith-progress-bg.jpg'] }}" alt="Goldstream Medical Clinic opening in Langford" />
-            <div class="ky-progress__sticker" aria-hidden="true">
-              <span class="ky-progress__sticker-num">+10</span>
-              <span class="ky-progress__sticker-label">Family Doctors</span>
-            </div>
-          </div>
-          <div class="ky-progress__card-body">
-            <span class="ky-progress__tag">Healthcare</span>
-            <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">Healthcare access</h3>
-            <p class="ky-progress__card-text ky-progress__card-text--lg">We stepped in to fund a clinic for 10 new family doctors, finally giving Westshore families the care they need close to home.</p>
-            <div class="ky-progress__card-footer">
-              <a href="/platform" class="ky-btn ky-btn--primary">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- RIGHT: Two stacked horizontal cards -->
-        <div class="ky-progress__stack">
-
-          <!-- Affordability -->
-          <article class="ky-progress__card ky-progress__card--side">
-            <div class="ky-progress__card-img">
-              <img src="{{ theme['keith-placeholder.jpg'] }}" alt="Affordable housing development in Langford" />
-            </div>
-            <div class="ky-progress__card-body">
-              <span class="ky-progress__tag">Affordability</span>
-              <h3 class="ky-progress__card-heading">Fairer taxes</h3>
-              <p class="ky-progress__card-text">We ended the practice of using developer fees to prop up our budget, ensuring a fairer tax system for every resident.</p>
-              <div class="ky-progress__card-footer">
-                <a href="/platform" class="ky-progress__link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Quality of Life -->
-          <article class="ky-progress__card ky-progress__card--side">
-            <div class="ky-progress__card-img">
-              <img src="{{ theme['keith-placeholder.jpg'] }}" alt="Westhills YMCA Aquatic Centre in Langford" />
-            </div>
-            <div class="ky-progress__card-body">
-              <span class="ky-progress__tag">Quality of Life</span>
-              <h3 class="ky-progress__card-heading">Secured Amenities</h3>
-              <p class="ky-progress__card-text">We protected over 200 acres of parkland and saved $100M in aquatic centre costs, ensuring the longevity of our parks and recreation.</p>
-              <div class="ky-progress__card-footer">
-                <a href="/platform" class="ky-progress__link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </article>
-
-        </div><!-- /.ky-progress__stack -->
-      </div><!-- /.ky-progress__grid -->
+      <!-- Cards grid — driven by pages tagged 'achievement' in NB admin -->
+      {% if site.page_tags contains "achievement" %}
+        {% tag 'achievement' with 'ky_achievement_posts' %}
+      {% endif %}
     </div><!-- /.ky-progress__inner -->
   </section>
 

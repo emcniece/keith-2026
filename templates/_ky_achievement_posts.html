@@ -1,0 +1,53 @@
+{% assign ky_achievements = tag.most_recent_published_pages %}
+
+<div class="ky-progress__grid">
+
+  {% for post in ky_achievements limit: 1 %}
+  <article class="ky-progress__card ky-progress__card--feature">
+    <div class="ky-progress__card-img">
+      {% if post.has_meta_image? %}
+        <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+      {% else %}
+        <img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />
+      {% endif %}
+    </div>
+    <div class="ky-progress__card-body">
+      {% if post.tags_count > 0 %}
+        {% assign ky_ptag = post.tags | first %}
+        <span class="ky-progress__tag">{{ ky_ptag.name }}</span>
+      {% endif %}
+      <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
+      <p class="ky-progress__card-text ky-progress__card-text--lg">{{ post.basic.content | strip_html | truncatewords: 30 }}</p>
+      <div class="ky-progress__card-footer">
+        <a href="{{ post.url }}" class="ky-btn ky-btn--primary">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+
+  <div class="ky-progress__stack">
+    {% for post in ky_achievements limit: 2 offset: 1 %}
+    <article class="ky-progress__card ky-progress__card--side">
+      <div class="ky-progress__card-img">
+        {% if post.has_meta_image? %}
+          <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+        {% else %}
+          <img src="{{ theme['keith-placeholder.jpg'] }}" alt="{{ post.headline }}" />
+        {% endif %}
+      </div>
+      <div class="ky-progress__card-body">
+        {% if post.tags_count > 0 %}
+          {% assign ky_ptag = post.tags | first %}
+          <span class="ky-progress__tag">{{ ky_ptag.name }}</span>
+        {% endif %}
+        <h3 class="ky-progress__card-heading">{{ post.headline }}</h3>
+        <p class="ky-progress__card-text">{{ post.basic.content | strip_html | truncatewords: 20 }}</p>
+        <div class="ky-progress__card-footer">
+          <a href="{{ post.url }}" class="ky-progress__link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div><!-- /.ky-progress__stack -->
+
+</div><!-- /.ky-progress__grid -->
