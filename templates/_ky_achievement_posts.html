@@ -1,29 +1,27 @@
 {% assign ky_count = 0 %}
 
-<div class="ky-debug" style="display:none">
-  {% for post in site.most_recent_blog_post_pages %}
-    ---
-    url: {{ post.url }}
-    slug: {{ post.slug }}
-    type_slug: {{ post.type_slug }}
-    level: {{ post.level }}
-    parent_id: {{ post.parent_id }}
-    blog.slug: {{ post.blog.slug }}
-    blog.name: {{ post.blog.name }}
-    blog.id: {{ post.blog.id }}
-    blog_post.blog.slug: {{ post.blog_post.blog.slug }}
-    page_class_name: {{ post.page_class_name }}
-    tags: {{ post.page_tags }}
-    tags_count: {{ post.tags_count }}
-    first_tag: {% if post.tags_count > 0 %}{{ post.tags | first | map: 'name' }}{% endif %}
-  {% endfor %}
-</div>
-
 <div class="ky-progress__grid">
 
 {% for post in site.most_recent_blog_post_pages %}
-  {% if post.blog.slug == 'achievement' %}
+
+  {% comment %}Check if this post is tagged 'achievement'{% endcomment %}
+  {% assign ky_is_achievement = false %}
+  {% for ptag in post.tags %}
+    {% if ptag.name == 'achievement' %}
+      {% assign ky_is_achievement = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% if ky_is_achievement %}
     {% assign ky_count = ky_count | plus: 1 %}
+
+    {% comment %}Find first non-achievement tag for the category label{% endcomment %}
+    {% assign ky_category_tag = nil %}
+    {% for ptag in post.tags %}
+      {% if ptag.name != 'achievement' and ky_category_tag == nil %}
+        {% assign ky_category_tag = ptag.name %}
+      {% endif %}
+    {% endfor %}
 
     {% if ky_count == 1 %}
     <article class="ky-progress__card ky-progress__card--feature">
@@ -35,9 +33,8 @@
         {% endif %}
       </div>
       <div class="ky-progress__card-body">
-        {% if post.tags_count > 0 %}
-          {% assign ky_ptag = post.tags | first %}
-          <span class="ky-progress__tag">{{ ky_ptag.name }}</span>
+        {% if ky_category_tag %}
+          <span class="ky-progress__tag">{{ ky_category_tag }}</span>
         {% endif %}
         <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
         <p class="ky-progress__card-text ky-progress__card-text--lg">{{ post.blog_post.content_full | strip_html | truncatewords: 30 }}</p>
@@ -58,9 +55,8 @@
         {% endif %}
       </div>
       <div class="ky-progress__card-body">
-        {% if post.tags_count > 0 %}
-          {% assign ky_ptag = post.tags | first %}
-          <span class="ky-progress__tag">{{ ky_ptag.name }}</span>
+        {% if ky_category_tag %}
+          <span class="ky-progress__tag">{{ ky_category_tag }}</span>
         {% endif %}
         <h3 class="ky-progress__card-heading">{{ post.headline }}</h3>
         <p class="ky-progress__card-text">{{ post.blog_post.content_full | strip_html | truncatewords: 20 }}</p>
