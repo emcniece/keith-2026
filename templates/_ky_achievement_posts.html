@@ -3,14 +3,14 @@
 <div class="ky-debug" style="display:none">
   total_blog_posts: {{ site.most_recent_blog_post_pages.size }}
   {% for post in site.most_recent_blog_post_pages %}
-    post_url: {{ post.url }} |
+    post_url: {{ post.url }} | blog_slug: {{ post.blog.slug }} |
   {% endfor %}
 </div>
 
 <div class="ky-progress__grid">
 
 {% for post in site.most_recent_blog_post_pages %}
-  {% if post.url contains '/achievements/' %}
+  {% if post.blog.slug == 'achievement' %}
     {% assign ky_count = ky_count | plus: 1 %}
 
     {% if ky_count == 1 %}
