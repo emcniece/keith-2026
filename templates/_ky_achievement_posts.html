@@ -1,5 +1,12 @@
 {% assign ky_count = 0 %}
 
+<div class="ky-debug" style="display:none">
+  total_blog_posts: {{ site.most_recent_blog_post_pages.size }}
+  {% for post in site.most_recent_blog_post_pages %}
+    post_url: {{ post.url }} |
+  {% endfor %}
+</div>
+
 <div class="ky-progress__grid">
 
 {% for post in site.most_recent_blog_post_pages %}
