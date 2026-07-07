@@ -1034,8 +1034,8 @@ $ky-hero-cream: #e8e3d4;
   display: flex;
   align-items: flex-end;
   position: relative;
-  z-index: 2;
-  overflow: hidden;
+  z-index: 3;
+  margin-right: -10px;
 }
 
 .ky-hero__portrait-img {
@@ -1185,6 +1185,8 @@ $ky-hero-cream: #e8e3d4;
   background-color: $ky-xlight-neutral;
   padding: 24px 0;
   overflow: hidden;
+  position: relative;
+  z-index: 4;
 }
 
 .ky-cta__pill {
