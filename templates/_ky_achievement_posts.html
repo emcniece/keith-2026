@@ -1,9 +1,21 @@
 {% assign ky_count = 0 %}
 
 <div class="ky-debug" style="display:none">
-  total_blog_posts: {{ site.most_recent_blog_post_pages.size }}
   {% for post in site.most_recent_blog_post_pages %}
-    post_url: {{ post.url }} | blog_slug: {{ post.blog.slug }} |
+    ---
+    url: {{ post.url }}
+    slug: {{ post.slug }}
+    type_slug: {{ post.type_slug }}
+    level: {{ post.level }}
+    parent_id: {{ post.parent_id }}
+    blog.slug: {{ post.blog.slug }}
+    blog.name: {{ post.blog.name }}
+    blog.id: {{ post.blog.id }}
+    blog_post.blog.slug: {{ post.blog_post.blog.slug }}
+    page_class_name: {{ post.page_class_name }}
+    tags: {{ post.page_tags }}
+    tags_count: {{ post.tags_count }}
+    first_tag: {% if post.tags_count > 0 %}{{ post.tags | first | map: 'name' }}{% endif %}
   {% endfor %}
 </div>
 
