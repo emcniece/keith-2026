@@ -54,8 +54,14 @@
       <div class="ky-cta__form-row">
         <form class="ky-cta__form" method="post" action="/signup">
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
-          <input type="text" name="signup[first_name]" placeholder="Name" class="ky-cta__input" autocomplete="given-name" />
-          <input type="email" name="signup[email]" placeholder="Email" class="ky-cta__input" required autocomplete="email" />
+          <div class="form-control-material">
+            <label for="cta-name" class="floating-label">Name</label>
+            <input type="text" id="cta-name" name="signup[first_name]" class="ky-cta__input form-group__field" autocomplete="given-name" />
+          </div>
+          <div class="form-control-material">
+            <label for="cta-email" class="floating-label">Email</label>
+            <input type="email" id="cta-email" name="signup[email]" class="ky-cta__input form-group__field" required autocomplete="email" />
+          </div>
           <button type="submit" class="ky-btn ky-btn--primary ky-cta__submit">Join the Effort</button>
         </form>
         <p class="ky-cta__disclaimer">Sign up here to receive campaign updates. Opt out anytime</p>
@@ -166,8 +172,14 @@
         <p class="ky-platform__signup-text">I'll let you know when my full platform is released, so you can make an informed decision at the ballot box</p>
         <form class="ky-platform__form" method="post" action="/signup">
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
-          <input type="text" name="signup[first_name]" placeholder="Name" class="ky-platform__input" autocomplete="given-name" />
-          <input type="email" name="signup[email]" placeholder="Email" class="ky-platform__input" required autocomplete="email" />
+          <div class="form-control-material">
+            <label for="platform-name" class="floating-label">Name</label>
+            <input type="text" id="platform-name" name="signup[first_name]" class="ky-platform__input form-group__field" autocomplete="given-name" />
+          </div>
+          <div class="form-control-material">
+            <label for="platform-email" class="floating-label">Email</label>
+            <input type="email" id="platform-email" name="signup[email]" class="ky-platform__input form-group__field" required autocomplete="email" />
+          </div>
           <button type="submit" class="ky-platform__submit">Stay Informed</button>
         </form>
       </div>
@@ -250,16 +262,31 @@
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
 
           <div class="ky-contact__row">
-            <input type="text"  name="contact[first_name]"   placeholder="First Name"    class="ky-contact__input" autocomplete="given-name" />
-            <input type="text"  name="contact[last_name]"    placeholder="Last Name"     class="ky-contact__input" autocomplete="family-name" />
+            <div class="form-control-material">
+              <label for="contact-first-name" class="floating-label">First Name</label>
+              <input type="text" id="contact-first-name" name="contact[first_name]" class="ky-contact__input form-group__field" autocomplete="given-name" />
+            </div>
+            <div class="form-control-material">
+              <label for="contact-last-name" class="floating-label">Last Name</label>
+              <input type="text" id="contact-last-name" name="contact[last_name]" class="ky-contact__input form-group__field" autocomplete="family-name" />
+            </div>
           </div>
 
           <div class="ky-contact__row">
-            <input type="email" name="contact[email]"        placeholder="Email"         class="ky-contact__input" required autocomplete="email" />
-            <input type="tel"   name="contact[phone_number]" placeholder="Phone Number"  class="ky-contact__input" autocomplete="tel" />
+            <div class="form-control-material">
+              <label for="contact-email" class="floating-label">Email</label>
+              <input type="email" id="contact-email" name="contact[email]" class="ky-contact__input form-group__field" required autocomplete="email" />
+            </div>
+            <div class="form-control-material">
+              <label for="contact-phone" class="floating-label">Phone Number</label>
+              <input type="tel" id="contact-phone" name="contact[phone_number]" class="ky-contact__input form-group__field" autocomplete="tel" />
+            </div>
           </div>
 
-          <textarea name="contact[note]" placeholder="Your Message" class="ky-contact__textarea" rows="5"></textarea>
+          <div class="form-control-material form-control-material-textarea">
+            <label for="contact-message" class="floating-label floating-label-textarea">Your Message</label>
+            <textarea id="contact-message" name="contact[note]" class="ky-contact__textarea form-group__field" rows="5"></textarea>
+          </div>
 
           <div class="ky-contact__footer">
             <button type="submit" class="ky-contact__submit">Send message</button>

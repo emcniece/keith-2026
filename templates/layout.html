@@ -93,6 +93,8 @@ momentum-theme v3-theme js {{ page.page_class_name }} page-{{ request.template |
     <script src="vendor.js"></script>
     {{ img_cropper_js }}
     <script src="theme.js"></script>
+    <script src="vcs-custom-controls.js"></script>
+    <script>new CustomControls(document.querySelectorAll('form'));</script>
     {% if page.is_homepage? and page.type_slug == 'basic' %}
       <script src="ky-blog-modal.js"></script>
     {% endif %}

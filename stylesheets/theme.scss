@@ -2870,3 +2870,71 @@ $ky-progress-radius: 20px;
     font-size: 1.875rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FLOATING LABELS — KY FORMS
+   Overrides NB's form-control-material so floating labels
+   work inside our filled, pill-shaped inputs.
+   ═══════════════════════════════════════════════════════════ */
+
+.ky-cta__form .form-control-material,
+.ky-platform__form .form-control-material,
+.ky-contact__form .form-control-material {
+  overflow: visible;
+  background: transparent;
+  border-radius: 0;
+  flex: 1;
+  min-width: 0;
+
+  &::after { display: none; }
+}
+
+.ky-contact__form .form-control-material.form-control-material-textarea {
+  width: 100%;
+}
+
+.ky-cta__form .form-control-material .floating-label,
+.ky-platform__form .form-control-material .floating-label,
+.ky-contact__form .form-control-material .floating-label {
+  left: 24px;
+  right: 24px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #00445e;
+  pointer-events: none;
+}
+
+.ky-cta__form .form-control-material .floating-label--float-above,
+.ky-platform__form .form-control-material .floating-label--float-above,
+.ky-contact__form .form-control-material .floating-label--float-above {
+  transform: translate(0, -90%) scale(0.75);
+  color: rgba(0, 68, 94, 0.65);
+}
+
+/* Textarea label starts at top, not vertically centred */
+.ky-contact__form .form-control-material .floating-label-textarea {
+  top: 16px;
+  transform: none;
+
+  &.floating-label--float-above {
+    transform: translate(0, -90%) scale(0.75);
+  }
+}
+
+/* Extra top padding so typed text clears the floated label */
+.ky-cta__form .form-control-material .form-group__field,
+.ky-platform__form .form-control-material .form-group__field {
+  padding-top: 20px;
+  padding-bottom: 4px;
+}
+
+.ky-contact__form .form-control-material .form-group__field {
+  padding-top: 20px;
+  padding-bottom: 4px;
+}
+
+.ky-contact__form .form-control-material .ky-contact__textarea {
+  padding-top: 28px;
+  padding-bottom: 8px;
+}
