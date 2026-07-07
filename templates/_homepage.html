@@ -80,10 +80,8 @@
         <p class="ky-progress__body">The progress we've made this term marks the beginning of a stronger, more sustainable Langford. A foundation built on action, not just words.</p>
       </div>
 
-      <!-- Cards grid — driven by pages tagged 'achievement' in NB admin -->
-      {% if site.page_tags contains "achievement" %}
-        {% tag 'achievement' with 'ky_achievement_posts' %}
-      {% endif %}
+      <!-- Cards grid — subpages of /achievements/ -->
+      {% include "ky_achievement_posts" %}
     </div><!-- /.ky-progress__inner -->
   </section>
 

@@ -1,32 +1,35 @@
-{% assign ky_achievements = tag.most_recent_published_pages %}
+{% assign ky_count = 0 %}
 
 <div class="ky-progress__grid">
 
-  {% for post in ky_achievements limit: 1 %}
-  <article class="ky-progress__card ky-progress__card--feature">
-    <div class="ky-progress__card-img">
-      {% if post.has_meta_image? %}
-        <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-      {% else %}
-        <img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />
-      {% endif %}
-    </div>
-    <div class="ky-progress__card-body">
-      {% if post.tags_count > 0 %}
-        {% assign ky_ptag = post.tags | first %}
-        <span class="ky-progress__tag">{{ ky_ptag.name }}</span>
-      {% endif %}
-      <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
-      <p class="ky-progress__card-text ky-progress__card-text--lg">{{ post.blog_post.content_full | strip_html | truncatewords: 30 }}</p>
-      <div class="ky-progress__card-footer">
-        <a href="{{ post.url }}" class="ky-btn ky-btn--primary">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-      </div>
-    </div>
-  </article>
-  {% endfor %}
+{% for post in site.most_recent_blog_post_pages %}
+  {% if post.url contains '/achievements/' %}
+    {% assign ky_count = ky_count | plus: 1 %}
 
-  <div class="ky-progress__stack">
-    {% for post in ky_achievements limit: 2 offset: 1 %}
+    {% if ky_count == 1 %}
+    <article class="ky-progress__card ky-progress__card--feature">
+      <div class="ky-progress__card-img">
+        {% if post.has_meta_image? %}
+          <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+        {% else %}
+          <img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />
+        {% endif %}
+      </div>
+      <div class="ky-progress__card-body">
+        {% if post.tags_count > 0 %}
+          {% assign ky_ptag = post.tags | first %}
+          <span class="ky-progress__tag">{{ ky_ptag.name }}</span>
+        {% endif %}
+        <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
+        <p class="ky-progress__card-text ky-progress__card-text--lg">{{ post.blog_post.content_full | strip_html | truncatewords: 30 }}</p>
+        <div class="ky-progress__card-footer">
+          <a href="{{ post.url }}" class="ky-btn ky-btn--primary">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </article>
+    <div class="ky-progress__stack">
+
+    {% elsif ky_count <= 3 %}
     <article class="ky-progress__card ky-progress__card--side">
       <div class="ky-progress__card-img">
         {% if post.has_meta_image? %}
@@ -47,7 +50,11 @@
         </div>
       </div>
     </article>
-    {% endfor %}
-  </div><!-- /.ky-progress__stack -->
+    {% endif %}
+
+  {% endif %}
+{% endfor %}
+
+{% if ky_count >= 2 %}</div>{% endif %}
 
 </div><!-- /.ky-progress__grid -->
