@@ -12,17 +12,7 @@
         <li><a href="/volunteer" class="ky-nav__link">Volunteer</a></li>
         <li><a href="/contact" class="ky-nav__link">Contact</a></li>
       </ul>
-      <div class="ky-nav__social">
-        <a href="{{ site.facebook_page_url }}" class="ky-nav__social-link" aria-label="Facebook" target="_blank" rel="noopener">
-          <i class="fa-brands fa-facebook-f"></i>
-        </a>
-        <a href="{{ site.twitter_login }}" class="ky-nav__social-link" aria-label="Instagram" target="_blank" rel="noopener">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="#" class="ky-nav__social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-      </div>
+      {% include "ky_social_icons" %}
       <a href="/donate" class="ky-btn ky-btn--donate">Donate</a>
     </nav>
 
