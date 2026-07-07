@@ -2873,13 +2873,16 @@ $ky-progress-radius: 20px;
 
 /* ═══════════════════════════════════════════════════════════
    FLOATING LABELS — KY FORMS
-   Overrides NB's form-control-material so floating labels
-   work inside our filled, pill-shaped inputs.
+   Self-contained implementation (NB base theme does not
+   include _vcs-custom.scss, so all rules are written here).
    ═══════════════════════════════════════════════════════════ */
 
+/* Wrapper: must be positioned so the absolute label anchors to it */
 .ky-cta__form .form-control-material,
 .ky-platform__form .form-control-material,
 .ky-contact__form .form-control-material {
+  position: relative;
+  display: block;
   overflow: visible;
   background: transparent;
   border-radius: 0;
@@ -2890,21 +2893,31 @@ $ky-progress-radius: 20px;
 }
 
 .ky-contact__form .form-control-material.form-control-material-textarea {
+  flex: unset;
   width: 100%;
 }
 
+/* Label: positioned inside the input, vertically centred at rest */
 .ky-cta__form .form-control-material .floating-label,
 .ky-platform__form .form-control-material .floating-label,
 .ky-contact__form .form-control-material .floating-label {
+  position: absolute;
+  top: 50%;
   left: 24px;
-  right: 24px;
+  transform: translateY(-50%);
+  transform-origin: top left;
   font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
+  line-height: 1;
   color: #00445e;
   pointer-events: none;
+  white-space: nowrap;
+  margin: 0;
+  transition: transform 150ms ease, color 150ms ease;
 }
 
+/* Floated: shrink and move to top of input */
 .ky-cta__form .form-control-material .floating-label--float-above,
 .ky-platform__form .form-control-material .floating-label--float-above,
 .ky-contact__form .form-control-material .floating-label--float-above {
@@ -2912,29 +2925,29 @@ $ky-progress-radius: 20px;
   color: rgba(0, 68, 94, 0.65);
 }
 
-/* Textarea label starts at top, not vertically centred */
+/* Textarea: label anchored to top, not vertically centred */
 .ky-contact__form .form-control-material .floating-label-textarea {
   top: 16px;
   transform: none;
 
   &.floating-label--float-above {
-    transform: translate(0, -90%) scale(0.75);
+    transform: translate(0, -100%) scale(0.75);
   }
 }
 
 /* Extra top padding so typed text clears the floated label */
-.ky-cta__form .form-control-material .form-group__field,
-.ky-platform__form .form-control-material .form-group__field {
+.ky-cta__form .form-control-material input,
+.ky-platform__form .form-control-material input {
   padding-top: 20px;
   padding-bottom: 4px;
 }
 
-.ky-contact__form .form-control-material .form-group__field {
+.ky-contact__form .form-control-material input {
   padding-top: 20px;
   padding-bottom: 4px;
 }
 
-.ky-contact__form .form-control-material .ky-contact__textarea {
+.ky-contact__form .form-control-material textarea {
   padding-top: 28px;
   padding-bottom: 8px;
 }
