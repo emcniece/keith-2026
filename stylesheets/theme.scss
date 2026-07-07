@@ -1907,7 +1907,6 @@ $ky-progress-radius: 20px;
   min-width: 0;
 }
 
-/* Icon placeholder circle — swap for real SVG icons when available */
 .ky-platform__feature-icon {
   width: 128px;
   height: 128px;
@@ -1915,6 +1914,14 @@ $ky-progress-radius: 20px;
   border-radius: 9999px;
   flex-shrink: 0;
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 78px;
+    height: 78px;
+  }
 }
 
 .ky-platform__feature-heading {
