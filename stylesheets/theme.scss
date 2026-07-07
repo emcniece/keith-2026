@@ -2576,7 +2576,7 @@ $ky-progress-radius: 20px;
     width: 100% !important;
   }
 
-  p + p {
+  p:not(:has(blockquote, iframe)) {
     display: none;
   }
 }
