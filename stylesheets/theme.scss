@@ -1414,6 +1414,11 @@ $ky-hero-cream: #e8e3d4;
   color: rgba(250, 247, 238, 0.8);
   margin: 0;
   text-align: right;
+  transition: color 0.25s ease;
+}
+
+.ky-about__photo:hover .ky-about__photo-caption {
+  color: rgba(250, 247, 238, 1);
 }
 
 /* Mobile */
