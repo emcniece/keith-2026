@@ -1,5 +1,15 @@
 {% assign ky_count = 0 %}
 
+<!-- DEBUG START -->
+{% for post in site.most_recent_blog_post_pages %}
+  <p style="font-size:11px;color:red">
+    post: {{ post.headline }} |
+    tags_count: {{ post.tags_count }} |
+    {% for ptag in post.tags %}tag[{{ forloop.index0 }}]: "{{ ptag }}" / name: "{{ ptag.name }}" | {% endfor %}
+  </p>
+{% endfor %}
+<!-- DEBUG END -->
+
 <div class="ky-progress__grid">
 
 {% for post in site.most_recent_blog_post_pages %}
