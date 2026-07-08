@@ -2577,6 +2577,9 @@ $ky-progress-radius: 20px;
     width: 100% !important;
   }
 
+  p + p {
+    display: none;
+  }
 }
 
 /* Text panel (right, rounded-right) */
