@@ -1200,7 +1200,8 @@ $ky-hero-cream: #e8e3d4;
 .ky-cta__pill {
   background-color: #001720;
   margin-left: clamp(200px, 44%, 634px);
-  padding: 48px 160px 48px 64px;
+  padding: 48px calc(6rem + 64px) 48px 64px;
+  margin-right: -6rem;
   border-radius: 999px 0 0 999px;
   display: flex;
   flex-direction: column;
