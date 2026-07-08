@@ -1030,6 +1030,7 @@ $ky-hero-cream: #e8e3d4;
   height: 580px;
   min-height: 360px;
   position: relative;
+  overflow: hidden;
 }
 
 .ky-hero__portrait {
@@ -1199,9 +1200,8 @@ $ky-hero-cream: #e8e3d4;
 
 .ky-cta__pill {
   background-color: #001720;
-  margin-left: clamp(200px, 44%, 634px);
-  padding: 48px calc(6rem + 64px) 48px 64px;
-  margin-right: -6rem;
+  margin-left: clamp(100px, 30%, 450px);
+  padding: 48px 64px;
   border-radius: 999px 0 0 999px;
   display: flex;
   flex-direction: column;
