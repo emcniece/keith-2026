@@ -230,8 +230,20 @@
       <!-- Post cards + "See more" button -->
       <div class="ky-blog__content">
         <div class="ky-blog__row">
-          {% for post in site.most_recent_blog_post_pages limit: 2 %}
-            {% include "ky_blog_posts" with post %}
+          {% assign ky_featured_count = 0 %}
+          {% for post in site.most_recent_blog_post_pages %}
+            {% if ky_featured_count < 2 %}
+              {% assign ky_is_featured = false %}
+              {% for ptag in post.tags %}
+                {% if ptag.name == 'featured' %}
+                  {% assign ky_is_featured = true %}
+                {% endif %}
+              {% endfor %}
+              {% if ky_is_featured %}
+                {% include "ky_blog_posts" with post %}
+                {% assign ky_featured_count = ky_featured_count | plus: 1 %}
+              {% endif %}
+            {% endif %}
           {% endfor %}
         </div><!-- /.ky-blog__row -->
 
