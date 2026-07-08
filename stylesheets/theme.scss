@@ -1188,11 +1188,13 @@ $ky-hero-cream: #e8e3d4;
 /* ── CTA / SIGNUP STRIP ────────────────────────────────────────────── */
 
 .ky-cta {
-  background-color: $ky-xlight-neutral;
-  padding: 24px 0;
+  background-color: transparent;
+  padding: 0;
   overflow: visible;
   position: relative;
   z-index: 4;
+  margin-top: -4rem;
+  margin-bottom: -4rem;
 }
 
 .ky-cta__pill {
@@ -1203,7 +1205,6 @@ $ky-hero-cream: #e8e3d4;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: -8rem;
 }
 
 .ky-cta__tagline {
@@ -1316,7 +1317,7 @@ $ky-hero-cream: #e8e3d4;
   align-items: stretch;
   flex: 1;
   max-width: 1440px;
-  padding: 0 36px 6px;
+  padding: 8rem 36px 6px;
   background-color: $ky-xlight-neutral;
   border-bottom-right-radius: 100px;
 
