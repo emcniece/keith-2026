@@ -1476,9 +1476,24 @@ $ky-hero-cream: #e8e3d4;
 
 .ky-about-bio {
   background-color: $ky-xdark-primary;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 100px 100px 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 23, 32, 0.82);
+    z-index: 0;
+  }
 }
 
 .ky-about-bio__inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 60px;
   max-width: 1440px;
