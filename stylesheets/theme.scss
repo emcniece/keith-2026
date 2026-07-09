@@ -943,6 +943,7 @@ $ky-hero-cream: #e8e3d4;
 
 .ky-hero {
   position: relative;
+  z-index: 1;
   background-size: cover;
   background-position: center top;
   background-color: $ky-xdark-primary;
@@ -1308,6 +1309,8 @@ $ky-hero-cream: #e8e3d4;
   background-color: #003144;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 3;
 }
 
 .ky-about__inner {
