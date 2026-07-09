@@ -1476,20 +1476,34 @@ $ky-hero-cream: #e8e3d4;
 
 .ky-about-bio {
   background-color: #003144;
-  background-size: 50% 100%;
-  background-position: left center;
-  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+.ky-about-bio__bg-img {
+  flex: 0 0 50%;
+  align-self: stretch;
+  border-radius: 0 100px 100px 0;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
 .ky-about-bio__inner {
   display: flex;
+  flex: 1;
   gap: 60px;
-  width: 50%;
-  margin: 20px 0 20px auto;
+  margin: 20px 0 20px -30px;
   padding: 36px;
   align-items: stretch;
   background-color: $ky-xdark-primary;
   border-radius: 100px;
+  position: relative;
+  z-index: 1;
 }
 
 .ky-about-bio__left {
