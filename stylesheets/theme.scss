@@ -1484,12 +1484,12 @@ $ky-hero-cream: #e8e3d4;
 .ky-about-bio__inner {
   display: flex;
   gap: 60px;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 72px 36px;
+  width: 50%;
+  margin: 20px 0 20px auto;
+  padding: 36px;
   align-items: stretch;
   background-color: $ky-xdark-primary;
-  border-radius: 0 100px 100px 0;
+  border-radius: 100px;
 }
 
 .ky-about-bio__left {
