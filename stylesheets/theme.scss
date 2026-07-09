@@ -1475,31 +1475,21 @@ $ky-hero-cream: #e8e3d4;
 /* ── ABOUT BIO SECTION ─────────────────────────────────────────────── */
 
 .ky-about-bio {
-  background-color: $ky-xdark-primary;
-  background-size: cover;
-  background-position: center;
-  border-radius: 0 100px 100px 0;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 23, 32, 0.82);
-    z-index: 0;
-  }
+  background-color: $ky-progress-bg;
+  background-size: 50% 100%;
+  background-position: left center;
+  background-repeat: no-repeat;
 }
 
 .ky-about-bio__inner {
-  position: relative;
-  z-index: 1;
   display: flex;
   gap: 60px;
   max-width: 1440px;
   margin: 0 auto;
   padding: 72px 36px;
   align-items: stretch;
+  background-color: $ky-xdark-primary;
+  border-radius: 0 100px 100px 0;
 }
 
 .ky-about-bio__left {
