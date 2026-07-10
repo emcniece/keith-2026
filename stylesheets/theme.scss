@@ -1582,11 +1582,11 @@ $ky-hero-cream: #e8e3d4;
   display: block;
   min-height: 0;
 
-  .top {
+  &.top {
     border-top-right-radius: 80px;
   }
 
-  .bottom {
+  &.bottom {
     border-bottom-right-radius: 80px;
   }
 }
