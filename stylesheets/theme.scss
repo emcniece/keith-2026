@@ -1505,7 +1505,7 @@ $ky-hero-cream: #e8e3d4;
 .ky-about-bio__inner {
   display: flex;
   width: 65%;
-  gap: 60px;
+  gap: 48px;
   margin: 20px 0 20px auto;  /* push to right of grid */
   padding: 36px;
   align-items: stretch;
@@ -1519,7 +1519,7 @@ $ky-hero-cream: #e8e3d4;
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   min-width: 0;
 }
 
@@ -1570,7 +1570,7 @@ $ky-hero-cream: #e8e3d4;
   flex: 0 0 360px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   padding: 36px 0;
 }
 
