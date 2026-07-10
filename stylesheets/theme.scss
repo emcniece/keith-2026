@@ -1480,7 +1480,7 @@ $ky-hero-cream: #e8e3d4;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 60px 0;
+  padding: 160px 0;
 }
 
 .ky-about-bio__grid {
@@ -1499,11 +1499,12 @@ $ky-hero-cream: #e8e3d4;
   border-radius: 0 100px 100px 0;
   background-size: cover;
   background-position: center;
+  margin: 96px 0 0;
 }
 
 .ky-about-bio__inner {
   display: flex;
-  width: 50%;
+  width: 65%;
   gap: 60px;
   margin: 20px 0 20px auto;  /* push to right of grid */
   padding: 36px;
@@ -1580,6 +1581,14 @@ $ky-hero-cream: #e8e3d4;
   border-radius: 20px;
   display: block;
   min-height: 0;
+
+  .top {
+    border-radius-top-right: 80px;
+  }
+
+  .bottom {
+    border-radius-bottom-right: 80px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1629,7 +1638,7 @@ $ky-progress-radius: 20px;
 
 .ky-progress {
   background-color: $ky-progress-bg;
-  padding: 96px 0;
+  padding: 196px 0;
 }
 
 .ky-progress__inner {
