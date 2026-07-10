@@ -1495,9 +1495,9 @@ $ky-hero-cream: #e8e3d4;
 
 .ky-about-bio__inner {
   display: flex;
-  flex: 1;
+  width: 50%;
   gap: 60px;
-  margin: 20px 0 20px -30px;
+  margin: 20px 0 20px auto;
   padding: 36px;
   align-items: stretch;
   background-color: $ky-xdark-primary;
