@@ -1477,9 +1477,17 @@ $ky-hero-cream: #e8e3d4;
 .ky-about-bio {
   background-color: #003144;
   display: flex;
+  justify-content: center;
   align-items: center;
   position: relative;
   padding: 60px 0;
+}
+
+.ky-about-bio__grid {
+  display: flex;
+  flex: 1;
+  max-width: 1440px;
+  padding: 0 36px;
 }
 
 .ky-about-bio__bg-img {
@@ -1497,7 +1505,7 @@ $ky-hero-cream: #e8e3d4;
   display: flex;
   width: 50%;
   gap: 60px;
-  margin: 20px 0 20px auto;
+  margin: 20px 0 20px auto;  /* push to right of grid */
   padding: 36px;
   align-items: stretch;
   background-color: $ky-xdark-primary;
