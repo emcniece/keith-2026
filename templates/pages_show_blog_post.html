@@ -12,7 +12,7 @@
   {% capture featured_breadcrumb_classes %}{% if site.has_background_image? %}mt-2 pt-2 text-white{% else %}mt-0 text-white{% endif %}{% endcapture %}
   <div class="blog-post-features">
     <div class="page">
-      <div class="page-inner bg-dark mb-0 rounded-bottom-0 border-bottom-0">
+      <div class="page-inner mb-0 rounded-bottom-0 border-bottom-0">
         {% include "breadcrumbs" class:featured_breadcrumb_classes, link_class:'text-white' %}
         {% include "features--blog_post" features:use_fcs %}
       </div>
