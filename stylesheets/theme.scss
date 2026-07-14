@@ -3855,6 +3855,41 @@ $ky-progress-radius: 20px;
   }
 }
 
+// ── Donation "other amount" input-group ──────────────────────────────────
+
+.donation-other-input-container.input-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+
+  .input-group-prepend {
+    display: flex;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+
+  .input-group-text {
+    background-color: #e8e3d4;
+    border: none;
+    border-radius: 100px 0 0 100px;
+    padding: 12px 8px 12px 24px;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #00445e;
+    text-transform: none;
+    line-height: 1.4;
+  }
+
+  input.form-control {
+    border-radius: 0 100px 100px 0;
+    padding-left: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 // ── Donation amount buttons ───────────────────────────────────────────────
 
 .donation-v2-amounts .custom-control-label {
