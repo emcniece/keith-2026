@@ -313,17 +313,9 @@
   <div class="row no-gutters">
     <div class="col-md-6">
       <div class="min-vh-100 bg-white">
-        {% include "header" %}
         <div class="px-4 px-md-5 pt-5">
-          {% if page.headline.size > 0 or page.donation_v2.content.size > 0 %}
-            <div class="mb-5">
-              {% if page.headline.size > 0 %}
-                <h2 class="m-0 h3">{{ page.headline }}</h2>
-              {% endif %}
-              {% if page.donation_v2.content.size > 0 %}
-                <div class="mt-4 lead">{{ page.donation_v2.content }}</div>
-              {% endif %}
-            </div>
+          {% if page.donation_v2.content.size > 0 %}
+            <div class="mt-4 lead">{{ page.donation_v2.content }}</div>
           {% endif %}
           {{ form }}
         </div>
@@ -333,16 +325,17 @@
           {% include "social_slider" %}
         </div>
       {% endif %}
-      {% include "footer" %}
     </div>
   </div>
   <div class="donation-bg" style="background-image: url({{ site.background_image_url }});"></div>
 {% else %}
-  {% include "header" %}
   <div class="wrapper-donation-v2">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-9">
+          {% if page.donation_v2.content.size > 0 %}
+            <div class="mt-4 mb-4 lead">{{ page.donation_v2.content }}</div>
+          {% endif %}
           <div class="card card-lg overflow-hidden">
             <div class="card-body pb-0">
               {{ form }}
@@ -357,7 +350,6 @@
       </div>
     </div>
   </div>
-  {% include "footer" %}
 {% endif %}
 
 <script>
