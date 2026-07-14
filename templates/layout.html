@@ -59,8 +59,6 @@ momentum-theme v3-theme js {{ page.page_class_name }} page-{{ request.template |
       {% else %}
 
         {% unless
-          page.type_slug == "donation_v2" or
-          page.type_slug == "donation" or
           request.template == 'users_event_pages_new' or
           request.template == 'users_event_pages_edit' or
           request.template == 'users_blog_post_pages_edit'
@@ -74,12 +72,7 @@ momentum-theme v3-theme js {{ page.page_class_name }} page-{{ request.template |
           {% include "content" %}
         {% endif %}
 
-        {% unless
-          page.type_slug == "donation_v2" or
-          page.type_slug == "donation"
-        %}
-          {% include "footer" %}
-        {% endunless %}
+        {% include "footer" %}
 
       {% endif %}
 
