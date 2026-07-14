@@ -256,6 +256,7 @@ main#content {
 /* NationBuilder Add-ons
 -----------------------------------------------*/
 @import 'social-share-widget';
+.social-share-widget { display: none !important; }
 @import 'featured-content-slider';
 @import 'moneybomb';
 @import 'social_slider';
