@@ -3349,6 +3349,8 @@ $ky-progress-radius: 20px;
   flex: 0 0 454px;
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 24px;
 }
 
 .ky-progress-section__kicker {
