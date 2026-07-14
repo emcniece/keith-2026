@@ -3536,3 +3536,77 @@ $ky-progress-radius: 20px;
     margin: 0;
   }
 }
+
+// ── Progress page anchor nav ──────────────────────────────────────────────
+
+.ky-progress-anchors__wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: -36px;
+  position: relative;
+  z-index: 10;
+  padding: 0 36px;
+}
+
+.ky-progress-anchors {
+  background-color: #001720;
+  border-radius: 999px;
+  padding: 24px 48px;
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+
+.ky-progress-anchors__link {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #e8e3d4;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+// ── Donut chart hover pairing ─────────────────────────────────────────────
+
+.ky-progress-donut__chart {
+  transition: box-shadow 0.2s;
+}
+
+.ky-progress-donut__legend-item {
+  cursor: default;
+  transition: opacity 0.2s;
+
+  &:first-child i { color: #1bd49a; }
+  &:last-child  i { color: #cbac4e; }
+}
+
+// Dim non-hovered legend item when either is active
+.ky-progress-donut--hover-done,
+.ky-progress-donut--hover-progress {
+  .ky-progress-donut__legend-item {
+    opacity: 0.4;
+  }
+}
+
+.ky-progress-donut--hover-done {
+  .ky-progress-donut__legend-item:first-child { opacity: 1; }
+  .ky-progress-donut__chart {
+    box-shadow: 0 0 0 4px #1bd49a;
+    border-radius: 50%;
+  }
+}
+
+.ky-progress-donut--hover-progress {
+  .ky-progress-donut__legend-item:last-child { opacity: 1; }
+  .ky-progress-donut__chart {
+    box-shadow: 0 0 0 4px #cbac4e;
+    border-radius: 50%;
+  }
+}
