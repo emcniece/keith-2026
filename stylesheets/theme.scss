@@ -3855,6 +3855,12 @@ $ky-progress-radius: 20px;
   }
 }
 
+// ── Remove #EEEFF4 from input-group[data-focus-target] ───────────────────
+
+.input-group[data-focus-target] {
+  background-color: transparent;
+}
+
 // ── Donation "other amount" input-group ──────────────────────────────────
 
 .donation-other-input-container.input-group {
