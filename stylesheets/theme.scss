@@ -1515,7 +1515,7 @@ $ky-hero-cream: #e8e3d4;
   min-height: 48px;
   border-radius: 9999px;
   text-decoration: none;
-  margin-top: 16px;
+  /* margin-top: 16px; */
   transition: background-color 0.15s;
 
   &:hover {
@@ -3261,6 +3261,7 @@ $ky-progress-radius: 20px;
 .ky-platform__form .form-control-material input {
   padding-top: 20px;
   padding-bottom: 4px;
+	width: 100%;
 }
 
 .ky-contact__form .form-control-material input {
