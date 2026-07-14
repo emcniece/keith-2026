@@ -1003,6 +1003,56 @@ $ky-hero-cream: #e8e3d4;
   }
 }
 
+/* ── INNER PAGE HEADER ───────────────────────────────────────────── */
+.ky-inner-header {
+  background-color: $ky-xdark-primary;
+  padding: 16px 0;
+}
+
+.ky-inner-header__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ky-inner-header__logo {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.ky-inner-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.ky-inner-header__links {
+  display: flex;
+  gap: 48px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ky-inner-header__link {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #e8e3d4;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
 .ky-btn--donate {
   background-color: $ky-hero-green;
   color: $ky-hero-dark;
