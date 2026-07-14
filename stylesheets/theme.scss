@@ -3854,3 +3854,33 @@ $ky-progress-radius: 20px;
     }
   }
 }
+
+// ── Donation amount buttons ───────────────────────────────────────────────
+
+.donation-v2-amounts .custom-control-label {
+  background-color: #e8e3d4;
+  border-color: transparent;
+  border-radius: 9999px !important;
+  color: #001720;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: none;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: darken(#e8e3d4, 8%);
+    color: #001720;
+  }
+}
+
+.donation-v2-amounts .custom-control-input:checked ~ .custom-control-label {
+  background-color: #1bd49a;
+  border-color: transparent;
+  color: #001720;
+  box-shadow: none;
+}
+
+.donation-v2-amounts .custom-control-input:focus ~ .custom-control-label {
+  box-shadow: 0 0 0 2px #1bd49a;
+}
