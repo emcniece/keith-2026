@@ -1773,9 +1773,12 @@ $ky-progress-radius: 20px;
   padding: 0 36px;
 }
 
-.ky-progress-cards {
+.ky-progress__cards {
 	padding: 96px 0;
 	background-color: $ky-progress-bg;
+}
+.ky-progress__cards .ky-progress__body {
+	margin-bottom: 96px;
 }
 
 /* Intro block */
