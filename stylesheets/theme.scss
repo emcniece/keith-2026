@@ -3618,3 +3618,179 @@ $ky-progress-radius: 20px;
     border-radius: 50%;
   }
 }
+
+// ── Contact form (NationBuilder .feedback_form) — Figma styles ──────────────
+
+.feedback_form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .form-errors { margin: 0; }
+
+  // Override Bootstrap row gutters
+  .form-row {
+    display: flex;
+    gap: 24px;
+    margin-left: 0;
+    margin-right: 0;
+
+    > .form-group {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  // Float-label: position label as placeholder text inside the field
+  .float-label {
+    position: relative;
+
+    label {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Sora', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #00445e;
+      line-height: 1.4;
+      pointer-events: none;
+      transition: top 0.15s, font-size 0.15s, transform 0.15s;
+      margin: 0;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    // When field has a value: shrink label to top of field
+    &.float-label-active label {
+      top: 10px;
+      transform: none;
+      font-size: 0.6875rem;
+    }
+
+    // Textarea: label anchors top-left, not vertically centred
+    &:has(textarea) label,
+    &:has(.auto-grow) label {
+      top: 16px;
+      transform: none;
+    }
+
+    &:has(textarea).float-label-active label,
+    &:has(.auto-grow).float-label-active label {
+      font-size: 0.6875rem;
+    }
+  }
+
+  // All form controls — base reset
+  .form-control {
+    background-color: #e8e3d4;
+    border: none;
+    box-shadow: none;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.875rem;
+    color: #001720;
+    width: 100%;
+
+    &:focus {
+      background-color: #e8e3d4;
+      border: none;
+      box-shadow: 0 0 0 2px #1bd49a;
+      outline: none;
+    }
+  }
+
+  // Single-line inputs
+  input.form-control {
+    border-radius: 100px;
+    min-height: 48px;
+    padding: 12px 24px;
+  }
+
+  // Shift input text down when label is floating
+  .float-label-active input.form-control {
+    padding-top: 20px;
+    padding-bottom: 4px;
+  }
+
+  // Textarea
+  textarea.form-control {
+    border-radius: 20px;
+    min-height: 144px;
+    padding: 28px 24px 16px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .auto-grow {
+    width: 100%;
+  }
+
+  // Select (country, etc.)
+  select.custom-select {
+    background-color: #e8e3d4;
+    border: none;
+    border-radius: 100px;
+    min-height: 48px;
+    padding: 12px 24px;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.875rem;
+    color: #001720;
+    box-shadow: none;
+    appearance: auto;
+
+    &:focus {
+      box-shadow: 0 0 0 2px #1bd49a;
+      outline: none;
+    }
+  }
+
+  .float-label-active select.custom-select {
+    padding-top: 20px;
+    padding-bottom: 4px;
+  }
+
+  // Checkboxes
+  .custom-control-label {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.875rem;
+    color: #001720;
+    line-height: 1.5;
+  }
+
+  // Submit button
+  .btn-loader {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+  }
+
+  input.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1bd49a;
+    color: #001720;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 12px 24px;
+    min-height: 48px;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    appearance: none;
+
+    &:hover {
+      background-color: darken(#1bd49a, 8%);
+      color: #001720;
+    }
+  }
+}
