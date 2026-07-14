@@ -1942,10 +1942,9 @@ $ky-progress-radius: 20px;
   justify-content: flex-end;
 }
 
-/* Feature card "Read More" button — green text variant */
+/* Feature card "Read More" button — green text variant (green text was a mistake. removed :) - NP) */
 .ky-progress__card--feature .ky-btn--primary {
   gap: 6px;
-  color: $ky-progress-green-text;
   margin-top: 0;
 
   &:hover {
