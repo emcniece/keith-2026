@@ -3679,7 +3679,8 @@ $ky-progress-radius: 20px;
 // ── NationBuilder form styles (feedback_form + donation_form) ────────────────
 
 .feedback_form,
-.donation_form {
+.donation_form,
+.volunteer_signup_form {
   display: flex;
   flex-direction: column;
   gap: 24px;
