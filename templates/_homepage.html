@@ -6,14 +6,18 @@
     <!-- Nav bar -->
     <nav class="ky-nav" aria-label="Main navigation">
       <ul class="ky-nav__links">
-        <li><a href="/about" class="ky-nav__link">About Keith</a></li>
-        <li><a href="/platform" class="ky-nav__link">Platform</a></li>
-        <li><a href="/blog" class="ky-nav__link">Blog</a></li>
-        <li><a href="/volunteer" class="ky-nav__link">Volunteer</a></li>
-        <li><a href="/contact" class="ky-nav__link">Contact</a></li>
+        {% for child in site.root_nav_pages %}
+          {% unless site.has_donation_page? and child.id == site.donation_page.id %}
+            <li><a href="{{ child.url }}" class="ky-nav__link">{{ child.name }}</a></li>
+          {% endunless %}
+        {% endfor %}
       </ul>
       {% include "ky_social_icons" %}
-      <a href="/donate" class="ky-btn ky-btn--donate">Donate</a>
+      {% if site.has_donation_page? %}
+        <a href="{{ site.donation_page.url }}" class="ky-btn ky-btn--donate">Donate</a>
+      {% else %}
+        <a href="/donate" class="ky-btn ky-btn--donate">Donate</a>
+      {% endif %}
     </nav>
 
     <!-- Hero body -->
