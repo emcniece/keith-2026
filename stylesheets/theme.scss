@@ -1003,13 +1003,13 @@ $ky-hero-cream: #e8e3d4;
   }
 }
 
-/* ── INNER PAGE HEADER ───────────────────────────────────────────── */
-.ky-inner-header {
+/* ── INNER PAGE NAV ──────────────────────────────────────────────── */
+.ky-inner-nav {
   background-color: $ky-xdark-primary;
   padding: 16px 0;
 }
 
-.ky-inner-header__inner {
+.ky-inner-nav__inner {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 36px;
@@ -1018,19 +1018,19 @@ $ky-hero-cream: #e8e3d4;
   justify-content: space-between;
 }
 
-.ky-inner-header__logo {
+.ky-inner-nav__logo {
   height: 48px;
   width: auto;
   display: block;
 }
 
-.ky-inner-header__nav {
+.ky-inner-nav__nav {
   display: flex;
   align-items: center;
   gap: 48px;
 }
 
-.ky-inner-header__links {
+.ky-inner-nav__links {
   display: flex;
   gap: 48px;
   list-style: none;
@@ -1038,7 +1038,7 @@ $ky-hero-cream: #e8e3d4;
   padding: 0;
 }
 
-.ky-inner-header__link {
+.ky-inner-nav__link {
   font-family: 'Sora', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -1051,6 +1051,65 @@ $ky-hero-cream: #e8e3d4;
     color: #fff;
     text-decoration: none;
   }
+}
+
+/* ── INNER PAGE HEADER BANNER ────────────────────────────────────── */
+.ky-page-banner {
+  background-color: $ky-hero-green;
+  padding: 96px 36px 24px;
+}
+
+.ky-page-banner__content {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ky-page-banner__heading {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #001720;
+  margin: 0 0 20px;
+}
+
+.ky-page-banner__body {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #001720;
+  margin: 0 0 24px;
+}
+
+.ky-page-banner__transition {
+  background-color: #003144;
+  padding: 0 36px 96px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ky-page-banner__peek-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 144px;
+  background-color: $ky-hero-green;
+  z-index: 1;
+}
+
+.ky-page-banner__peek-card {
+  width: 100%;
+  max-width: 1440px;
+  background-color: $ky-xlight-neutral;
+  border-radius: 100px;
+  padding: 72px;
+  position: relative;
+  z-index: 2;
 }
 
 .ky-btn--donate {

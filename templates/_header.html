@@ -1,19 +1,19 @@
 {% assign splash = splash | default: false %}
 
-<header class="ky-inner-header">
-  <div class="ky-inner-header__inner">
+<header class="ky-inner-nav">
+  <div class="ky-inner-nav__inner">
 
-    <a href="/" class="ky-inner-header__logo-link">
-      <img src="{{ theme['keith-logo-white-2x.png'] }}" alt="Re-Elect Keith Yacucha for Langford City Council" class="ky-inner-header__logo" />
+    <a href="/" class="ky-inner-nav__logo-link">
+      <img src="{{ theme['keith-logo-white-2x.png'] }}" alt="Re-Elect Keith Yacucha for Langford City Council" class="ky-inner-nav__logo" />
     </a>
 
     {% unless splash %}
-      <nav class="ky-inner-header__nav" aria-label="Main navigation">
-        <ul class="ky-inner-header__links">
-          <li><a href="/about" class="ky-inner-header__link">About Keith</a></li>
-          <li><a href="/blog" class="ky-inner-header__link">Blog</a></li>
-          <li><a href="/volunteer" class="ky-inner-header__link">Volunteer</a></li>
-          <li><a href="/contact" class="ky-inner-header__link">Contact</a></li>
+      <nav class="ky-inner-nav__nav" aria-label="Main navigation">
+        <ul class="ky-inner-nav__links">
+          <li><a href="/about" class="ky-inner-nav__link">About Keith</a></li>
+          <li><a href="/blog" class="ky-inner-nav__link">Blog</a></li>
+          <li><a href="/volunteer" class="ky-inner-nav__link">Volunteer</a></li>
+          <li><a href="/contact" class="ky-inner-nav__link">Contact</a></li>
         </ul>
         {% include "ky_social_icons" %}
         <a href="/donate" class="ky-btn ky-btn--donate">Donate</a>
@@ -22,3 +22,17 @@
 
   </div>
 </header>
+
+{% assign page_intro_headline = page.headline %}
+{% assign page_intro_body = page.excerpt %}
+
+{% if page_intro_headline.size > 0 %}
+<section class="ky-page-banner" aria-labelledby="ky-page-headline">
+  <div class="ky-page-banner__content">
+    <h1 class="ky-page-banner__heading" id="ky-page-headline">{{ page_intro_headline }}</h1>
+    {% if page_intro_body.size > 0 %}
+      <p class="ky-page-banner__body">{{ page_intro_body }}</p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
