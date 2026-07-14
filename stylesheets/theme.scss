@@ -864,7 +864,7 @@ body {
 .bg-light {
     background-color: $ky-light-primary !important;
 }
-.bg-dark, .wrapper-donation-v2::before {
+.bg-dark {
     background-color: $ky-xdark-primary !important;
 }
 .text-light, .bg-info {
@@ -899,9 +899,6 @@ a:hover {
 }
 .navbar-light .navbar-nav .nav-link {
     color: $ky-dark-primary;
-}
-.wrapper-donation-v2::before {
-  top: -1px;
 }
 .form-control, .custom-file-label, .custom-select, .expiration-selects .form-control, .expiration-selects .StripeElement[data-payments-element-type="card"], .expiration-selects #payment-methods .StripeElement, #payment-methods .expiration-selects .StripeElement, .country-select .form-control, .country-select .StripeElement[data-payments-element-type="card"], .country-select #payment-methods .StripeElement, #payment-methods .country-select .StripeElement {
   background-color: $ky-xlight-primary;
@@ -3622,9 +3619,10 @@ $ky-progress-radius: 20px;
   }
 }
 
-// ── Contact form (NationBuilder .feedback_form) — Figma styles ──────────────
+// ── NationBuilder form styles (feedback_form + donation_form) ────────────────
 
-.feedback_form {
+.feedback_form,
+.donation_form {
   display: flex;
   flex-direction: column;
   gap: 24px;
