@@ -1974,6 +1974,45 @@ $ky-progress-radius: 20px;
   }
 }
 
+/* Hero card (first post): full-width horizontal, image left 50%, text right 50% */
+.ky-progress__card--hero {
+  display: flex;
+  flex-direction: row;
+  border-radius: $ky-progress-radius;
+  margin-bottom: 48px;
+
+  .ky-progress__card-img {
+    flex: 0 0 50%;
+    position: relative;
+    min-height: 420px;
+    border-radius: $ky-progress-radius 0 0 $ky-progress-radius;
+    overflow: hidden;
+    background-color: $ky-progress-dark;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  &:hover .ky-progress__card-img img {
+    transform: scale(1.05);
+  }
+
+  .ky-progress__card-body {
+    flex: 1;
+    padding: 48px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 /* Sticker badge on feature card image */
 .ky-progress__sticker {
   position: absolute;
@@ -2042,6 +2081,21 @@ $ky-progress-radius: 20px;
     }
   }
 
+  .ky-progress__card--hero {
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+
+    .ky-progress__card-img {
+      flex: 0 0 auto;
+      min-height: 220px;
+      border-radius: $ky-progress-radius $ky-progress-radius 0 0;
+    }
+
+    .ky-progress__card-body {
+      padding: 1.5rem;
+    }
+  }
+
   .ky-progress__card--side {
     flex-direction: column;
 
@@ -2078,6 +2132,16 @@ $ky-progress-radius: 20px;
 
     .ky-progress__card-heading--lg {
       font-size: 1.875rem;
+    }
+  }
+
+  .ky-progress__card--hero {
+    .ky-progress__card-img {
+      min-height: 320px;
+    }
+
+    .ky-progress__card-body {
+      padding: 2rem;
     }
   }
 
