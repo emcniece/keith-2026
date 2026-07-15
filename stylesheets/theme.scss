@@ -1790,6 +1790,13 @@ $ky-hero-cream: #e8e3d4;
     height: 280px;
     flex: none;
   }
+	.ky-about-bio__photo.top{
+	border-top-right-radius: 20px;
+	}
+	.ky-about-bio__photo.bottom{
+		border-bottom-right-radius: 40px;
+		border-bottom-left-radius: 40px;
+	}
 
   .ky-about-bio__btn {
     align-self: stretch;
