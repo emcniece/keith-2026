@@ -118,6 +118,7 @@
   // ── SMOOTH SCROLL for anchor nav ────────────────────────────────────────
 
   function initSmoothScroll() {
+    var nav = document.querySelector('.ky-progress-anchors');
     var links = document.querySelectorAll('.ky-progress-anchors__link');
     links.forEach(function (link) {
       link.addEventListener('click', function (e) {
@@ -126,7 +127,11 @@
         var target = document.getElementById(href.slice(1));
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Measure the nav's actual visual bottom (accounts for translateY transform)
+        // then leave 16px clearance below it
+        var navBottom = nav ? nav.getBoundingClientRect().bottom : 0;
+        var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: targetTop - navBottom - 16, behavior: 'smooth' });
       });
     });
   }
