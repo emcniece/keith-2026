@@ -3789,23 +3789,23 @@ $ky-progress-radius: 20px;
       left: 24px;
       top: 50%;
       transform: translateY(-50%);
+      transform-origin: top left;
       font-family: 'Sora', sans-serif;
       font-size: 0.875rem;
       font-weight: 700;
       color: #00445e;
       line-height: 1.4;
       pointer-events: none;
-      transition: top 0.15s, font-size 0.15s, transform 0.15s;
+      transition: transform 150ms ease, color 150ms ease;
       margin: 0;
       white-space: nowrap;
       z-index: 1;
     }
 
-    // When field has a value: shrink label to top of field
+    // When field has a value: shrink + float label to top of field
     &.float-label-active label {
-      top: 10px;
-      transform: none;
-      font-size: 0.6875rem;
+      transform: translate(0, -90%) scale(0.75);
+      color: rgba(0, 68, 94, 0.65);
     }
 
     // Textarea: label anchors top-left, not vertically centred
@@ -3817,7 +3817,8 @@ $ky-progress-radius: 20px;
 
     &:has(textarea).float-label-active label,
     &:has(.auto-grow).float-label-active label {
-      font-size: 0.6875rem;
+      transform: translate(0, -100%) scale(0.75);
+      color: rgba(0, 68, 94, 0.65);
     }
   }
 
