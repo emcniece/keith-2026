@@ -912,9 +912,13 @@ a:hover {
 .nav-tabs {
   background-color: $ky-light-neutral;
 }
-
+//typography
 h1, h2, h3, h4, h5, h6, .form-errors .errorExplanation h2, .h1, .h2, .h3, .h4, .h5, .h6 {
-  
+  line-height: 1.5;
+}
+h2, .h2 {
+	font-size: 36px;
+	line-height: 1.4;
 }
 
 @media (min-width: 992px) {
