@@ -1043,10 +1043,14 @@ $ky-hero-cream: #e8e3d4;
     text-decoration: underline;
     text-underline-offset: 4px;
 
-	  &::after {
+	  &::before {
 		  content: " ";
 		  display:block;
-		  background-color: red;
+		  background-color: #1bd49a;
+		    width: 48px;
+		    height: 4px;
+		    margin: 6px auto -8px;
+		    border-radius: 999px;
 	  }
   }
 }
