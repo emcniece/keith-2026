@@ -4219,3 +4219,19 @@ $ky-progress-radius: 20px;
 .donation-v2-amounts .custom-control-input:focus ~ .custom-control-label {
   box-shadow: 0 0 0 2px #1bd49a;
 }
+
+// ── Splash page ───────────────────────────────────────────────────────────────
+
+.ky-splash {
+  min-height: 100vh;
+  background-color: #ffeaf5; // --color-pink-50
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.ky-splash__inner {
+  max-width: 720px;
+  width: 100%;
+}
