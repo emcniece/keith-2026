@@ -2480,7 +2480,7 @@ $ky-progress-radius: 20px;
   .ky-platform__bottom {
     margin-left: 0;
     border-radius: 0;
-    padding: 3rem 1rem;
+    padding: 3rem 2rem;
   }
 
   .ky-platform__top::after,
@@ -2503,6 +2503,9 @@ $ky-progress-radius: 20px;
     flex-direction: column;
     gap: 0.75rem;
   }
+	.ky-platform__submit {
+		width: 100%;
+	}
 }
 
 /* Tablet */
