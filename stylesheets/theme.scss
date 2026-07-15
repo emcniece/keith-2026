@@ -2126,13 +2126,18 @@ $ky-progress-radius: 20px;
   }
 
   .ky-progress__inner {
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 
   .ky-progress__intro {
 	text-align: center;
 	  margin: 0 auto;
+	  padding: 0 1rem;
   }
+
+.ky-progress__cards .ky-progress__body {
+	margin-bottom: 48px;
+	}
 
   .ky-progress__grid {
     flex-direction: column;
