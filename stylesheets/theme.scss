@@ -1072,7 +1072,7 @@ $ky-hero-cream: #e8e3d4;
   font-weight: 400;
   line-height: 1.6;
   color: #001720;
-  margin: 0 0 24px;
+  margin: 0 0 96px;
 }
 
 .ky-page-banner__transition {
@@ -3765,11 +3765,11 @@ $ky-progress-radius: 20px;
 .ky-progress-anchors__wrap {
   display: flex;
   justify-content: center;
-  margin-top: -36px;
+  height: 0;
+  overflow: visible;
   position: sticky;
-  top: 0;
+  top: 36px;
   z-index: 10;
-  padding: 10px 36px;
 }
 
 .ky-progress-anchors {
@@ -3779,6 +3779,7 @@ $ky-progress-radius: 20px;
   display: flex;
   gap: 48px;
   align-items: center;
+  transform: translateY(-50%);
 }
 
 .ky-progress-anchors__link {
