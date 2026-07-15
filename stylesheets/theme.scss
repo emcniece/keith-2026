@@ -1406,8 +1406,11 @@ $ky-hero-cream: #e8e3d4;
   .ky-cta__pill {
     margin-left: 0;
     border-radius: 0;
-    padding: 2rem 2rem;
+    padding: 3rem 2rem;
   }
+.ky-cta__pill .ky-btn--primary {
+	width: 100%;
+	}
 
 .ky-cta__form .form-control-material, .ky-platform__form .form-control-material, .ky-contact__form .form-control-material {
 	width: 100%;
@@ -1604,6 +1607,7 @@ $ky-hero-cream: #e8e3d4;
 	  padding-bottom: 2rem;
 	  padding-left: 2rem;
 	  padding-right: 2rem;
+	  margin-right: 1rem;
   }
 .ky-about__photo {
 	border-radius: 20px 20px 20px 20px;
@@ -1753,10 +1757,15 @@ $ky-hero-cream: #e8e3d4;
 }
 
 @media (max-width: 767px) {
-  .ky-about-bio__inner {
+  .ky-about-bio__bg-img {
+	  display: none;
+	}
+	
+	.ky-about-bio__inner {
     flex-direction: column;
     padding: 2.5rem 1.25rem;
     gap: 2rem;
+	width: 100%
   }
 
   .ky-about-bio__right {
