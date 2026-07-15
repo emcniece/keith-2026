@@ -5,12 +5,13 @@
   {% capture fcs_image_only %}{% if fcs_display == "1" %}true{% else %}false{% endif %}{% endcapture %}
 {% endif %}
 
-<div class="row align-items-center flex-column-reverse flex-md-row">
-  <div class="col-md-6 text-light">
+<div class="row flex-column-reverse flex-md-row">
+  <div class="col-md-6">
     <h1 class="display-4 mb-4">{{ page.headline }}</h1>
     {% if page.has_author? %}
       <div class="mt-1">{% include "page_byline" author: page.author %}</div>
     {% endif %}
+    {% include "page_tags" with page %}
   </div>
   <div class="col-md-6 mb-4 mb-md-0">
     {% if features %}

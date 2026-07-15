@@ -39,6 +39,7 @@
               {% if page.has_author? %}
                 <div class="mt-4">{% include "page_byline" %}</div>
               {% endif %}
+              {% include "page_tags" with page %}
             </header>
           </div>
         </div>
@@ -48,8 +49,6 @@
           <div id="content" class="post-content">
             {{ page.blog_post.content_full }}
           </div>
-
-          {% include "page_tags" with page %}
 
           {% if page.show_stream? %}
             <div class="mt-4">
