@@ -3554,6 +3554,31 @@ $ky-progress-radius: 20px;
   p { margin: 0; }
 }
 
+@media (max-width: 1279px) {
+  .ky-footer {
+    padding: 64px 0;
+  }
+
+  .ky-footer__inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 0 24px;
+  }
+
+  .ky-footer__logo {
+    width: 220px;
+  }
+
+  .ky-footer__right {
+    align-items: center;
+  }
+
+  .ky-footer__content {
+    text-align: center;
+  }
+}
+
 /* ── PROGRESS PAGE ───────────────────────────────────────────────── */
 .ky-progress-page {
   background-color: $ky-xlight-neutral;
