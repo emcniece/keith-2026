@@ -1774,6 +1774,7 @@ $ky-hero-cream: #e8e3d4;
     gap: 2rem;
 	width: 100%;
 	border-radius: 48px;
+	margin: 0;
 		
   }
 	.ky-about-bio__left {
@@ -2125,11 +2126,10 @@ $ky-progress-radius: 20px;
   }
 
   .ky-progress__inner {
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
 
   .ky-progress__intro {
-    padding-bottom: 2rem;
 	text-align: center;
 	  margin: 0 auto;
   }
@@ -2653,7 +2653,11 @@ $ky-progress-radius: 20px;
   .ky-stats__btn {
     margin-left: 0;
     align-self: flex-start;
+	  width: 100%;
   }
+	.ky-progress__cards {
+		padding: 48px 0;
+	}
 }
 
 /* Tablet */
