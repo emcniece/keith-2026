@@ -230,6 +230,13 @@ main#content {
   }
 }
 
+blockquote {
+    margin: 2rem 0;
+    font-size: 1.15rem;
+    border-left: 4px solid #1bd49a;
+    padding-left: 1.5rem;
+}
+
 .homepage-excerpt-item:nth-child(odd) {
   background-color: $primary-lighten-more;
 }
