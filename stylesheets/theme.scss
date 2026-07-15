@@ -1042,6 +1042,12 @@ $ky-hero-cream: #e8e3d4;
     color: #fff;
     text-decoration: underline;
     text-underline-offset: 4px;
+
+	  &::after {
+		  content: " ";
+		  display:block;
+		  background-color: red;
+	  }
   }
 }
 
