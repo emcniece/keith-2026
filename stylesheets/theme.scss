@@ -3643,7 +3643,7 @@ $ky-progress-radius: 20px;
   display: flex;
   flex-direction: column;
   position: sticky;
-  top: 24px;
+  top: 88px; // nav visual bottom (72px) + 16px gap
 }
 
 .ky-progress-section__kicker {

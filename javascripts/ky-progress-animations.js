@@ -118,20 +118,21 @@
   // ── SMOOTH SCROLL for anchor nav ────────────────────────────────────────
 
   function initSmoothScroll() {
-    var nav = document.querySelector('.ky-progress-anchors');
     var links = document.querySelectorAll('.ky-progress-anchors__link');
+    // Must match the CSS `top` on .ky-progress-section__left (nav bottom 72px + 16px gap)
+    var STICKY_LEFT_TOP = 88;
+
     links.forEach(function (link) {
       link.addEventListener('click', function (e) {
         var href = link.getAttribute('href');
         if (!href || href.charAt(0) !== '#') return;
-        var target = document.getElementById(href.slice(1));
-        if (!target) return;
+        var section = document.getElementById(href.slice(1));
+        if (!section) return;
         e.preventDefault();
-        // Measure the nav's actual visual bottom (accounts for translateY transform)
-        // then leave 16px clearance below it
-        var navBottom = nav ? nav.getBoundingClientRect().bottom : 0;
-        var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: targetTop - navBottom - 16, behavior: 'smooth' });
+        var kicker = section.querySelector('.ky-progress-section__kicker');
+        var el = kicker || section;
+        var elAbsTop = el.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: elAbsTop - STICKY_LEFT_TOP, behavior: 'smooth' });
       });
     });
   }
