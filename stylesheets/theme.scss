@@ -3837,6 +3837,44 @@ $ky-progress-radius: 20px;
   }
 }
 
+/* Mobile: single column, left content first, no sticky */
+@media (max-width: 767px) {
+  .ky-progress-anchors__wrap {
+    display: none;
+  }
+
+  .ky-progress-section__inner {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 16px 0;
+  }
+
+  .ky-progress-section__left {
+    flex: none;
+    width: 100%;
+    position: static;
+  }
+
+  .ky-progress-section__right {
+    flex: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ky-progress-section__col {
+    gap: 16px;
+  }
+
+  .ky-progress-card__text {
+    padding: 24px;
+  }
+
+  .ky-progress-card--counter {
+    padding: 24px;
+  }
+}
+
 /* Tablet: 50/50 split, right two columns combined into one */
 @media (min-width: 768px) and (max-width: 1279px) {
   .ky-progress-section__inner {
