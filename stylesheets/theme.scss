@@ -3685,14 +3685,14 @@ $ky-progress-radius: 20px;
   width: 178px;
   height: 178px;
   border-radius: 50%;
-  background: conic-gradient(#1bd49a calc(var(--done, 0) * 1%), #cbac4e 0);
+  background: conic-gradient(#1bd49a calc(var(--done, 0) * 1%), #FEB518 0);
   position: relative;
   flex-shrink: 0;
 
   &::after {
     content: '';
     position: absolute;
-    inset: 26px;
+    inset: 12px;
     border-radius: 50%;
     background: $ky-xlight-neutral;
   }
@@ -3717,7 +3717,7 @@ $ky-progress-radius: 20px;
   strong { font-weight: 700; }
 
   .fa-circle-check { color: #1bd49a; }
-  .fa-clock { color: #cbac4e; }
+  .fa-clock { color: #FEB518; }
 }
 
 .ky-progress-section__right {
@@ -3813,7 +3813,7 @@ $ky-progress-radius: 20px;
     margin-top: 3px;
 
     &.fa-circle-check { color: #1bd49a; }
-    &.fa-clock { color: #cbac4e; }
+    &.fa-clock { color: #FEB518; }
   }
 
   p {
@@ -3876,7 +3876,7 @@ $ky-progress-radius: 20px;
   transition: opacity 0.2s;
 
   &:first-child i { color: #1bd49a; }
-  &:last-child  i { color: #cbac4e; }
+  &:last-child  i { color: #FEB518; }
 }
 
 // Dim non-hovered legend item when either is active
@@ -3898,7 +3898,7 @@ $ky-progress-radius: 20px;
 .ky-progress-donut--hover-progress {
   .ky-progress-donut__legend-item:last-child { opacity: 1; }
   .ky-progress-donut__chart {
-    box-shadow: 0 0 0 4px #cbac4e;
+    box-shadow: 0 0 0 4px #FEB518;
     border-radius: 50%;
   }
 }
