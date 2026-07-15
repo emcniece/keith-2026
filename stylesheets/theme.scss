@@ -3252,6 +3252,25 @@ $ky-progress-radius: 20px;
 
 /* ── CONTACT SECTION ───────────────────────────────────────────────── */
 
+/* Blog post rich-text embed in featured header */
+.ky-blog-post__embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0;
+  }
+}
+
 .ky-contact {
   background-color: #003144;
   background-size: cover;
