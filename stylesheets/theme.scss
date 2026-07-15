@@ -1509,6 +1509,7 @@ $ky-hero-cream: #e8e3d4;
   text-decoration: none;
   /* margin-top: 16px; */
   transition: background-color 0.15s;
+	gap: 6px;
 
   &:hover {
     background-color: darken($ky-hero-green, 8%);
