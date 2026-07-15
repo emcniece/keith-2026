@@ -3806,6 +3806,7 @@ $ky-progress-radius: 20px;
     &.float-label-active label {
       transform: translate(0, -90%) scale(0.75);
       color: rgba(0, 68, 94, 0.65);
+      background-color: transparent;
     }
 
     // Textarea: label anchors top-left, not vertically centred
