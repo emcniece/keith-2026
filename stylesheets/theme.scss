@@ -1770,10 +1770,15 @@ $ky-hero-cream: #e8e3d4;
 	
 	.ky-about-bio__inner {
     flex-direction: column;
-    padding: 2.5rem 1.25rem;
+    padding: 1rem;
     gap: 2rem;
-	width: 100%
+	width: 100%;
+	border-radius: 48px;
+		
   }
+	.ky-about-bio__left {
+		padding: 1rem;
+	}
 
   .ky-about-bio__right {
     flex: none;
