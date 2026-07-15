@@ -853,6 +853,11 @@ body {
 }
 .page-content {
   color: $ky-xdark-primary;
+	
+	img {
+		margin: 1rem;
+    	border-radius: 20px;
+	}
 }
 .bg-white {
     background-color: $ky-xlight-neutral !important;
