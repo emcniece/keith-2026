@@ -1757,8 +1757,15 @@ $ky-hero-cream: #e8e3d4;
 }
 
 @media (max-width: 767px) {
-  .ky-about-bio__bg-img {
+  .ky-about-bio {
+	  padding: 48px 0;
+	}
+	.ky-about-bio__bg-img {
 	  display: none;
+	}
+
+	.ky-about-bio__grid {
+		padding: 0 1rem;
 	}
 	
 	.ky-about-bio__inner {
