@@ -1598,9 +1598,18 @@ $ky-hero-cream: #e8e3d4;
   .ky-about__inner {
     flex-direction: column;
     gap: 2rem;
-    padding: 2rem 1rem 3rem;
+    /* padding: 2rem 1rem 3rem; */
     border-bottom-right-radius: 48px;
+	  padding-bottom: 2rem;
+	  padding-left: 2rem;
+	  padding-right: 2rem;
   }
+.ky-about__photo {
+	border-radius: 20px 20px 20px 20px;
+}
+	.ky-about__photo-img {
+		position: inherit;
+	}
 
   .ky-about__left {
     padding-bottom: 0;
