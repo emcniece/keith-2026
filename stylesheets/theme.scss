@@ -1135,6 +1135,10 @@ $ky-hero-cream: #e8e3d4;
   position: relative;
 }
 
+.ky-hero__portrait-mobile {
+	display: none; /*hide on desktop*/
+}
+
 .ky-hero__portrait {
   flex: 0 0 50%;
   display: flex;
@@ -1236,11 +1240,15 @@ $ky-hero-cream: #e8e3d4;
     flex: none;
     width: 100%;
     justify-content: center;
+	display: none; /* hide original portrait */
   }
 
   .ky-hero__portrait-img {
     /* max-height: 280px; */
     margin-bottom: 0;
+  }
+.ky-hero__portrait-mobile {
+    display: block;
   }
 
   .ky-hero__card {
