@@ -4224,7 +4224,7 @@ $ky-progress-radius: 20px;
 
 .ky-splash {
   min-height: 100vh;
-  background-color: #ffeaf5; // --color-pink-50
+  background-color: $ky-light-neutral; // #F1E9D3
   display: flex;
   align-items: center;
   justify-content: center;
