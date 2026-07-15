@@ -115,10 +115,27 @@
     });
   }
 
+  // ── SMOOTH SCROLL for anchor nav ────────────────────────────────────────
+
+  function initSmoothScroll() {
+    var links = document.querySelectorAll('.ky-progress-anchors__link');
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) !== '#') return;
+        var target = document.getElementById(href.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
   function init() {
     initCounters();
     initDonuts();
     initDonutHover();
+    initSmoothScroll();
   }
 
   if (document.readyState === 'loading') {
