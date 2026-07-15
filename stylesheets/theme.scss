@@ -2795,6 +2795,9 @@ $ky-progress-radius: 20px;
 
 /* Mobile */
 @media (max-width: 767px) {
+	.ky-donate {
+	background-color: #1bd49a;
+	}
   .ky-donate__inner {
     border-radius: 40px 40px 0 0;
     padding: 3rem 1rem;
