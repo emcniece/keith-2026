@@ -1039,9 +1039,6 @@ $ky-hero-cream: #e8e3d4;
   }
 
   &--active {
-    color: #fff;
-    text-decoration: underline;
-    text-underline-offset: 4px;
 
 	  &::before {
 		  content: " ";
@@ -1049,7 +1046,7 @@ $ky-hero-cream: #e8e3d4;
 		  background-color: #1bd49a;
 		    width: 48px;
 		    height: 4px;
-		    margin: 6px auto -8px;
+		    margin: -8px auto 4px;
 		    border-radius: 999px;
 	  }
   }
