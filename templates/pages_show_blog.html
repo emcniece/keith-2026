@@ -19,7 +19,7 @@
               <span class="ky-blog__tag">{{ ky_first_tag.name }}</span>
             {% endif %}
             <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
-            <p class="ky-blog__card-text">{{ post.blog_post.content_full | strip_html | truncatewords: 30 }}</p>
+            <p class="ky-blog__card-text">{{ post.intro | strip_html }}</p>
             <div class="ky-blog__card-footer">
               <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>
               <a href="{{ post.url }}" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
