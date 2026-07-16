@@ -31,7 +31,7 @@
             {% else %}
               <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
             {% endif %}
-            <p class="ky-blog__card-text">{{ post.excerpt | strip_html }}</p>
+            <p class="ky-blog__card-text">{{ post.blog_post.content | strip_html }}</p>
             <div class="ky-blog__card-footer">
               {% unless ky_post_idx == 1 %}
                 <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>

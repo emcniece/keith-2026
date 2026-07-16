@@ -63,8 +63,8 @@
         {% endif %}
       </div>
 
-      {% if page.excerpt.size > 0 %}
-        <div class="ky-page-banner__intro">{{ page.excerpt | strip_html }}</div>
+      {% if page.blog_post.content.size > 0 %}
+        <div class="ky-page-banner__intro">{{ page.blog_post.content | strip_html }}</div>
       {% endif %}
 
     {% else %}

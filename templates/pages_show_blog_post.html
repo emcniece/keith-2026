@@ -1,6 +1,7 @@
 <div class="ky-blog-post__body">
-  {% if page.blog_post.content_full contains '<iframe' %}
-    {% assign ky_parts = page.blog_post.content_full | split: '<iframe' %}
+  {% assign ky_post_body = page.blog_post.content_full | remove: page.blog_post.content %}
+  {% if ky_post_body contains '<iframe' %}
+    {% assign ky_parts = ky_post_body | split: '<iframe' %}
     {% assign ky_before = ky_parts[0] %}
     {% assign ky_after_parts = ky_parts[1] | split: '</iframe>' %}
     {% assign ky_iframe_attrs = ky_after_parts[0] %}
@@ -18,7 +19,7 @@
     </div>
   {% else %}
     <div class="post-content">
-      {{ page.blog_post.content_full }}
+      {{ ky_post_body }}
     </div>
   {% endif %}
   {% if page.show_stream? %}
