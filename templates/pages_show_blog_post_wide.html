@@ -1,14 +1,20 @@
 <div class="ky-blog-post__body">
   {% assign ky_post_body = page.blog_post.content_full | remove: page.blog_post.content %}
-  {% if ky_post_body contains '<iframe' %}
-    {% assign ky_parts = ky_post_body | split: '<iframe' %}
-    {% assign ky_before = ky_parts[0] %}
-    {% assign ky_after_parts = ky_parts[1] | split: '</iframe>' %}
-    {% assign ky_iframe_attrs = ky_after_parts[0] %}
-    {% assign ky_after = ky_after_parts[1] %}
+  {% if page.blog_post.content_full contains '<iframe' %}
+    {% comment %}Extract iframe from full content (may be in intro or body){% endcomment %}
+    {% assign ky_iframe_split = page.blog_post.content_full | split: '<iframe' %}
+    {% assign ky_iframe_attrs = ky_iframe_split[1] | split: '</iframe>' | first %}
+    {% comment %}Remove iframe from the post body text{% endcomment %}
+    {% if ky_post_body contains '<iframe' %}
+      {% assign ky_text_before = ky_post_body | split: '<iframe' | first %}
+      {% assign ky_text_after = ky_post_body | split: '</iframe>' | last %}
+    {% else %}
+      {% assign ky_text_before = ky_post_body %}
+      {% assign ky_text_after = '' %}
+    {% endif %}
     <div class="ky-blog-post__layout">
       <div class="post-content ky-blog-post__text">
-        {{ ky_before }}{{ ky_after }}
+        {{ ky_text_before }}{{ ky_text_after }}
       </div>
       <aside class="ky-blog-post__media">
         <p class="ky-blog-post__media-kicker">Hear it from Keith</p>
