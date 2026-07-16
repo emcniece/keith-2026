@@ -3846,6 +3846,17 @@ $ky-progress-radius: 20px;
   top: 24px;
 }
 
+.ky-blog-post__media--image {
+  flex: 0 0 400px;
+}
+
+.ky-blog-post__featured-img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+}
+
 .ky-blog-post__media-kicker {
   font-family: 'Sora', sans-serif;
   font-size: 0.75rem;

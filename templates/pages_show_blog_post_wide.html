@@ -23,6 +23,13 @@
         </div>
       </aside>
     </div>
+  {% elsif page.has_meta_image? %}
+    <div class="ky-blog-post__layout">
+      <div class="post-content ky-blog-post__text">{{ ky_post_body }}</div>
+      <aside class="ky-blog-post__media ky-blog-post__media--image">
+        <img src="{{ page.meta_image_url }}" alt="{{ page.headline }}" class="ky-blog-post__featured-img" />
+      </aside>
+    </div>
   {% else %}
     <div class="post-content">
       {{ ky_post_body }}
