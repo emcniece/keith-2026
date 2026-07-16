@@ -3288,6 +3288,349 @@ $ky-progress-radius: 20px;
   }
 }
 
+/* ── MEDIA SECTION ─────────────────────────────────────────────────── */
+
+.ky-media {
+  background-color: $ky-xdark-primary;
+  padding: 96px 0;
+}
+
+.ky-media__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+// Intro row: title left + carousel right
+.ky-media__intro {
+  display: flex;
+  gap: 64px;
+  align-items: center;
+  padding-bottom: 36px;
+}
+
+.ky-media__title-block {
+  flex: 0 0 auto;
+  max-width: 300px;
+}
+
+.ky-media__kicker {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(250, 247, 238, 0.8);
+  margin: 0 0 28px;
+}
+
+.ky-media__heading {
+  font-family: 'Fraunces', serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  color: #faf7ee;
+  margin: 0;
+}
+
+// Quote carousel
+.ky-media__carousel {
+  flex: 1;
+  min-width: 0;
+  background-color: #003144;
+  border-radius: 20px;
+  padding: 48px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.ky-media__carousel-btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background-color: #1bd49a;
+  color: #001720;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s;
+  margin-top: 4px;
+
+  &:hover { background-color: darken(#1bd49a, 8%); }
+}
+
+.ky-media__carousel-track {
+  flex: 1;
+  min-width: 0;
+}
+
+.ky-media__slide {
+  display: none;
+
+  &--active {
+    display: block;
+  }
+}
+
+.ky-media__quote {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #faf7ee;
+  margin: 0 0 16px;
+  border: none;
+  padding: 0;
+}
+
+.ky-media__attribution {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(250, 247, 238, 0.8);
+  text-align: right;
+  margin: 0;
+}
+
+// Post cards
+.ky-media__posts {
+  display: flex;
+  gap: 36px;
+  align-items: stretch;
+  margin-bottom: 36px;
+}
+
+.ky-media__card {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #faf7ee;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &:hover { transform: translateY(-4px); }
+}
+
+.ky-media__card-img {
+  position: relative;
+  height: 260px;
+  background-color: $ky-xdark-primary;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+}
+
+.ky-media__card:hover .ky-media__card-img img {
+  transform: scale(1.05);
+}
+
+.ky-media__card-body {
+  padding: 36px 48px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ky-media__source {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e8e3d4;
+  border-radius: 9999px;
+  padding: 6px 12px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #001720;
+  margin-bottom: 24px;
+  align-self: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.ky-media__card-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  color: #001720;
+  margin: 0 0 16px;
+}
+
+.ky-media__card-text {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 23, 32, 0.8);
+  margin: 0 0 32px;
+  flex: 1;
+}
+
+.ky-media__card-footer {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.ky-media__card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ky-media__card-author {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #001720;
+  margin: 0;
+}
+
+.ky-media__card-date {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 23, 32, 0.8);
+  margin: 0;
+}
+
+.ky-media__card-link {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #01734f;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  i { font-size: 0.75rem; }
+
+  &:hover {
+    color: darken(#01734f, 8%);
+    text-decoration: none;
+  }
+}
+
+// Footer CTA
+.ky-media__footer {
+  display: flex;
+  justify-content: center;
+}
+
+.ky-media__more-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #1bd49a;
+  color: #001720;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 12px 24px;
+  min-height: 48px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: darken(#1bd49a, 8%);
+    color: #001720;
+    text-decoration: none;
+  }
+}
+
+// Media responsive
+@media (max-width: 767px) {
+  .ky-media {
+    padding: 48px 0;
+  }
+
+  .ky-media__inner {
+    padding: 0 16px;
+  }
+
+  .ky-media__intro {
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .ky-media__title-block {
+    max-width: 100%;
+  }
+
+  .ky-media__carousel {
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .ky-media__posts {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .ky-media__card-body {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .ky-media__inner {
+    padding: 0 24px;
+  }
+
+  .ky-media__intro {
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .ky-media__title-block {
+    max-width: 100%;
+  }
+
+  .ky-media__posts {
+    gap: 24px;
+  }
+
+  .ky-media__card-body {
+    padding: 24px 32px;
+  }
+
+  .ky-media__card-heading {
+    font-size: 1.375rem;
+  }
+}
+
 /* ── CONTACT SECTION ───────────────────────────────────────────────── */
 
 /* Blog post rich-text embed in featured header */

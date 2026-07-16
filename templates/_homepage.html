@@ -281,6 +281,67 @@
     </div><!-- /.ky-blog__inner -->
   </section>
 
+  <!-- ── MEDIA SECTION ────────────────────────────────────────────── -->
+  <section class="ky-media">
+    <div class="ky-media__inner">
+
+      <!-- Intro row: title left, quote carousel right -->
+      <div class="ky-media__intro">
+
+        <div class="ky-media__title-block">
+          <p class="ky-media__kicker">MEDIA</p>
+          <h2 class="ky-media__heading">On the Record</h2>
+        </div>
+
+        <div class="ky-media__carousel" role="region" aria-label="Quote carousel">
+          <button class="ky-media__carousel-btn ky-media__carousel-prev" aria-label="Previous quote">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+
+          <div class="ky-media__carousel-track">
+
+            <div class="ky-media__slide ky-media__slide--active" aria-hidden="false">
+              <blockquote class="ky-media__quote">"By investing in safe routes to school, we are prioritizing the needs of our children and those who need it most."</blockquote>
+              <p class="ky-media__attribution">— Councillor Keith Yacucha on the fairer distribution of property taxes, May 31, 2024</p>
+            </div>
+
+            <div class="ky-media__slide" aria-hidden="true">
+              <blockquote class="ky-media__quote">"We believe every Langford resident deserves access to world-class public services — and we're delivering on that promise."</blockquote>
+              <p class="ky-media__attribution">— Councillor Keith Yacucha, Langford Council, March 2024</p>
+            </div>
+
+            <div class="ky-media__slide" aria-hidden="true">
+              <blockquote class="ky-media__quote">"Transparency and accountability aren't optional — they're the foundation of good governance."</blockquote>
+              <p class="ky-media__attribution">— Councillor Keith Yacucha, Times Colonist, January 2024</p>
+            </div>
+
+          </div>
+
+          <button class="ky-media__carousel-btn ky-media__carousel-next" aria-label="Next quote">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+      </div><!-- /.ky-media__intro -->
+
+      <!-- Post cards -->
+      <div class="ky-media__posts">
+        {% assign ky_media_count = 0 %}
+        {% for post in site.most_recent_blog_post_pages %}
+          {% if ky_media_count < 3 and post.parent.slug == 'media' %}
+            {% include "ky_media_posts" with post %}
+            {% assign ky_media_count = ky_media_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div><!-- /.ky-media__posts -->
+
+      <div class="ky-media__footer">
+        <a href="/media" class="ky-media__more-btn">See more articles</a>
+      </div>
+
+    </div><!-- /.ky-media__inner -->
+  </section>
+
   <!-- ── CONTACT SECTION ───────────────────────────────────────────── -->
   <section class="ky-contact" style="background-image: url('{{ theme['keith-progress-bg.jpg'] }}');">
     <div class="ky-contact__inner">

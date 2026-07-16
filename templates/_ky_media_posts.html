@@ -1,0 +1,29 @@
+<article class="ky-media__card">
+
+  <div class="ky-media__card-img">
+    {% if post.has_meta_image? %}
+      <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+    {% else %}
+      <img src="{{ theme['keith-blog-card.jpg'] }}" alt="{{ post.headline }}" />
+    {% endif %}
+  </div>
+
+  <div class="ky-media__card-body">
+    {% if post.tags_count > 0 %}
+      {% assign ky_media_source = post.tags | first %}
+      <span class="ky-media__source">{{ ky_media_source.name }}</span>
+    {% endif %}
+    <h3 class="ky-media__card-heading">{{ post.headline }}</h3>
+    <p class="ky-media__card-text">{{ post.blog_post.content_full | strip_html | truncatewords: 25 }}</p>
+    <div class="ky-media__card-footer">
+      <div class="ky-media__card-meta">
+        {% if post.has_author? %}
+          <p class="ky-media__card-author">{{ post.author.full_name }}</p>
+        {% endif %}
+        <p class="ky-media__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</p>
+      </div>
+      <a href="{{ post.url }}" class="ky-media__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+</article>
