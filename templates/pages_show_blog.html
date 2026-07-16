@@ -3,9 +3,19 @@
 <section class="ky-blog ky-blog--listing">
   <div class="ky-blog__inner">
 
+    <div class="ky-blog__filters" id="ky-blog-filters"></div>
+
     <div class="ky-blog__row ky-blog__row--wrap">
       {% for post in page.blog.most_recent_blog_posts %}
-        <article class="ky-blog__card">
+        {% assign ky_post_tags = '' %}
+        {% for tag in post.tags %}
+          {% if forloop.first %}
+            {% assign ky_post_tags = tag.name %}
+          {% else %}
+            {% assign ky_post_tags = ky_post_tags | append: ',' | append: tag.name %}
+          {% endif %}
+        {% endfor %}
+        <article class="ky-blog__card" data-tags="{{ ky_post_tags }}">
           <a href="{{ post.url }}" class="ky-blog__card-img">
             {% if post.has_meta_image? %}
               <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />

@@ -101,5 +101,8 @@ momentum-theme v3-theme js {{ page.page_class_name }} page-{{ request.template |
     {% if page.slug == 'progress' %}
       <script src="ky-progress-animations.js"></script>
     {% endif %}
+    {% if request.template == 'pages_show_blog' or request.template == 'pages_show_blog_wide' %}
+      <script src="ky-blog-filter.js"></script>
+    {% endif %}
   </body>
 </html>

@@ -3176,6 +3176,41 @@ $ky-progress-radius: 20px;
   padding-top: 64px;
 }
 
+.ky-blog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.ky-blog__filter-btn {
+  appearance: none;
+  border: 2px solid #001720;
+  background: transparent;
+  color: #001720;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover {
+    background-color: rgba(0, 23, 32, 0.08);
+  }
+
+  &--active {
+    background-color: #001720;
+    color: #faf7ee;
+  }
+}
+
+.ky-blog__card--hidden {
+  display: none;
+}
+
 .ky-blog__row--wrap {
   flex-wrap: wrap;
 
