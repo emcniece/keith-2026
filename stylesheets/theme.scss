@@ -1682,7 +1682,7 @@ $ky-hero-cream: #e8e3d4;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 160px 0;
+  padding: 160px 0 0;
 }
 
 .ky-about-bio__grid {
@@ -1922,7 +1922,7 @@ $ky-progress-radius: 20px;
 .ky-progress__grid {
   display: flex;
   gap: 48px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 /* Right column: two stacked cards */
@@ -1950,7 +1950,8 @@ $ky-progress-radius: 20px;
 
   .ky-progress__card-img {
     position: relative;
-    aspect-ratio: 16 / 9;
+    flex: 1; // fill remaining height after body text
+    min-height: 200px;
     border-radius: $ky-progress-radius $ky-progress-radius 0 0;
     overflow: hidden;
     background-color: $ky-progress-dark;
@@ -1971,6 +1972,7 @@ $ky-progress-radius: 20px;
 
   .ky-progress__card-body {
     padding: 48px;
+    order: -1; // text on top, image fills below
   }
 
   .ky-progress__card-heading--lg {
