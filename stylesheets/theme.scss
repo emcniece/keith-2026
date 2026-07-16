@@ -3841,7 +3841,7 @@ $ky-progress-radius: 20px;
 }
 
 .ky-blog-post__media {
-  flex: 0 0 420px; // fixed column width so embed is always a reasonable size
+  flex: 0 0 560px; // at 16:9 this gives ~315px embed height
   position: sticky;
   top: 24px;
 }
