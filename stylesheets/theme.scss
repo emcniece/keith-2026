@@ -3310,8 +3310,8 @@ $ky-progress-radius: 20px;
 }
 
 .ky-media__title-block {
-  flex: 0 0 auto;
-  max-width: 300px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .ky-media__kicker {
@@ -3336,7 +3336,7 @@ $ky-progress-radius: 20px;
 
 // Quote carousel
 .ky-media__carousel {
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
   background-color: #003144;
   border-radius: 20px;
