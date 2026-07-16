@@ -3816,7 +3816,7 @@ $ky-progress-radius: 20px;
 .ky-blog-post__embed {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   border-radius: 12px;
   overflow: hidden;
 
@@ -3841,7 +3841,7 @@ $ky-progress-radius: 20px;
 }
 
 .ky-blog-post__media {
-  flex: 0 0 560px; // at 16:9 this gives ~315px embed height
+  flex: 0 0 315px;
   position: sticky;
   top: 24px;
 }
