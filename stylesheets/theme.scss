@@ -3373,10 +3373,15 @@ $ky-progress-radius: 20px;
 }
 
 .ky-media__slide {
-  display: none;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 
   &--active {
-    display: block;
+    height: auto;
+    overflow: visible;
+    opacity: 1;
   }
 }
 
