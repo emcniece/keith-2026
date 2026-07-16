@@ -28,6 +28,8 @@
     filtersEl.appendChild(btn);
   });
 
+  var section = document.querySelector('.ky-blog--listing');
+
   filtersEl.addEventListener('click', function (e) {
     var btn = e.target.closest('.ky-blog__filter-btn');
     if (!btn) return;
@@ -37,8 +39,11 @@
       b.classList.toggle('ky-blog__filter-btn--active', b === btn);
     });
 
+    var isFiltered = filter !== 'All';
+    if (section) section.classList.toggle('ky-blog--filtered', isFiltered);
+
     cards.forEach(function (card) {
-      if (filter === 'All') {
+      if (!isFiltered) {
         card.classList.remove('ky-blog__card--hidden');
       } else {
         var cardTags = (card.getAttribute('data-tags') || '').split(',').map(function (t) { return t.trim(); });

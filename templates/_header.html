@@ -36,10 +36,43 @@
 {% if page_intro_headline.size > 0 %}
 <section class="ky-page-banner" aria-labelledby="ky-page-headline">
   <div class="ky-page-banner__content">
-    <h1 class="ky-page-banner__heading" id="ky-page-headline">{{ page_intro_headline }}</h1>
-    {% if page_intro_body.size > 0 %}
-      <p class="ky-page-banner__body">{{ page_intro_body }}</p>
+
+    {% if page.type_slug == 'blog_post' %}
+
+      {% if page.tags_count > 0 %}
+        <div class="ky-page-banner__tags">
+          {% for tag in page.tags %}
+            <span class="ky-blog__tag">{{ tag.name }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <h1 class="ky-page-banner__heading" id="ky-page-headline">{{ page_intro_headline }}</h1>
+
+      <div class="ky-page-banner__byline">
+        {% if page.has_author? %}
+          {% if page.author.headshot_url.size > 0 %}
+            <img src="{{ page.author.headshot_url }}" class="ky-page-banner__avatar" alt="{{ page.author.full_name }}" />
+          {% endif %}
+          <span class="ky-page-banner__author">{{ page.author.full_name }}</span>
+          <span class="ky-page-banner__byline-sep" aria-hidden="true">·</span>
+        {% endif %}
+        <span class="ky-page-banner__date">{{ page.published_at | date: "%B %-d, %Y" }}</span>
+      </div>
+
+      {% if page.intro.size > 0 %}
+        <div class="ky-page-banner__intro">{{ page.intro }}</div>
+      {% endif %}
+
+    {% else %}
+
+      <h1 class="ky-page-banner__heading" id="ky-page-headline">{{ page_intro_headline }}</h1>
+      {% if page_intro_body.size > 0 %}
+        <p class="ky-page-banner__body">{{ page_intro_body }}</p>
+      {% endif %}
+
     {% endif %}
+
   </div>
 </section>
 {% endif %}

@@ -5,15 +5,15 @@
 
     <div class="ky-blog__filters" id="ky-blog-filters"></div>
 
-    {% comment %}-- Hero row: post 1 (feature) + posts 2-3 (sidebar) --{% endcomment %}
-    <div class="ky-blog__hero">
-
-      {% for post in page.blog.most_recent_blog_posts limit:1 %}
+    <div class="ky-blog__grid" id="ky-blog-grid">
+      {% for post in page.blog.most_recent_blog_posts %}
+        {% assign ky_post_idx = forloop.index %}
         {% assign ky_post_tags = '' %}
         {% for tag in post.tags %}
           {% if forloop.first %}{% assign ky_post_tags = tag.name %}{% else %}{% assign ky_post_tags = ky_post_tags | append: ',' | append: tag.name %}{% endif %}
         {% endfor %}
-        <article class="ky-blog__card ky-blog__card--feature" data-tags="{{ ky_post_tags }}">
+
+        <article class="ky-blog__card{% if ky_post_idx == 1 %} ky-blog__card--feature{% endif %}" data-tags="{{ ky_post_tags }}">
           <a href="{{ post.url }}" class="ky-blog__card-img">
             {% if post.has_meta_image? %}
               <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
@@ -26,75 +26,21 @@
               {% assign ky_first_tag = post.tags | first %}
               <span class="ky-blog__tag">{{ ky_first_tag.name }}</span>
             {% endif %}
-            <h2 class="ky-blog__card-heading ky-blog__card-heading--feature">{{ post.headline }}</h2>
-            <p class="ky-blog__card-text">{{ post.intro | strip_html }}</p>
-            <div class="ky-blog__card-footer">
-              <a href="{{ post.url }}" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-            </div>
-          </div>
-        </article>
-      {% endfor %}
-
-      <div class="ky-blog__sidebar">
-        {% for post in page.blog.most_recent_blog_posts limit:2 offset:1 %}
-          {% assign ky_post_tags = '' %}
-          {% for tag in post.tags %}
-            {% if forloop.first %}{% assign ky_post_tags = tag.name %}{% else %}{% assign ky_post_tags = ky_post_tags | append: ',' | append: tag.name %}{% endif %}
-          {% endfor %}
-          <article class="ky-blog__card" data-tags="{{ ky_post_tags }}">
-            <a href="{{ post.url }}" class="ky-blog__card-img">
-              {% if post.has_meta_image? %}
-                <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-              {% else %}
-                <img src="{{ theme['keith-blog-card.jpg'] }}" alt="{{ post.headline }}" />
-              {% endif %}
-            </a>
-            <div class="ky-blog__card-body">
-              {% if post.tags_count > 0 %}
-                {% assign ky_first_tag = post.tags | first %}
-                <span class="ky-blog__tag">{{ ky_first_tag.name }}</span>
-              {% endif %}
+            {% if ky_post_idx == 1 %}
+              <h2 class="ky-blog__card-heading ky-blog__card-heading--feature">{{ post.headline }}</h2>
+            {% else %}
               <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
-              <p class="ky-blog__card-text">{{ post.intro | strip_html }}</p>
-              <div class="ky-blog__card-footer">
-                <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>
-                <a href="{{ post.url }}" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </article>
-        {% endfor %}
-      </div>
-
-    </div>
-
-    {% comment %}-- Grid: posts 4+ --{% endcomment %}
-    <div class="ky-blog__row ky-blog__row--wrap">
-      {% for post in page.blog.most_recent_blog_posts offset:3 %}
-        {% assign ky_post_tags = '' %}
-        {% for tag in post.tags %}
-          {% if forloop.first %}{% assign ky_post_tags = tag.name %}{% else %}{% assign ky_post_tags = ky_post_tags | append: ',' | append: tag.name %}{% endif %}
-        {% endfor %}
-        <article class="ky-blog__card" data-tags="{{ ky_post_tags }}">
-          <a href="{{ post.url }}" class="ky-blog__card-img">
-            {% if post.has_meta_image? %}
-              <img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-            {% else %}
-              <img src="{{ theme['keith-blog-card.jpg'] }}" alt="{{ post.headline }}" />
             {% endif %}
-          </a>
-          <div class="ky-blog__card-body">
-            {% if post.tags_count > 0 %}
-              {% assign ky_first_tag = post.tags | first %}
-              <span class="ky-blog__tag">{{ ky_first_tag.name }}</span>
-            {% endif %}
-            <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
             <p class="ky-blog__card-text">{{ post.intro | strip_html }}</p>
             <div class="ky-blog__card-footer">
-              <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>
+              {% unless ky_post_idx == 1 %}
+                <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>
+              {% endunless %}
               <a href="{{ post.url }}" class="ky-blog__card-link">Read More <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
             </div>
           </div>
         </article>
+
       {% endfor %}
     </div>
 
