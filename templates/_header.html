@@ -60,8 +60,9 @@
         <span class="ky-page-banner__date">{{ page.published_at | date: "%B %-d, %Y" }}</span>
       </div>
 
-      {% if page.intro.size > 0 %}
-        <div class="ky-page-banner__intro">{{ page.intro }}</div>
+      {% assign ky_post_intro = page.blog_post.content_full | split: '<!--more-->' | first %}
+      {% if ky_post_intro.size > 0 %}
+        <div class="ky-page-banner__intro">{{ ky_post_intro | strip_html }}</div>
       {% endif %}
 
     {% else %}
