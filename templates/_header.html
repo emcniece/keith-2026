@@ -51,9 +51,7 @@
 
       <div class="ky-page-banner__byline">
         {% if page.has_author? %}
-          {% if page.author.headshot_url.size > 0 %}
-            <img src="{{ page.author.headshot_url }}" class="ky-page-banner__avatar" alt="{{ page.author.full_name }}" />
-          {% endif %}
+          {% include "avatar" signup: page.author, size: 36, class: 'ky-page-banner__avatar' %}
           <span class="ky-page-banner__author">{{ page.author.full_name }}</span>
           <span class="ky-page-banner__byline-sep" aria-hidden="true">·</span>
         {% endif %}
