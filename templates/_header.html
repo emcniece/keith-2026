@@ -51,16 +51,20 @@
 
       <div class="ky-page-banner__byline">
         {% if page.has_author? %}
-          {% include "avatar" signup: page.author, size: 36, class: 'ky-page-banner__avatar' %}
-          <span class="ky-page-banner__author">{{ page.author.full_name }}</span>
-          <span class="ky-page-banner__byline-sep" aria-hidden="true">·</span>
+          {% include "avatar" signup: page.author, size: 64, class: 'ky-page-banner__avatar' %}
+          <div class="ky-page-banner__byline-text">
+            <span class="ky-page-banner__author">{{ page.author.full_name }}</span>
+            <span class="ky-page-banner__date">{{ page.published_at | date: "%B %-d, %Y" }}</span>
+          </div>
+        {% else %}
+          <div class="ky-page-banner__byline-text">
+            <span class="ky-page-banner__date">{{ page.published_at | date: "%B %-d, %Y" }}</span>
+          </div>
         {% endif %}
-        <span class="ky-page-banner__date">{{ page.published_at | date: "%B %-d, %Y" }}</span>
       </div>
 
-      {% assign ky_post_intro = page.blog_post.content_full | split: '<!--more-->' | first %}
-      {% if ky_post_intro.size > 0 %}
-        <div class="ky-page-banner__intro">{{ ky_post_intro | strip_html }}</div>
+      {% if page.excerpt.size > 0 %}
+        <div class="ky-page-banner__intro">{{ page.excerpt | strip_html }}</div>
       {% endif %}
 
     {% else %}

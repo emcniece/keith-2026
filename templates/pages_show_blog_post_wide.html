@@ -1,7 +1,26 @@
 <div class="ky-blog-post__body">
-  <div class="post-content">
-    {{ page.blog_post.content_full | split: '<!--more-->' | last }}
-  </div>
+  {% if page.blog_post.content_full contains '<iframe' %}
+    {% assign ky_parts = page.blog_post.content_full | split: '<iframe' %}
+    {% assign ky_before = ky_parts[0] %}
+    {% assign ky_after_parts = ky_parts[1] | split: '</iframe>' %}
+    {% assign ky_iframe_attrs = ky_after_parts[0] %}
+    {% assign ky_after = ky_after_parts[1] %}
+    <div class="ky-blog-post__layout">
+      <div class="post-content ky-blog-post__text">
+        {{ ky_before }}{{ ky_after }}
+      </div>
+      <aside class="ky-blog-post__media">
+        <p class="ky-blog-post__media-kicker">Hear it from Keith</p>
+        <div class="ky-blog-post__embed">
+          <iframe{{ ky_iframe_attrs }}</iframe>
+        </div>
+      </aside>
+    </div>
+  {% else %}
+    <div class="post-content">
+      {{ page.blog_post.content_full }}
+    </div>
+  {% endif %}
   {% if page.show_stream? %}
     <div class="mt-4">{% include "page_stream" %}</div>
   {% endif %}
