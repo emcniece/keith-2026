@@ -42,7 +42,9 @@
       {% if page.tags_count > 0 %}
         <div class="ky-page-banner__tags">
           {% for tag in page.tags %}
-            <span class="ky-blog__tag">{{ tag.name }}</span>
+            {% unless tag.name == 'featured' or tag.name contains 'order-' %}
+              <span class="ky-blog__tag">{{ tag.name }}</span>
+            {% endunless %}
           {% endfor %}
         </div>
       {% endif %}
