@@ -3166,6 +3166,11 @@ $ky-progress-radius: 20px;
   color: rgba(250, 247, 238, 0.8);
   margin: 0 0 32px;
   flex: 1;
+  min-height: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .ky-blog__card-footer {
@@ -3278,7 +3283,9 @@ $ky-progress-radius: 20px;
     min-height: 0;
   }
 
+  // Restore flex: 1 — the feature card's nested rule sets flex: none which breaks row layout
   .ky-blog__card-body {
+    flex: 1;
     padding: 36px 48px;
   }
 }
@@ -3834,8 +3841,7 @@ $ky-progress-radius: 20px;
 }
 
 .ky-blog-post__media {
-  flex: 1;
-  min-width: 260px;
+  flex: 0 0 420px; // fixed column width so embed is always a reasonable size
   position: sticky;
   top: 24px;
 }
