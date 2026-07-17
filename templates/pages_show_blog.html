@@ -24,10 +24,13 @@
             {% endif %}
           </a>
           <div class="ky-blog__card-body">
-            {% if post.tags_count > 0 %}
-              {% assign ky_first_tag = post.tags | first %}
-              <span class="ky-blog__tag">{{ ky_first_tag.name }}</span>
-            {% endif %}
+            {% assign ky_display_tag = nil %}
+            {% for ptag in post.tags %}
+              {% unless ptag.name == 'achievement' or ptag.name contains 'order-' or ptag.name == 'featured' %}
+                {% if ky_display_tag == nil %}{% assign ky_display_tag = ptag.name %}{% endif %}
+              {% endunless %}
+            {% endfor %}
+            {% if ky_display_tag %}<span class="ky-blog__tag">{{ ky_display_tag }}</span>{% endif %}
             {% if ky_post_idx == 1 %}
               <h2 class="ky-blog__card-heading ky-blog__card-heading--feature">{{ post.headline }}</h2>
             {% else %}
