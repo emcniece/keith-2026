@@ -23,6 +23,19 @@
         {% endunless %}
       {% endfor %}
 
+      {% comment %}Extract sticker data and remove sticker div from text content{% endcomment %}
+      {% assign ky_content = post.blog_post.content %}
+      {% assign ky_text_content = ky_content %}
+      {% assign ky_sticker_num = '' %}
+      {% assign ky_sticker_text = '' %}
+      {% if ky_content contains '<div class="sticker">' %}
+        {% assign ky_sticker_inner = ky_content | split: '<div class="sticker">' | last | split: '</div>' | first %}
+        {% assign ky_sticker_num = ky_sticker_inner | split: 'class="sticker-num">' | last | split: '</span>' | first %}
+        {% assign ky_sticker_text = ky_sticker_inner | split: 'class="sticker-text">' | last | split: '</span>' | first %}
+        {% assign ky_full_sticker = '<div class="sticker">' | append: ky_sticker_inner | append: '</div>' %}
+        {% assign ky_text_content = ky_content | remove: ky_full_sticker %}
+      {% endif %}
+
       {% if ky_count == 1 %}
       <article class="ky-progress__card ky-progress__card--hero">
         <div class="ky-progress__card-img">
@@ -31,13 +44,19 @@
           {% else %}
             <img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />
           {% endif %}
+          {% if ky_sticker_num != '' %}
+            <div class="ky-progress__sticker">
+              <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
+              <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
+            </div>
+          {% endif %}
         </div>
         <div class="ky-progress__card-body">
           {% if ky_category_tag %}
             <span class="ky-progress__tag">{{ ky_category_tag }}</span>
           {% endif %}
           <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
-          <p class="ky-progress__card-text ky-progress__card-text--lg">{{ post.blog_post.content | strip_html | truncatewords: 50 }}</p>
+          <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
           <div class="ky-progress__card-footer">
             <a href="{{ post.url }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
           </div>
@@ -53,13 +72,19 @@
           {% else %}
             <img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />
           {% endif %}
+          {% if ky_sticker_num != '' %}
+            <div class="ky-progress__sticker">
+              <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
+              <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
+            </div>
+          {% endif %}
         </div>
         <div class="ky-progress__card-body">
           {% if ky_category_tag %}
             <span class="ky-progress__tag">{{ ky_category_tag }}</span>
           {% endif %}
           <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
-          <p class="ky-progress__card-text ky-progress__card-text--lg">{{ post.blog_post.content | strip_html | truncatewords: 50 }}</p>
+          <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
           <div class="ky-progress__card-footer">
             <a href="{{ post.url }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
           </div>
@@ -75,13 +100,19 @@
           {% else %}
             <img src="{{ theme['keith-placeholder.jpg'] }}" alt="{{ post.headline }}" />
           {% endif %}
+          {% if ky_sticker_num != '' %}
+            <div class="ky-progress__sticker">
+              <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
+              <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
+            </div>
+          {% endif %}
         </div>
         <div class="ky-progress__card-body">
           {% if ky_category_tag %}
             <span class="ky-progress__tag">{{ ky_category_tag }}</span>
           {% endif %}
           <h3 class="ky-progress__card-heading">{{ post.headline }}</h3>
-          <p class="ky-progress__card-text">{{ post.blog_post.content | strip_html | truncatewords: 30 }}</p>
+          <p class="ky-progress__card-text">{{ ky_text_content | strip_html | truncatewords: 30 }}</p>
           <div class="ky-progress__card-footer">
             <a href="{{ post.url }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
           </div>
