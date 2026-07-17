@@ -4656,7 +4656,7 @@ $ky-progress-radius: 20px;
     flex: 1;
   }
 
-	@media (min-width: 768px) and (max-width: 1279px) {
+	@media (max-width: 767px) {
 		.feedback_form .form-row, .donation_form .form-row, .volunteer_signup_form .form-row {
 		flex-direction: column;
 		gap: 0;
