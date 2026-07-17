@@ -1323,15 +1323,18 @@ $ky-hero-cream: #e8e3d4;
     align-items: center;*/
     padding: 0 1rem;
     min-height: auto;
-	  height: 500px;
+	  height: 450px;
   }
 	.ky-logo__img {
-		padding: 0 1rem 0 40%;
+		padding: 0 1rem 0 25%;
 	}
 
 	.ky-hero__tagline-container {
 	display: flex;
 		height: 100%;
+	}
+	.ky-hero__tagline {
+		font-size: 1rem;
 	}
 
   .ky-hero__portrait {
