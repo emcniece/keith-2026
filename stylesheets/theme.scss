@@ -4398,6 +4398,34 @@ $ky-progress-radius: 20px;
   padding-top: 28px;
   padding-bottom: 8px;
 }
+/* ── FORM FEEDBACK (AJAX) ────────────────────────────────────────── */
+.ky-form-feedback {
+  margin: 12px 0 0;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.ky-form-feedback--success {
+  background-color: rgba(27, 212, 154, 0.15);
+  color: #0a7a59;
+}
+
+.ky-form-feedback--error {
+  background-color: rgba(221, 20, 122, 0.12);
+  color: #9b0d55;
+}
+
+/* Highlight invalid inputs */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  outline: 2px solid #dd147a !important;
+  outline-offset: 2px;
+}
+
 /* ── FOOTER ──────────────────────────────────────────────────────── */
 .ky-footer {
   background-color: $ky-xdark-primary;

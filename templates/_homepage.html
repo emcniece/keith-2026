@@ -57,17 +57,19 @@
     <div class="ky-cta__pill">
       <p class="ky-cta__tagline">Let's keep building on the strong foundation we've started</p>
       <div class="ky-cta__form-row">
-        <form class="ky-cta__form" method="post" action="/signup">
+        <form class="ky-cta__form" method="post" action="/signup_form" data-ajax-signup novalidate>
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
           <div class="form-control-material">
             <label for="cta-name" class="floating-label">Name</label>
-            <input type="text" id="cta-name" name="signup[first_name]" class="ky-cta__input form-group__field" autocomplete="given-name" />
+            <input type="text" id="cta-name" name="signup[first_name]" class="ky-cta__input form-group__field ky-ajax-name" autocomplete="name" required aria-required="true" />
           </div>
           <div class="form-control-material">
             <label for="cta-email" class="floating-label">Email</label>
-            <input type="email" id="cta-email" name="signup[email]" class="ky-cta__input form-group__field" required autocomplete="email" />
+            <input type="email" id="cta-email" name="signup[email]" class="ky-cta__input form-group__field ky-ajax-email" required aria-required="true" autocomplete="email" />
           </div>
           <button type="submit" class="ky-btn ky-btn--primary ky-cta__submit">Join the Effort</button>
+          <p class="ky-form-feedback ky-form-feedback--success" hidden>Thanks for signing up! We'll be in touch soon.</p>
+          <p class="ky-form-feedback ky-form-feedback--error" hidden></p>
         </form>
         <p class="ky-cta__disclaimer">Sign up here to receive campaign updates. Opt out anytime</p>
       </div>
@@ -199,17 +201,19 @@
       <h3 class="ky-platform__soon">Full platform coming soon...</h3>
       <div class="ky-platform__signup-row">
         <p class="ky-platform__signup-text">I'll let you know when my full platform is released, so you can make an informed decision at the ballot box</p>
-        <form class="ky-platform__form" method="post" action="/signup">
+        <form class="ky-platform__form" method="post" action="/signup_form" data-ajax-signup novalidate>
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
           <div class="form-control-material">
             <label for="platform-name" class="floating-label">Name</label>
-            <input type="text" id="platform-name" name="signup[first_name]" class="ky-platform__input form-group__field" autocomplete="given-name" />
+            <input type="text" id="platform-name" name="signup[first_name]" class="ky-platform__input form-group__field ky-ajax-name" autocomplete="name" required aria-required="true" />
           </div>
           <div class="form-control-material">
             <label for="platform-email" class="floating-label">Email</label>
-            <input type="email" id="platform-email" name="signup[email]" class="ky-platform__input form-group__field" required autocomplete="email" />
+            <input type="email" id="platform-email" name="signup[email]" class="ky-platform__input form-group__field ky-ajax-email" required aria-required="true" autocomplete="email" />
           </div>
           <button type="submit" class="ky-platform__submit">Stay Informed</button>
+          <p class="ky-form-feedback ky-form-feedback--success" hidden>Thanks! We'll let you know when the full platform is released.</p>
+          <p class="ky-form-feedback ky-form-feedback--error" hidden></p>
         </form>
       </div>
     </div>
@@ -411,7 +415,7 @@
         </div>
 
         <!-- Contact form -->
-        <form class="ky-contact__form" method="post" action="/contact">
+        <form class="ky-contact__form" method="post" action="/contact" data-ajax-contact novalidate>
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
 
           <div class="ky-contact__row">
@@ -443,6 +447,8 @@
 
           <div class="ky-contact__footer">
             <button type="submit" class="ky-contact__submit">Send message</button>
+            <p class="ky-form-feedback ky-form-feedback--success" hidden>Thanks for reaching out! We'll get back to you soon.</p>
+            <p class="ky-form-feedback ky-form-feedback--error" hidden></p>
           </div>
         </form>
 
