@@ -3798,10 +3798,23 @@ $ky-progress-radius: 20px;
 
 // Post cards
 .ky-media__posts {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 36px;
-  align-items: stretch;
   margin-bottom: 36px;
+}
+
+.ky-media__card--feature {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  flex-direction: column;
+  height: 100%;
+
+  .ky-media__card-img {
+    flex: 1;
+    min-height: 200px;
+    height: auto;
+  }
 }
 
 .ky-media__card {
@@ -3991,8 +4004,19 @@ $ky-progress-radius: 20px;
   }
 
   .ky-media__posts {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .ky-media__card--feature {
+    grid-column: auto;
+    grid-row: auto;
+    height: auto;
+
+    .ky-media__card-img {
+      flex: none;
+      height: 260px;
+    }
   }
 
   .ky-media__card-body {

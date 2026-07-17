@@ -1,4 +1,4 @@
-<article class="ky-media__card">
+<article class="ky-media__card{% if ky_media_count == 0 %} ky-media__card--feature{% endif %}">
 
   <div class="ky-media__card-img">
     {% if post.has_meta_image? %}
