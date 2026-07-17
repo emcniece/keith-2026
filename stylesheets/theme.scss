@@ -961,6 +961,10 @@ $ky-hero-cream: #e8e3d4;
   background-color: $ky-xdark-primary;
   overflow: visible;
   clip-path: inset(0);
+
+  &.ky-hero--nav-open {
+    clip-path: none;
+  }
 }
 
 /* Nav */
