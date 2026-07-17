@@ -3815,6 +3815,16 @@ $ky-progress-radius: 20px;
     min-height: 200px;
     height: auto;
   }
+
+  .ky-media__card-body {
+    flex: none;
+    padding: 48px;
+  }
+}
+
+.ky-media__card-heading--feature {
+  font-size: 2.25rem;
+  line-height: 1.4;
 }
 
 .ky-media__card {
@@ -4017,6 +4027,14 @@ $ky-progress-radius: 20px;
       flex: none;
       height: 260px;
     }
+
+    .ky-media__card-body {
+      padding: 24px;
+    }
+  }
+
+  .ky-media__card-heading--feature {
+    font-size: 1.375rem;
   }
 
   .ky-media__card-body {

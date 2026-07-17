@@ -13,8 +13,12 @@
       {% assign ky_media_source = post.tags | first %}
       <span class="ky-media__source">{{ ky_media_source.name }}</span>
     {% endif %}
-    <h3 class="ky-media__card-heading">{{ post.headline }}</h3>
-    <p class="ky-media__card-text">{{ post.blog_post.content_full | strip_html | truncatewords: 25 }}</p>
+    <h3 class="ky-media__card-heading{% if ky_media_count == 0 %} ky-media__card-heading--feature{% endif %}">{{ post.headline }}</h3>
+    {% if ky_media_count == 0 %}
+      <p class="ky-media__card-text">{{ post.blog_post.content_full | strip_html | truncatewords: 60 }}</p>
+    {% else %}
+      <p class="ky-media__card-text">{{ post.blog_post.content_full | strip_html | truncatewords: 25 }}</p>
+    {% endif %}
     <div class="ky-media__card-footer">
       <div class="ky-media__card-meta">
         {% if post.has_author? %}
