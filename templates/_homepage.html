@@ -350,13 +350,31 @@
 
       </div><!-- /.ky-media__intro -->
 
-      <!-- Post cards -->
+      <!-- Post cards: featured posts first, then by date -->
       <div class="ky-media__posts">
         {% assign ky_media_count = 0 %}
         {% for post in site.most_recent_blog_post_pages %}
           {% if ky_media_count < 3 and post.parent.slug == 'media' %}
-            {% include "ky_media_posts" with post %}
-            {% assign ky_media_count = ky_media_count | plus: 1 %}
+            {% assign ky_is_media_featured = false %}
+            {% for ptag in post.tags %}
+              {% if ptag.name == 'featured' %}{% assign ky_is_media_featured = true %}{% endif %}
+            {% endfor %}
+            {% if ky_is_media_featured %}
+              {% include "ky_media_posts" with post %}
+              {% assign ky_media_count = ky_media_count | plus: 1 %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% for post in site.most_recent_blog_post_pages %}
+          {% if ky_media_count < 3 and post.parent.slug == 'media' %}
+            {% assign ky_is_media_featured = false %}
+            {% for ptag in post.tags %}
+              {% if ptag.name == 'featured' %}{% assign ky_is_media_featured = true %}{% endif %}
+            {% endfor %}
+            {% unless ky_is_media_featured %}
+              {% include "ky_media_posts" with post %}
+              {% assign ky_media_count = ky_media_count | plus: 1 %}
+            {% endunless %}
           {% endif %}
         {% endfor %}
       </div><!-- /.ky-media__posts -->
