@@ -4000,11 +4000,11 @@ $ky-progress-radius: 20px;
   .ky-media__intro {
     flex-direction: column;
     gap: 24px;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .ky-media__title-block {
-    max-width: 100%;
+    width: 100%;
     text-align: center;
   }
 
@@ -4050,11 +4050,11 @@ $ky-progress-radius: 20px;
   .ky-media__intro {
     flex-direction: column;
     gap: 32px;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .ky-media__title-block {
-    max-width: 100%;
+    width: 100%;
     text-align: center;
   }
 
@@ -4435,6 +4435,11 @@ $ky-progress-radius: 20px;
   color: #faf7ee;
   text-align: right;
   p { margin: 0; }
+  a {
+    color: #efc30c;
+    text-decoration: underline;
+    &:hover { color: #fff; }
+  }
 }
 
 .ky-footer__nb {
