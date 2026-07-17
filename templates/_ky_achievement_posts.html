@@ -1,6 +1,6 @@
 {% assign ky_count = 0 %}
 
-{% for post in site.most_recent_blog_post_pages %}
+{% for post in site.most_recent_blog_post_pages limit:50 %}
   {% if ky_count >= 4 %}{% break %}{% endif %}
 
   {% assign ky_is_achievement = false %}
