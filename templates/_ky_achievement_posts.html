@@ -2,8 +2,10 @@
 
 {% for ky_order in (1..4) %}
   {% assign ky_order_tag = 'order-' | append: ky_order %}
+  {% assign ky_found = false %}
 
   {% for post in site.most_recent_blog_post_pages %}
+    {% unless ky_found %}
 
     {% assign ky_is_achievement = false %}
     {% assign ky_has_order = false %}
@@ -13,6 +15,7 @@
     {% endfor %}
 
     {% if ky_is_achievement and ky_has_order %}
+      {% assign ky_found = true %}
       {% assign ky_count = ky_count | plus: 1 %}
 
       {% comment %}Find category tag — skip achievement and order- tags{% endcomment %}
@@ -130,9 +133,9 @@
       </article>
       {% endif %}
 
-      {% break %}
     {% endif %}
 
+    {% endunless %}
   {% endfor %}
 {% endfor %}
 
