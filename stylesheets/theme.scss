@@ -1318,6 +1318,17 @@ $ky-hero-cream: #e8e3d4;
     display: none; /* replaced by mobile menu */
   }
 
+	.ky-page-banner {
+		padding: 48px 24px; 
+	}
+	.ky-page-banner__heading {
+		font-size: 2.5rem;
+	}
+	.ky-page-banner__body {
+		font-size: 1rem;
+		margin-bottom: 0;
+	}
+
   .ky-hero__body {
     /*flex-direction: column;
     align-items: center;*/
