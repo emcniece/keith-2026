@@ -1,3 +1,13 @@
+{% comment %}Find the signup form page ID so AJAX forms can POST to /forms/signups{% endcomment %}
+{% assign ky_signup_page_id = nil %}
+{% for _p in site.root_nav_pages %}
+  {% if ky_signup_page_id == nil %}
+    {% if _p.slug == 'signup_form' or _p.slug == 'signup-form' or _p.slug == 'join' or _p.type_slug == 'signup' %}
+      {% assign ky_signup_page_id = _p.id %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
 <div class="ky-homepage">
 
   <!-- ── HERO BANNER ─────────────────────────────────────────────── -->
@@ -57,8 +67,9 @@
     <div class="ky-cta__pill">
       <p class="ky-cta__tagline">Let's keep building on the strong foundation we've started</p>
       <div class="ky-cta__form-row">
-        <form class="ky-cta__form" method="post" action="/signup_form" data-ajax-signup novalidate>
+        <form class="ky-cta__form" method="post" action="/forms/signups" data-ajax-signup novalidate>
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
+          <input type="hidden" name="page_id" value="{{ ky_signup_page_id }}" />
           <div class="form-control-material">
             <label for="cta-name" class="floating-label">Name</label>
             <input type="text" id="cta-name" name="signup[first_name]" class="ky-cta__input form-group__field ky-ajax-name" autocomplete="name" required aria-required="true" />
@@ -201,8 +212,9 @@
       <h3 class="ky-platform__soon">Full platform coming soon...</h3>
       <div class="ky-platform__signup-row">
         <p class="ky-platform__signup-text">I'll let you know when my full platform is released, so you can make an informed decision at the ballot box</p>
-        <form class="ky-platform__form" method="post" action="/signup_form" data-ajax-signup novalidate>
+        <form class="ky-platform__form" method="post" action="/forms/signups" data-ajax-signup novalidate>
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
+          <input type="hidden" name="page_id" value="{{ ky_signup_page_id }}" />
           <div class="form-control-material">
             <label for="platform-name" class="floating-label">Name</label>
             <input type="text" id="platform-name" name="signup[first_name]" class="ky-platform__input form-group__field ky-ajax-name" autocomplete="name" required aria-required="true" />
@@ -415,34 +427,36 @@
         </div>
 
         <!-- Contact form -->
-        <form class="ky-contact__form" method="post" action="/contact" data-ajax-contact novalidate>
+        <form class="ky-contact__form" method="post" action="/forms/signups" data-ajax-contact novalidate>
           <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
+          <input type="hidden" name="page_id" value="{{ ky_signup_page_id }}" />
+          <input type="hidden" name="signup[email_opt_in]" value="0" />
 
           <div class="ky-contact__row">
             <div class="form-control-material">
               <label for="contact-first-name" class="floating-label">First Name</label>
-              <input type="text" id="contact-first-name" name="contact[first_name]" class="ky-contact__input form-group__field" autocomplete="given-name" />
+              <input type="text" id="contact-first-name" name="signup[first_name]" class="ky-contact__input form-group__field" autocomplete="given-name" />
             </div>
             <div class="form-control-material">
               <label for="contact-last-name" class="floating-label">Last Name</label>
-              <input type="text" id="contact-last-name" name="contact[last_name]" class="ky-contact__input form-group__field" autocomplete="family-name" />
+              <input type="text" id="contact-last-name" name="signup[last_name]" class="ky-contact__input form-group__field" autocomplete="family-name" />
             </div>
           </div>
 
           <div class="ky-contact__row">
             <div class="form-control-material">
               <label for="contact-email" class="floating-label">Email</label>
-              <input type="email" id="contact-email" name="contact[email]" class="ky-contact__input form-group__field" required autocomplete="email" />
+              <input type="email" id="contact-email" name="signup[email]" class="ky-contact__input form-group__field" required autocomplete="email" />
             </div>
             <div class="form-control-material">
               <label for="contact-phone" class="floating-label">Phone Number</label>
-              <input type="tel" id="contact-phone" name="contact[phone_number]" class="ky-contact__input form-group__field" autocomplete="tel" />
+              <input type="tel" id="contact-phone" name="signup[phone_number]" class="ky-contact__input form-group__field" autocomplete="tel" />
             </div>
           </div>
 
           <div class="form-control-material form-control-material-textarea">
             <label for="contact-message" class="floating-label floating-label-textarea">Your Message</label>
-            <textarea id="contact-message" name="contact[note]" class="ky-contact__textarea form-group__field" rows="5"></textarea>
+            <textarea id="contact-message" name="signup[note]" class="ky-contact__textarea form-group__field" rows="5"></textarea>
           </div>
 
           <div class="ky-contact__footer">

@@ -83,10 +83,13 @@
         return;
       }
 
-      var names = parseName(name);
-      var csrf  = getCsrf(form);
-      var data  = new FormData();
+      var names   = parseName(name);
+      var csrf    = getCsrf(form);
+      var pageId  = (form.querySelector('[name="page_id"]') || {}).value || '';
+      var action  = form.getAttribute('action') || '/forms/signups';
+      var data    = new FormData();
       data.append('authenticity_token',    csrf);
+      data.append('page_id',               pageId);
       data.append('signup[first_name]',    names.first);
       data.append('signup[last_name]',     names.last);
       data.append('signup[email]',         email);
@@ -94,7 +97,7 @@
 
       if (btn) btn.disabled = true;
 
-      ajaxPost('/signup_form', data, csrf)
+      ajaxPost(action, data, csrf)
         .then(function (result) {
           if (btn) btn.disabled = false;
           if (result.ok) {
@@ -125,7 +128,7 @@
   var contactForm = document.querySelector('[data-ajax-contact]');
   if (!contactForm) return;
 
-  var contactEmail = contactForm.querySelector('[name="contact[email]"]');
+  var contactEmail = contactForm.querySelector('[name="signup[email]"]');
   var contactBtn   = contactForm.querySelector('[type="submit"]');
 
   contactForm.addEventListener('submit', function (e) {
@@ -141,12 +144,13 @@
     }
     if (contactEmail) contactEmail.setAttribute('aria-invalid', 'false');
 
-    var csrf = getCsrf(contactForm);
-    var data = new FormData(contactForm);
+    var csrf   = getCsrf(contactForm);
+    var data   = new FormData(contactForm);
+    var action = contactForm.getAttribute('action') || '/forms/signups';
 
     if (contactBtn) contactBtn.disabled = true;
 
-    ajaxPost('/contact', data, csrf)
+    ajaxPost(action, data, csrf)
       .then(function (result) {
         if (contactBtn) contactBtn.disabled = false;
         if (result.ok) {
