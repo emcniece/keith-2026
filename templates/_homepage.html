@@ -272,7 +272,7 @@
                   {% assign ky_is_featured = true %}
                 {% endif %}
               {% endfor %}
-              {% if ky_is_featured %}
+              {% if ky_is_featured and post.parent.slug != 'media' %}
                 {% include "ky_blog_posts" with post %}
                 {% assign ky_featured_count = ky_featured_count | plus: 1 %}
               {% endif %}
