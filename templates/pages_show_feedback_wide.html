@@ -83,7 +83,7 @@
                 {% endif %}
 
                 {% if request.sorta_logged_in? == false or request.current_signup.has_full_address? == false %}
-                  {% include "page_address_inputs" wide: true %}
+                  <!-- {% include "page_address_inputs" wide: true %} -->
                 {% endif %}
 
                 {% if page.feedback.is_volunteers? and site.ask_for_volunteers? %}
