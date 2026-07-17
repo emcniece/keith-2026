@@ -1,17 +1,22 @@
 ;(function () {
-  function initMobileNav(containerSel, openClass, sideEffectEl, sideEffectClass) {
+  function initMobileNav(containerSel, openClass, panelSel) {
     var container = document.querySelector(containerSel);
     if (!container) return;
     var btn = container.querySelector('.ky-hamburger');
     if (!btn) return;
-    var side = sideEffectEl ? document.querySelector(sideEffectEl) : null;
+    var panel = panelSel ? container.querySelector(panelSel) : null;
+
+    function positionPanel() {
+      if (!panel) return;
+      var rect = container.getBoundingClientRect();
+      panel.style.top = rect.bottom + 'px';
+    }
 
     function close() {
       container.classList.remove(openClass);
       btn.setAttribute('aria-expanded', 'false');
       var icon = btn.querySelector('i');
       if (icon) icon.className = 'fa-solid fa-bars';
-      if (side && sideEffectClass) side.classList.remove(sideEffectClass);
     }
 
     btn.addEventListener('click', function () {
@@ -19,7 +24,7 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       var icon = btn.querySelector('i');
       if (icon) icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-      if (side && sideEffectClass) side.classList.toggle(sideEffectClass, open);
+      if (open) positionPanel();
     });
 
     document.addEventListener('click', function (e) {
@@ -30,8 +35,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    initMobileNav('.ky-inner-nav', 'ky-inner-nav--open');
-    // Pass .ky-hero so clip-path can be lifted while the panel is open
-    initMobileNav('.ky-nav', 'ky-nav--open', '.ky-hero', 'ky-hero--nav-open');
+    initMobileNav('.ky-inner-nav', 'ky-inner-nav--open', '.ky-inner-nav__nav');
+    initMobileNav('.ky-nav',       'ky-nav--open',       '.ky-nav__panel');
   });
 })();
