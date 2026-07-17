@@ -1338,7 +1338,7 @@ $ky-hero-cream: #e8e3d4;
 	.container, .page, .event-page-content  {
 		padding: 0 0;
 	}
-	.page .page-inner, .event-page-content .page-inner, .ky-blog__inner {
+	.page .page-inner, .event-page-content .page-inner {
 		padding: 0;
 	}
 	h2, .h2 {
@@ -3449,6 +3449,9 @@ $ky-progress-radius: 20px;
   .ky-blog {
     padding: 0;
   }
+	.ky-blog__inner {
+		padding: 0;
+	}
 	.ky-blog__intro {
 		padding: 0 1rem;
 	}
