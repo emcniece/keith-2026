@@ -38,6 +38,14 @@
         {% assign ky_text_content = ky_before | append: ky_after_rest %}
       {% endif %}
 
+      {% case ky_order %}
+        {% when 1 %}{% assign ky_section_href = '/progress#responsible-development' %}
+        {% when 2 %}{% assign ky_section_href = '/progress#fiscal-accountability' %}
+        {% when 3 %}{% assign ky_section_href = '/progress#transparency-engagement' %}
+        {% when 4 %}{% assign ky_section_href = '/progress#green-space' %}
+        {% else %}{% assign ky_section_href = '/progress' %}
+      {% endcase %}
+
       {% if ky_count == 1 %}
       <article class="ky-progress__card ky-progress__card--hero">
         <div class="ky-progress__card-img">
@@ -60,7 +68,7 @@
           <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
           <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
           <div class="ky-progress__card-footer">
-            <a href="{{ post.url }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+            <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </article>
@@ -88,7 +96,7 @@
           <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
           <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
           <div class="ky-progress__card-footer">
-            <a href="{{ post.url }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+            <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </article>
@@ -116,7 +124,7 @@
           <h3 class="ky-progress__card-heading">{{ post.headline }}</h3>
           <p class="ky-progress__card-text">{{ ky_text_content | strip_html | truncatewords: 30 }}</p>
           <div class="ky-progress__card-footer">
-            <a href="{{ post.url }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+            <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </article>
