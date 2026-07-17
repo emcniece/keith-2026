@@ -1350,7 +1350,7 @@ $ky-hero-cream: #e8e3d4;
   }
   .ky-hero__portrait-mobile {
     display: block;
-	flex: 50%;
+	flex: 40%;
     position: relative;
   }
   .ky-hero__portrait-img-mobile {
@@ -1362,7 +1362,7 @@ $ky-hero-cream: #e8e3d4;
     z-index: -1;
 	}
   .ky-hero__tagline {
-	  width: 50%;
+	  width: 60%;
 	  text-align: left;
 	}
 
@@ -1526,6 +1526,9 @@ $ky-hero-cream: #e8e3d4;
   .ky-cta__form {
     flex-direction: column;
   }
+	.ky-cta__tagline {
+		font-size: 1rem;
+	}
 
   .ky-cta__disclaimer {
     width: auto;
