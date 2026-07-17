@@ -1402,14 +1402,27 @@ $ky-hero-cream: #e8e3d4;
       width: 100%;
     }
   }
-  // Hide social + donate behind hamburger on inner nav
+  // Hide social + donate until hamburger opens inner nav
   .ky-inner-nav__nav .ky-social-icons,
   .ky-inner-nav__nav .ky-btn--donate {
     display: none;
   }
-  .ky-inner-nav--open .ky-inner-nav__nav .ky-social-icons,
-  .ky-inner-nav--open .ky-inner-nav__nav .ky-btn--donate {
+  .ky-inner-nav--open .ky-inner-nav__nav .ky-social-icons {
     display: flex;
+  }
+  .ky-inner-nav--open .ky-inner-nav__nav .ky-btn--donate {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-top: 8px;
+  }
+  // Homepage hero nav — donate button inside open panel
+  .ky-nav--open .ky-nav__panel .ky-btn--donate {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-top: 4px;
+    margin-left: 0;
   }
 
   /* ── Homepage hero nav ── */
@@ -1638,6 +1651,7 @@ $ky-hero-cream: #e8e3d4;
 .ky-cta__form {
   display: flex;
   flex: 1;
+  flex-wrap: wrap;
   gap: 16px;
   align-items: center;
   min-width: 0;
@@ -2729,6 +2743,7 @@ $ky-progress-radius: 20px;
 .ky-platform__form {
   flex: 2;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 24px;
   min-width: 0;
@@ -4400,13 +4415,19 @@ $ky-progress-radius: 20px;
 }
 /* ── FORM FEEDBACK (AJAX) ────────────────────────────────────────── */
 .ky-form-feedback {
-  margin: 12px 0 0;
+  margin: 4px 0 0;
   padding: 10px 16px;
   border-radius: 8px;
   font-family: 'Sora', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.4;
+}
+
+.ky-cta__form .ky-form-feedback,
+.ky-platform__form .ky-form-feedback {
+  flex: 0 0 100%;
+  margin-top: 0;
 }
 
 .ky-form-feedback--success {
