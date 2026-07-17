@@ -33,7 +33,13 @@
             {% else %}
               <h3 class="ky-blog__card-heading">{{ post.headline }}</h3>
             {% endif %}
-            <p class="ky-blog__card-text">{{ post.blog_post.content | strip_html }}</p>
+            {% assign ky_card_content = post.blog_post.content %}
+            {% if ky_card_content contains '<div class="sticker">' %}
+              {% assign ky_cb = ky_card_content | split: '<div class="sticker">' | first %}
+              {% assign ky_ca = ky_card_content | split: '<div class="sticker">' | last | split: '</div>' | slice: 1, 99 | join: '</div>' %}
+              {% assign ky_card_content = ky_cb | append: ky_ca %}
+            {% endif %}
+            <p class="ky-blog__card-text">{{ ky_card_content | strip_html }}</p>
             <div class="ky-blog__card-footer">
               {% unless ky_post_idx == 1 %}
                 <span class="ky-blog__card-date">{{ post.published_at | date: "%B %-d, %Y" }}</span>

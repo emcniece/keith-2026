@@ -32,8 +32,10 @@
         {% assign ky_sticker_inner = ky_content | split: '<div class="sticker">' | last | split: '</div>' | first %}
         {% assign ky_sticker_num = ky_sticker_inner | split: 'class="sticker-num">' | last | split: '</span>' | first %}
         {% assign ky_sticker_text = ky_sticker_inner | split: 'class="sticker-text">' | last | split: '</span>' | first %}
-        {% assign ky_full_sticker = '<div class="sticker">' | append: ky_sticker_inner | append: '</div>' %}
-        {% assign ky_text_content = ky_content | remove: ky_full_sticker %}
+        {% assign ky_before = ky_content | split: '<div class="sticker">' | first %}
+        {% assign ky_after_raw = ky_content | split: '<div class="sticker">' | last %}
+        {% assign ky_after_rest = ky_after_raw | split: '</div>' | slice: 1, 99 | join: '</div>' %}
+        {% assign ky_text_content = ky_before | append: ky_after_rest %}
       {% endif %}
 
       {% if ky_count == 1 %}

@@ -72,9 +72,9 @@
       {% if page.blog_post.content.size > 0 %}
         {% assign ky_banner_content = page.blog_post.content %}
         {% if ky_banner_content contains '<div class="sticker">' %}
-          {% assign ky_s_inner = ky_banner_content | split: '<div class="sticker">' | last | split: '</div>' | first %}
-          {% assign ky_s_full = '<div class="sticker">' | append: ky_s_inner | append: '</div>' %}
-          {% assign ky_banner_content = ky_banner_content | remove: ky_s_full %}
+          {% assign ky_sb = ky_banner_content | split: '<div class="sticker">' | first %}
+          {% assign ky_sa = ky_banner_content | split: '<div class="sticker">' | last | split: '</div>' | slice: 1, 99 | join: '</div>' %}
+          {% assign ky_banner_content = ky_sb | append: ky_sa %}
         {% endif %}
         <div class="ky-page-banner__intro">{{ ky_banner_content | strip_html }}</div>
       {% endif %}
