@@ -1339,9 +1339,18 @@ $ky-hero-cream: #e8e3d4;
   /* ── Inner page nav ── */
   .ky-inner-nav__inner {
     padding: 0 16px;
+    position: relative; // anchor for absolute hamburger
   }
   .ky-inner-nav__nav {
     display: none;
+  }
+  .ky-inner-nav--open .ky-hamburger {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    margin-left: 0;
+    z-index: 101;
   }
   .ky-inner-nav--open {
     .ky-inner-nav__nav {
@@ -1397,6 +1406,14 @@ $ky-hero-cream: #e8e3d4;
     padding: 0.75rem 1rem;
     flex-wrap: wrap;
     gap: 0.75rem;
+    position: relative; // anchor for absolute hamburger
+  }
+  .ky-nav--open .ky-hamburger {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    margin-left: 0;
+    z-index: 101;
   }
 
   .ky-nav__links {
