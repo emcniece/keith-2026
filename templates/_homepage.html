@@ -264,31 +264,27 @@
       <div class="ky-blog__content">
         <div class="ky-blog__row">
           {% assign ky_featured_count = 0 %}
-          {% comment %}Pass 1: featured-tagged non-media posts{% endcomment %}
+          {% comment %}Pass 1: featured-tagged posts under /blog{% endcomment %}
           {% for post in site.most_recent_blog_post_pages %}
-            {% if ky_featured_count < 2 and post.parent.slug != 'media' %}
+            {% if ky_featured_count < 2 and post.parent.slug == 'blog' %}
               {% assign ky_is_featured = false %}
-              {% assign ky_is_achievement = false %}
               {% for ptag in post.tags %}
                 {% if ptag.name == 'featured' %}{% assign ky_is_featured = true %}{% endif %}
-                {% if ptag.name == 'achievement' %}{% assign ky_is_achievement = true %}{% endif %}
               {% endfor %}
-              {% if ky_is_featured and ky_is_achievement == false %}
+              {% if ky_is_featured %}
                 {% include "ky_blog_posts" with post %}
                 {% assign ky_featured_count = ky_featured_count | plus: 1 %}
               {% endif %}
             {% endif %}
           {% endfor %}
-          {% comment %}Pass 2: fill remaining slots with recent non-media non-achievement posts{% endcomment %}
+          {% comment %}Pass 2: fill remaining slots with recent posts under /blog{% endcomment %}
           {% for post in site.most_recent_blog_post_pages %}
-            {% if ky_featured_count < 2 and post.parent.slug != 'media' %}
+            {% if ky_featured_count < 2 and post.parent.slug == 'blog' %}
               {% assign ky_is_featured = false %}
-              {% assign ky_is_achievement = false %}
               {% for ptag in post.tags %}
                 {% if ptag.name == 'featured' %}{% assign ky_is_featured = true %}{% endif %}
-                {% if ptag.name == 'achievement' %}{% assign ky_is_achievement = true %}{% endif %}
               {% endfor %}
-              {% unless ky_is_featured or ky_is_achievement %}
+              {% unless ky_is_featured %}
                 {% include "ky_blog_posts" with post %}
                 {% assign ky_featured_count = ky_featured_count | plus: 1 %}
               {% endunless %}
