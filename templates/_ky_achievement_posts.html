@@ -1,117 +1,113 @@
 {% assign ky_count = 0 %}
 
-{% for ky_order in (1..4) %}
-  {% assign ky_order_tag = 'order-' | append: ky_order %}
+{% for post in site.most_recent_blog_post_pages %}
+  {% if ky_count >= 4 %}{% break %}{% endif %}
 
-  {% for post in site.most_recent_blog_post_pages %}
-    {% assign ky_is_achievement = false %}
-    {% assign ky_has_order = false %}
+  {% assign ky_is_achievement = false %}
+  {% for ptag in post.tags %}
+    {% if ptag.name == 'achievement' %}{% assign ky_is_achievement = true %}{% endif %}
+  {% endfor %}
+
+  {% if ky_is_achievement %}
+    {% assign ky_count = ky_count | plus: 1 %}
+
+    {% assign ky_category_tag = nil %}
     {% for ptag in post.tags %}
-      {% if ptag.name == 'achievement' %}{% assign ky_is_achievement = true %}{% endif %}
-      {% if ptag.name == ky_order_tag %}{% assign ky_has_order = true %}{% endif %}
+      {% unless ptag.name == 'achievement' or ptag.name contains 'order-' %}
+        {% if ky_category_tag == nil %}{% assign ky_category_tag = ptag.name %}{% endif %}
+      {% endunless %}
     {% endfor %}
 
-    {% if ky_is_achievement and ky_has_order and ky_count < ky_order %}
-      {% assign ky_count = ky_count | plus: 1 %}
-
-      {% assign ky_category_tag = nil %}
-      {% for ptag in post.tags %}
-        {% unless ptag.name == 'achievement' or ptag.name contains 'order-' %}
-          {% if ky_category_tag == nil %}{% assign ky_category_tag = ptag.name %}{% endif %}
-        {% endunless %}
-      {% endfor %}
-
-      {% assign ky_content = post.blog_post.content %}
-      {% assign ky_text_content = ky_content %}
-      {% assign ky_sticker_num = '' %}
-      {% if ky_content contains '<div class="sticker">' %}
-        {% assign ky_sticker_inner = ky_content | split: '<div class="sticker">' | last | split: '</div>' | first %}
-        {% assign ky_sticker_num = ky_sticker_inner | split: 'class="sticker-num">' | last | split: '</span>' | first %}
-        {% assign ky_sticker_text = ky_sticker_inner | split: 'class="sticker-text">' | last | split: '</span>' | first %}
-        {% assign ky_before = ky_content | split: '<div class="sticker">' | first %}
-        {% assign ky_after_rest = ky_content | split: '<div class="sticker">' | last | split: '</div>' | slice: 1, 99 | join: '</div>' %}
-        {% assign ky_text_content = ky_before | append: ky_after_rest %}
-      {% endif %}
-
-      {% case ky_order %}
-        {% when 1 %}{% assign ky_section_href = '/progress#responsible-development' %}
-        {% when 2 %}{% assign ky_section_href = '/progress#fiscal-accountability' %}
-        {% when 3 %}{% assign ky_section_href = '/progress#transparency-engagement' %}
-        {% when 4 %}{% assign ky_section_href = '/progress#green-space' %}
-        {% else %}{% assign ky_section_href = '/progress' %}
-      {% endcase %}
-
-      {% if ky_count == 1 %}
-      <article class="ky-progress__card ky-progress__card--hero">
-        <div class="ky-progress__card-img">
-          {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-          {% else %}<img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
-          {% if ky_sticker_num != '' %}
-            <div class="ky-progress__sticker">
-              <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
-              <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
-            </div>
-          {% endif %}
-        </div>
-        <div class="ky-progress__card-body">
-          {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
-          <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
-          <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
-          <div class="ky-progress__card-footer">
-            <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </article>
-      <div class="ky-progress__grid">
-
-      {% elsif ky_count == 2 %}
-      <article class="ky-progress__card ky-progress__card--feature">
-        <div class="ky-progress__card-img">
-          {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-          {% else %}<img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
-          {% if ky_sticker_num != '' %}
-            <div class="ky-progress__sticker">
-              <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
-              <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
-            </div>
-          {% endif %}
-        </div>
-        <div class="ky-progress__card-body">
-          {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
-          <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
-          <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
-          <div class="ky-progress__card-footer">
-            <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </article>
-      <div class="ky-progress__stack">
-
-      {% elsif ky_count <= 4 %}
-      <article class="ky-progress__card ky-progress__card--side">
-        <div class="ky-progress__card-img">
-          {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-          {% else %}<img src="{{ theme['keith-placeholder.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
-          {% if ky_sticker_num != '' %}
-            <div class="ky-progress__sticker">
-              <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
-              <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
-            </div>
-          {% endif %}
-        </div>
-        <div class="ky-progress__card-body">
-          {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
-          <h3 class="ky-progress__card-heading">{{ post.headline }}</h3>
-          <p class="ky-progress__card-text">{{ ky_text_content | strip_html | truncatewords: 30 }}</p>
-          <div class="ky-progress__card-footer">
-            <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </article>
-      {% endif %}
-
+    {% assign ky_content = post.blog_post.content %}
+    {% assign ky_text_content = ky_content %}
+    {% assign ky_sticker_num = '' %}
+    {% if ky_content contains '<div class="sticker">' %}
+      {% assign ky_sticker_inner = ky_content | split: '<div class="sticker">' | last | split: '</div>' | first %}
+      {% assign ky_sticker_num = ky_sticker_inner | split: 'class="sticker-num">' | last | split: '</span>' | first %}
+      {% assign ky_sticker_text = ky_sticker_inner | split: 'class="sticker-text">' | last | split: '</span>' | first %}
+      {% assign ky_before = ky_content | split: '<div class="sticker">' | first %}
+      {% assign ky_after_rest = ky_content | split: '<div class="sticker">' | last | split: '</div>' | slice: 1, 99 | join: '</div>' %}
+      {% assign ky_text_content = ky_before | append: ky_after_rest %}
     {% endif %}
-  {% endfor %}
+
+    {% case ky_count %}
+      {% when 1 %}{% assign ky_section_href = '/progress#responsible-development' %}
+      {% when 2 %}{% assign ky_section_href = '/progress#fiscal-accountability' %}
+      {% when 3 %}{% assign ky_section_href = '/progress#transparency-engagement' %}
+      {% when 4 %}{% assign ky_section_href = '/progress#green-space' %}
+      {% else %}{% assign ky_section_href = '/progress' %}
+    {% endcase %}
+
+    {% if ky_count == 1 %}
+    <article class="ky-progress__card ky-progress__card--hero">
+      <div class="ky-progress__card-img">
+        {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+        {% else %}<img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
+        {% if ky_sticker_num != '' %}
+          <div class="ky-progress__sticker">
+            <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
+            <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+      <div class="ky-progress__card-body">
+        {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
+        <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
+        <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
+        <div class="ky-progress__card-footer">
+          <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </article>
+    <div class="ky-progress__grid">
+
+    {% elsif ky_count == 2 %}
+    <article class="ky-progress__card ky-progress__card--feature">
+      <div class="ky-progress__card-img">
+        {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+        {% else %}<img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
+        {% if ky_sticker_num != '' %}
+          <div class="ky-progress__sticker">
+            <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
+            <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+      <div class="ky-progress__card-body">
+        {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
+        <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
+        <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
+        <div class="ky-progress__card-footer">
+          <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </article>
+    <div class="ky-progress__stack">
+
+    {% elsif ky_count <= 4 %}
+    <article class="ky-progress__card ky-progress__card--side">
+      <div class="ky-progress__card-img">
+        {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
+        {% else %}<img src="{{ theme['keith-placeholder.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
+        {% if ky_sticker_num != '' %}
+          <div class="ky-progress__sticker">
+            <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
+            <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+      <div class="ky-progress__card-body">
+        {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
+        <h3 class="ky-progress__card-heading">{{ post.headline }}</h3>
+        <p class="ky-progress__card-text">{{ ky_text_content | strip_html | truncatewords: 30 }}</p>
+        <div class="ky-progress__card-footer">
+          <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </article>
+    {% endif %}
+
+  {% endif %}
 {% endfor %}
 
 {% if ky_count >= 2 %}</div>{% endif %}
