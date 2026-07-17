@@ -42,7 +42,7 @@
   }
 
   function initCounters() {
-    var els = document.querySelectorAll('.ky-progress-card__stat');
+    var els = document.querySelectorAll('.ky-progress-card__stat, .ky-stats__num');
     if (!els.length) return;
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

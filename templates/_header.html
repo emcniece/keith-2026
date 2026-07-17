@@ -8,7 +8,11 @@
     </a>
 
     {% unless splash %}
-      <nav class="ky-inner-nav__nav" aria-label="Main navigation">
+      <button class="ky-hamburger" aria-expanded="false" aria-label="Open menu" aria-controls="ky-inner-nav-panel">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav class="ky-inner-nav__nav" id="ky-inner-nav-panel" aria-label="Main navigation">
         <ul class="ky-inner-nav__links">
           {% for child in site.root_nav_pages %}
             {% unless site.has_donation_page? and child.id == site.donation_page.id %}
