@@ -1930,11 +1930,16 @@ $ky-hero-cream: #e8e3d4;
   .ky-about-bio__inner {
     padding: 3rem 1.5rem;
     gap: 2rem;
+	  flex-direction: column;
   }
 
   .ky-about-bio__right {
     flex: 0 0 280px;
+	  flex-direction: row;
   }
+  .ky-about-bio__photo {
+	  width: 50%;
+	}
 }
 
 /* ── PROGRESS / ACHIEVEMENTS SECTION ──────────────────────────────── */
