@@ -5,19 +5,21 @@
 
     <!-- Nav bar -->
     <nav class="ky-nav" aria-label="Main navigation">
-      <ul class="ky-nav__links">
-        {% for child in site.root_nav_pages %}
-          {% unless site.has_donation_page? and child.id == site.donation_page.id %}
-            <li><a href="{{ child.url }}" class="ky-nav__link">{{ child.name }}</a></li>
-          {% endunless %}
-        {% endfor %}
-      </ul>
-      {% include "ky_social_icons" %}
-      {% if site.has_donation_page? %}
-        <a href="{{ site.donation_page.url }}" class="ky-btn ky-btn--donate">Donate</a>
-      {% else %}
-        <a href="/donate" class="ky-btn ky-btn--donate">Donate</a>
-      {% endif %}
+      <div class="ky-nav__panel">
+        <ul class="ky-nav__links">
+          {% for child in site.root_nav_pages %}
+            {% unless site.has_donation_page? and child.id == site.donation_page.id %}
+              <li><a href="{{ child.url }}" class="ky-nav__link">{{ child.name }}</a></li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+        {% include "ky_social_icons" %}
+        {% if site.has_donation_page? %}
+          <a href="{{ site.donation_page.url }}" class="ky-btn ky-btn--donate">Donate</a>
+        {% else %}
+          <a href="/donate" class="ky-btn ky-btn--donate">Donate</a>
+        {% endif %}
+      </div>
       <button class="ky-hamburger" aria-expanded="false" aria-label="Open menu">
         <i class="fa-solid fa-bars" aria-hidden="true"></i>
       </button>

@@ -1404,34 +1404,30 @@ $ky-hero-cream: #e8e3d4;
   /* ── Homepage hero nav ── */
   .ky-nav {
     padding: 0.75rem 1rem;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    position: relative; // anchor for absolute hamburger
+    position: relative;
   }
-  .ky-nav--open .ky-hamburger {
-    position: absolute;
-    top: 0.75rem;
-    right: 1rem;
-    margin-left: 0;
-    z-index: 101;
-  }
-
-  .ky-nav__links {
-    display: none; /* replaced by mobile menu */
-  }
-  .ky-nav .ky-social-icons,
-  .ky-nav .ky-btn--donate {
+  .ky-nav__panel {
     display: none;
   }
   .ky-nav--open {
-    .ky-nav__links {
+    .ky-nav__panel {
       display: flex;
       flex-direction: column;
       align-items: stretch;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      z-index: 100;
+      background-color: $ky-xdark-primary;
+      padding: 4px 24px 24px;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+    .ky-nav__links {
+      display: flex;
+      flex-direction: column;
       gap: 0;
       width: 100%;
-      order: 10;
-      padding-top: 4px;
     }
     .ky-nav__links li {
       border-bottom: 1px solid rgba(232, 227, 212, 0.12);
@@ -1444,7 +1440,6 @@ $ky-hero-cream: #e8e3d4;
     .ky-social-icons {
       display: flex;
       justify-content: center;
-      order: 11;
       padding: 16px 0 8px;
       width: 100%;
     }
@@ -1454,7 +1449,13 @@ $ky-hero-cream: #e8e3d4;
       margin-top: 4px;
       margin-left: 0;
       width: 100%;
-      order: 12;
+    }
+    .ky-hamburger {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      margin-left: 0;
+      z-index: 101;
     }
   }
 
