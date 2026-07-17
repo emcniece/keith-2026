@@ -975,6 +975,13 @@ $ky-hero-cream: #e8e3d4;
   z-index: 10;
 }
 
+.ky-nav__panel {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
 .ky-nav__links {
   display: flex;
   gap: 2rem;
