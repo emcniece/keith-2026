@@ -1,14 +1,21 @@
+{% comment %}
+  Pass 1: find any achievement post to get a reference to the achievements blog page.
+  post.parent is the blog page; .blog.most_recent_blog_posts returns ALL its posts.
+  This sidesteps the ~10-post cap on site.most_recent_blog_post_pages.
+{% endcomment %}
+{% assign ky_achievement_blog = nil %}
+{% for post in site.most_recent_blog_post_pages %}
+  {% if post.parent.slug == 'achievements' %}
+    {% assign ky_achievement_blog = post.parent %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
 {% assign ky_count = 0 %}
+{% if ky_achievement_blog %}
+  {% for post in ky_achievement_blog.blog.most_recent_blog_posts %}
+    {% if ky_count >= 4 %}{% break %}{% endif %}
 
-{% for post in site.most_recent_blog_post_pages limit:50 %}
-  {% if ky_count >= 4 %}{% break %}{% endif %}
-
-  {% assign ky_is_achievement = false %}
-  {% for ptag in post.tags %}
-    {% if ptag.name == 'achievement' %}{% assign ky_is_achievement = true %}{% endif %}
-  {% endfor %}
-
-  {% if ky_is_achievement %}
     {% assign ky_count = ky_count | plus: 1 %}
 
     {% assign ky_category_tag = nil %}
@@ -107,8 +114,8 @@
     </article>
     {% endif %}
 
-  {% endif %}
-{% endfor %}
+  {% endfor %}
+{% endif %}
 
 {% if ky_count >= 2 %}</div>{% endif %}
 {% if ky_count >= 1 %}</div>{% endif %}
