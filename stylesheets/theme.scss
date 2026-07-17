@@ -4979,7 +4979,7 @@ $ky-progress-radius: 20px;
 // ── Donation amount buttons ───────────────────────────────────────────────
 
 .donation-v2-amounts .custom-control-label {
-  background-color: #e8e3d4;
+  background-color: #1bd49a;
   border-color: transparent;
   border-radius: 9999px !important;
   color: #001720;
@@ -4996,9 +4996,9 @@ $ky-progress-radius: 20px;
 }
 
 .donation-v2-amounts .custom-control-input:checked ~ .custom-control-label {
-  background-color: #1bd49a;
+  background-color: #001720;
   border-color: transparent;
-  color: #001720;
+  color: #fffbef;
   box-shadow: none;
 }
 
