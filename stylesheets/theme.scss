@@ -4625,10 +4625,6 @@ $ky-progress-radius: 20px;
     flex: 1;
     flex-direction: column;
   }
-	.feedback_form .form-row, .donation_form .form-row, .volunteer_signup_form .form-row {
-		flex-direction: column;
-		gap: 0;
-	}
 }
 
 // ── NationBuilder form styles (feedback_form + donation_form) ────────────────
