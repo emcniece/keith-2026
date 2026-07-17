@@ -3,7 +3,7 @@
 {% capture form %}
   {% if page.donation_v2.has_amount_goal? %}
     <div class="mb-4">
-      <p class="mb-3 h5 text-sans-serif font-weight-semi-bold">{{ t_donation_amount_raised_so_far | replace: "$amount", page.donations_amount_format | replace: "$goal", page.donation_v2.amount_goal_format }}</p>
+      <p class="mb-3 h5 font-weight-semi-bold">{{ t_donation_amount_raised_so_far | replace: "$amount", page.donations_amount_format | replace: "$goal", page.donation_v2.amount_goal_format }}</p>
       {% include "progress"
         percent: page.donation_v2.percent_of_amount_goal,
         amount: page.donations_amount_format,
@@ -12,7 +12,7 @@
     </div>
   {% elsif page.donation_v2.has_donor_goal? %}
     <div class="mb-4">
-      <p class="mb-3 h5 text-sans-serif font-weight-semi-bold">{{ t_donation_donors_so_far | replace: "$amount", page.donations_count | replace: "$goal", page.donation_v2.donor_goal }}</p>
+      <p class="mb-3 h5 font-weight-semi-bold">{{ t_donation_donors_so_far | replace: "$amount", page.donations_count | replace: "$goal", page.donation_v2.donor_goal }}</p>
       {% include "progress"
         percent: page.donation_v2.percent_of_donor_goal,
         count: page.donations_count,
@@ -105,7 +105,7 @@
       {% endif %}
 
       <fieldset class="mt-4">
-        <legend class="mb-3 h6 font-weight-semi-bold text-sans-serif">{{ t_forms_pay_with }}</legend>
+        <legend class="mb-3 h6 font-weight-semi-bold">{{ t_forms_pay_with }}</legend>
 
         <div data-payment-disclaimer>
           <p id="cc-disclaimer">{{ t_forms_please_select_or_enter_amount }}</p>
@@ -123,7 +123,7 @@
       </fieldset>
 
       <fieldset class="mt-4">
-        <legend class="mb-3 h6 font-weight-semi-bold text-sans-serif">{{ t_forms_your_information }}</legend>
+        <legend class="mb-3 h6 font-weight-semi-bold">{{ t_forms_your_information }}</legend>
         <div id="demographics-info">
           <div class="form-row">
             <div class="form-group col-md-6">
