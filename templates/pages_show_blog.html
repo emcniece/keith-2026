@@ -64,3 +64,36 @@
 
 {% include "post_form" %}
 {% include "signin_modal" %}
+
+{% if page.slug == 'achievements' %}
+<div id="ky-achievements-data" hidden>
+  {% for post in page.blog.most_recent_blog_posts %}
+    {% assign _d_content = post.blog_post.content %}
+    {% assign _d_excerpt = _d_content %}
+    {% assign _d_snum = '' %}
+    {% assign _d_stext = '' %}
+    {% if _d_content contains '<div class="sticker">' %}
+      {% assign _d_sinner = _d_content | split: '<div class="sticker">' | last | split: '</div>' | first %}
+      {% assign _d_snum = _d_sinner | split: 'class="sticker-num">' | last | split: '</span>' | first %}
+      {% assign _d_stext = _d_sinner | split: 'class="sticker-text">' | last | split: '</span>' | first %}
+      {% assign _d_before = _d_content | split: '<div class="sticker">' | first %}
+      {% assign _d_after = _d_content | split: '<div class="sticker">' | last | split: '</div>' | slice: 1, 99 | join: '</div>' %}
+      {% assign _d_excerpt = _d_before | append: _d_after %}
+    {% endif %}
+    {% assign _d_tag = nil %}
+    {% for ptag in post.tags %}
+      {% unless ptag.name == 'achievement' or ptag.name contains 'order-' or ptag.name == 'featured' %}
+        {% if _d_tag == nil %}{% assign _d_tag = ptag.name %}{% endif %}
+      {% endunless %}
+    {% endfor %}
+    <div
+      data-headline="{{ post.headline | escape }}"
+      data-image="{% if post.has_meta_image? %}{{ post.meta_image_url }}{% endif %}"
+      data-sticker-num="{{ _d_snum | strip | escape }}"
+      data-sticker-text="{{ _d_stext | strip | escape }}"
+      data-tag="{% if _d_tag %}{{ _d_tag | escape }}{% endif %}"
+      data-excerpt="{{ _d_excerpt | strip_html | truncatewords: 55 | escape }}"
+    ></div>
+  {% endfor %}
+</div>
+{% endif %}

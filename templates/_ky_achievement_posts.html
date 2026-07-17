@@ -1,121 +1,88 @@
-{% comment %}
-  Pass 1: find any achievement post to get a reference to the achievements blog page.
-  post.parent is the blog page; .blog.most_recent_blog_posts returns ALL its posts.
-  This sidesteps the ~10-post cap on site.most_recent_blog_post_pages.
-{% endcomment %}
-{% assign ky_achievement_blog = nil %}
-{% for post in site.most_recent_blog_post_pages %}
-  {% if post.parent.slug == 'achievements' %}
-    {% assign ky_achievement_blog = post.parent %}
-    {% break %}
-  {% endif %}
-{% endfor %}
+<div id="ky-achievement-placeholder"></div>
+<script>
+(function () {
+  var placeholder = document.getElementById('ky-achievement-placeholder');
+  if (!placeholder) return;
 
-{% assign ky_count = 0 %}
-{% if ky_achievement_blog %}
-  {% for post in ky_achievement_blog.blog.most_recent_blog_posts %}
-    {% if ky_count >= 4 %}{% break %}{% endif %}
+  var hrefs = [
+    '/progress#responsible-development',
+    '/progress#fiscal-accountability',
+    '/progress#transparency-engagement',
+    '/progress#green-space'
+  ];
+  var defaultImg = "{{ theme['keith-progress-bg.jpg'] }}";
+  var sideImg    = "{{ theme['keith-placeholder.jpg'] }}";
 
-    {% assign ky_count = ky_count | plus: 1 %}
+  function esc(s)  { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function attr(s) { return String(s||'').replace(/"/g,'&quot;'); }
+  function trunc(s, n) {
+    var w = String(s||'').trim().split(/\s+/);
+    return w.length <= n ? w.join(' ') : w.slice(0, n).join(' ') + '…';
+  }
 
-    {% assign ky_category_tag = nil %}
-    {% for ptag in post.tags %}
-      {% unless ptag.name == 'achievement' or ptag.name contains 'order-' %}
-        {% if ky_category_tag == nil %}{% assign ky_category_tag = ptag.name %}{% endif %}
-      {% endunless %}
-    {% endfor %}
+  function sticker(num, txt) {
+    if (!num) return '';
+    return '<div class="ky-progress__sticker">' +
+      '<span class="ky-progress__sticker-num">' + esc(num) + '</span>' +
+      '<span class="ky-progress__sticker-label">' + esc(txt) + '</span>' +
+      '</div>';
+  }
 
-    {% assign ky_content = post.blog_post.content %}
-    {% assign ky_text_content = ky_content %}
-    {% assign ky_sticker_num = '' %}
-    {% if ky_content contains '<div class="sticker">' %}
-      {% assign ky_sticker_inner = ky_content | split: '<div class="sticker">' | last | split: '</div>' | first %}
-      {% assign ky_sticker_num = ky_sticker_inner | split: 'class="sticker-num">' | last | split: '</span>' | first %}
-      {% assign ky_sticker_text = ky_sticker_inner | split: 'class="sticker-text">' | last | split: '</span>' | first %}
-      {% assign ky_before = ky_content | split: '<div class="sticker">' | first %}
-      {% assign ky_after_rest = ky_content | split: '<div class="sticker">' | last | split: '</div>' | slice: 1, 99 | join: '</div>' %}
-      {% assign ky_text_content = ky_before | append: ky_after_rest %}
-    {% endif %}
+  function buildCard(d, i) {
+    var href  = hrefs[i] || '/progress';
+    var img   = d.image || (i >= 2 ? sideImg : defaultImg);
+    var stick = sticker(d.stickerNum, d.stickerText);
+    var tag   = d.tag ? '<span class="ky-progress__tag">' + esc(d.tag) + '</span>' : '';
+    var btn   = '<div class="ky-progress__card-footer">' +
+      '<a href="' + href + '" class="ky-btn ky-btn--primary">See how ' +
+      '<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></div>';
+    var imgEl = '<div class="ky-progress__card-img">' +
+      '<img src="' + attr(img) + '" alt="' + attr(d.headline) + '" />' + stick + '</div>';
 
-    {% case ky_count %}
-      {% when 1 %}{% assign ky_section_href = '/progress#responsible-development' %}
-      {% when 2 %}{% assign ky_section_href = '/progress#fiscal-accountability' %}
-      {% when 3 %}{% assign ky_section_href = '/progress#transparency-engagement' %}
-      {% when 4 %}{% assign ky_section_href = '/progress#green-space' %}
-      {% else %}{% assign ky_section_href = '/progress' %}
-    {% endcase %}
+    if (i === 0) {
+      return '<article class="ky-progress__card ky-progress__card--hero">' + imgEl +
+        '<div class="ky-progress__card-body">' + tag +
+        '<h3 class="ky-progress__card-heading ky-progress__card-heading--lg">' + esc(d.headline) + '</h3>' +
+        '<p class="ky-progress__card-text ky-progress__card-text--lg">' + esc(trunc(d.excerpt, 50)) + '</p>' +
+        btn + '</div></article><div class="ky-progress__grid">';
+    }
+    if (i === 1) {
+      return '<article class="ky-progress__card ky-progress__card--feature">' + imgEl +
+        '<div class="ky-progress__card-body">' + tag +
+        '<h3 class="ky-progress__card-heading ky-progress__card-heading--lg">' + esc(d.headline) + '</h3>' +
+        '<p class="ky-progress__card-text ky-progress__card-text--lg">' + esc(trunc(d.excerpt, 50)) + '</p>' +
+        btn + '</div></article><div class="ky-progress__stack">';
+    }
+    return '<article class="ky-progress__card ky-progress__card--side">' + imgEl +
+      '<div class="ky-progress__card-body">' + tag +
+      '<h3 class="ky-progress__card-heading">' + esc(d.headline) + '</h3>' +
+      '<p class="ky-progress__card-text">' + esc(trunc(d.excerpt, 30)) + '</p>' +
+      btn + '</div></article>';
+  }
 
-    {% if ky_count == 1 %}
-    <article class="ky-progress__card ky-progress__card--hero">
-      <div class="ky-progress__card-img">
-        {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-        {% else %}<img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
-        {% if ky_sticker_num != '' %}
-          <div class="ky-progress__sticker">
-            <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
-            <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
-          </div>
-        {% endif %}
-      </div>
-      <div class="ky-progress__card-body">
-        {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
-        <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
-        <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
-        <div class="ky-progress__card-footer">
-          <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-        </div>
-      </div>
-    </article>
-    <div class="ky-progress__grid">
+  fetch('/achievements')
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var els = Array.from(doc.querySelectorAll('#ky-achievements-data > div')).slice(0, 4);
+      if (!els.length) return;
 
-    {% elsif ky_count == 2 %}
-    <article class="ky-progress__card ky-progress__card--feature">
-      <div class="ky-progress__card-img">
-        {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-        {% else %}<img src="{{ theme['keith-progress-bg.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
-        {% if ky_sticker_num != '' %}
-          <div class="ky-progress__sticker">
-            <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
-            <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
-          </div>
-        {% endif %}
-      </div>
-      <div class="ky-progress__card-body">
-        {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
-        <h3 class="ky-progress__card-heading ky-progress__card-heading--lg">{{ post.headline }}</h3>
-        <p class="ky-progress__card-text ky-progress__card-text--lg">{{ ky_text_content | strip_html | truncatewords: 50 }}</p>
-        <div class="ky-progress__card-footer">
-          <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-        </div>
-      </div>
-    </article>
-    <div class="ky-progress__stack">
+      var out = els.map(function (el, i) {
+        return buildCard({
+          headline:    el.dataset.headline    || '',
+          image:       el.dataset.image       || '',
+          stickerNum:  el.dataset.stickerNum  || '',
+          stickerText: el.dataset.stickerText || '',
+          tag:         el.dataset.tag         || '',
+          excerpt:     el.dataset.excerpt     || ''
+        }, i);
+      }).join('');
 
-    {% elsif ky_count <= 4 %}
-    <article class="ky-progress__card ky-progress__card--side">
-      <div class="ky-progress__card-img">
-        {% if post.has_meta_image? %}<img src="{{ post.meta_image_url }}" alt="{{ post.headline }}" />
-        {% else %}<img src="{{ theme['keith-placeholder.jpg'] }}" alt="{{ post.headline }}" />{% endif %}
-        {% if ky_sticker_num != '' %}
-          <div class="ky-progress__sticker">
-            <span class="ky-progress__sticker-num">{{ ky_sticker_num }}</span>
-            <span class="ky-progress__sticker-label">{{ ky_sticker_text }}</span>
-          </div>
-        {% endif %}
-      </div>
-      <div class="ky-progress__card-body">
-        {% if ky_category_tag %}<span class="ky-progress__tag">{{ ky_category_tag }}</span>{% endif %}
-        <h3 class="ky-progress__card-heading">{{ post.headline }}</h3>
-        <p class="ky-progress__card-text">{{ ky_text_content | strip_html | truncatewords: 30 }}</p>
-        <div class="ky-progress__card-footer">
-          <a href="{{ ky_section_href }}" class="ky-btn ky-btn--primary">See how <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-        </div>
-      </div>
-    </article>
-    {% endif %}
+      if (els.length >= 2) out += '</div>'; // close .ky-progress__stack
+      if (els.length >= 1) out += '</div>'; // close .ky-progress__grid
 
-  {% endfor %}
-{% endif %}
-
-{% if ky_count >= 2 %}</div>{% endif %}
-{% if ky_count >= 1 %}</div>{% endif %}
+      placeholder.outerHTML = out;
+    })
+    .catch(function () {});
+})();
+</script>
