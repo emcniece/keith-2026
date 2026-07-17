@@ -2,7 +2,6 @@
 
 {% for ky_order in (1..4) %}
   {% assign ky_order_tag = 'order-' | append: ky_order %}
-  {% assign ky_expected = ky_order | minus: 1 %}
 
   {% for post in site.most_recent_blog_post_pages %}
     {% assign ky_is_achievement = false %}
@@ -12,8 +11,8 @@
       {% if ptag.name == ky_order_tag %}{% assign ky_has_order = true %}{% endif %}
     {% endfor %}
 
-    {% if ky_is_achievement and ky_has_order and ky_count == ky_expected %}
-      {% assign ky_count = ky_order %}
+    {% if ky_is_achievement and ky_has_order and ky_count < ky_order %}
+      {% assign ky_count = ky_count | plus: 1 %}
 
       {% assign ky_category_tag = nil %}
       {% for ptag in post.tags %}
