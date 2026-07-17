@@ -1133,6 +1133,9 @@ $ky-hero-cream: #e8e3d4;
   position: relative;
   z-index: 2;
 }
+.page .page-inner, .event-page-content .page-inner {
+	padding: 0;
+}
 
 // Blog post banner additions
 .ky-page-banner__tags {
