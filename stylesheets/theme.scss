@@ -1421,6 +1421,7 @@ $ky-hero-cream: #e8e3d4;
     display: none;
   }
   .ky-nav--open {
+    background-color: $ky-xdark-primary;
     .ky-nav__panel {
       display: flex;
       flex-direction: column;
