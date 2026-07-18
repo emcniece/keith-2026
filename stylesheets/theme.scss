@@ -4786,6 +4786,7 @@ textarea[aria-invalid="true"] {
   gap: 48px;
   align-items: center;
   transform: translateY(-50%);
+  scroll-margin-top: 16px;
 }
 
 .ky-progress-anchors__link {
