@@ -2,7 +2,7 @@
   function initMobileNav(containerSel, openClass, panelSel) {
     var container = document.querySelector(containerSel);
     if (!container) return;
-    var btn = container.querySelector('.ky-hamburger');
+    var btn = container.querySelector('.ky-hamburger:not(.ky-nav-close)');
     if (!btn) return;
     var panel = panelSel ? container.querySelector(panelSel) : null;
 
