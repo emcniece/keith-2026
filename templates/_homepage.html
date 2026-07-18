@@ -1,12 +1,4 @@
-{% comment %}Find the signup form page ID so AJAX forms can POST to /forms/signups{% endcomment %}
-{% assign ky_signup_page_id = nil %}
-{% for _p in site.root_nav_pages %}
-  {% if ky_signup_page_id == nil %}
-    {% if _p.slug == 'signup_form' or _p.slug == 'signup-form' or _p.slug == 'join' or _p.type_slug == 'signup' %}
-      {% assign ky_signup_page_id = _p.id %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
+{% assign ky_signup_page_id = 105 %}
 
 <div class="ky-homepage">
 
