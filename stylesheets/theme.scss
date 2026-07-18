@@ -961,13 +961,6 @@ $ky-hero-cream: #e8e3d4;
   background-color: $ky-xdark-primary;
   overflow: visible;
   clip-path: inset(0);
-
-  // JS adds this class while the mobile nav panel is open so clip-path
-  // doesn't visually clip the fixed-position dropdown (clip-path clips
-  // fixed descendants even though they're positioned outside the element).
-  &.ky-clip-suspended {
-    clip-path: none;
-  }
 }
 
 /* Nav */
@@ -1348,6 +1341,12 @@ $ky-hero-cream: #e8e3d4;
 
 /* Mobile */
 @media (max-width: 767px) {
+
+  /* clip-path clips fixed descendants too — disable on mobile where the
+     portrait overflow it guards against isn't rendered anyway */
+  .ky-hero {
+    clip-path: none;
+  }
 
   /* Hamburger visible */
   .ky-hamburger {
