@@ -1348,6 +1348,12 @@ $ky-hero-cream: #e8e3d4;
     clip-path: none;
   }
 
+  /* When nav is open, raise .ky-hero above .ky-cta (z-index:4) so the fixed
+     panel (which stacks inside .ky-hero's context) isn't painted beneath it */
+  .ky-hero:has(.ky-nav--open) {
+    z-index: 5;
+  }
+
   /* Hamburger visible */
   .ky-hamburger {
     display: inline-flex;
