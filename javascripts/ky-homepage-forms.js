@@ -87,6 +87,7 @@
       var csrf    = getCsrf(form);
       var pageId  = (form.querySelector('[name="page_id"]') || {}).value || '';
       var action  = form.getAttribute('action') || '/forms/signups';
+      if (!pageId) console.warn('[ky-forms] page_id is empty — check Liquid ky_signup_page_id lookup');
       var data    = new FormData();
       data.append('authenticity_token',    csrf);
       data.append('page_id',               pageId);

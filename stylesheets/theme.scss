@@ -961,6 +961,13 @@ $ky-hero-cream: #e8e3d4;
   background-color: $ky-xdark-primary;
   overflow: visible;
   clip-path: inset(0);
+
+  // JS adds this class while the mobile nav panel is open so clip-path
+  // doesn't visually clip the fixed-position dropdown (clip-path clips
+  // fixed descendants even though they're positioned outside the element).
+  &.ky-clip-suspended {
+    clip-path: none;
+  }
 }
 
 /* Nav */
@@ -1376,6 +1383,8 @@ $ky-hero-cream: #e8e3d4;
       padding: 4px 24px 24px;
       border-radius: 0 0 20px 20px;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      max-height: calc(100vh - 64px);
+      overflow-y: auto;
     }
     .ky-inner-nav__links {
       flex-direction: column;
@@ -1447,6 +1456,8 @@ $ky-hero-cream: #e8e3d4;
       padding: 4px 24px 24px;
       border-radius: 0 0 20px 20px;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      max-height: calc(100vh - 64px);
+      overflow-y: auto;
     }
     .ky-nav__links {
       display: flex;
