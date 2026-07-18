@@ -985,6 +985,20 @@ $ky-hero-cream: #e8e3d4;
   display: none;
 }
 
+/* Inline donate button shown on mobile/tablet next to hamburger; hidden on desktop */
+.ky-nav-donate {
+  display: none;
+}
+@media (max-width: 1279px) {
+  .ky-nav-donate {
+    display: inline-flex;
+  }
+  .ky-nav--open .ky-nav-donate,
+  .ky-inner-nav--open .ky-nav-donate {
+    display: none;
+  }
+}
+
 .ky-nav__links {
   display: flex;
   gap: 2rem;
@@ -1361,6 +1375,7 @@ $ky-hero-cream: #e8e3d4;
   .ky-hamburger {
     display: inline-flex;
   }
+
 
   /* ── Inner page nav ── */
   .ky-inner-nav__inner {
