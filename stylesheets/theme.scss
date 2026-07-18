@@ -3676,8 +3676,11 @@ $ky-progress-radius: 20px;
 /* Mobile */
 @media (max-width: 767px) {
   .ky-blog {
-    padding: 3rem 2rem;
+    padding: 3rem 1rem;
   }
+	.ky-blog--listing {
+		padding: 0;
+	}
 	.ky-blog__inner {
 		padding: 0;
 	}
