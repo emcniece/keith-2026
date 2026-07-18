@@ -27,6 +27,11 @@
       if (open) positionPanel();
     });
 
+    if (panel) {
+      var closeBtn = panel.querySelector('.ky-nav-close');
+      if (closeBtn) closeBtn.addEventListener('click', close);
+    }
+
     document.addEventListener('click', function (e) {
       if (container.classList.contains(openClass) && !container.contains(e.target)) {
         close();

@@ -981,6 +981,10 @@ $ky-hero-cream: #e8e3d4;
   gap: 1.5rem;
   flex: 1;
 }
+.ky-nav__panel-header,
+.ky-nav-close {
+  display: none;
+}
 
 .ky-nav__links {
   display: flex;
@@ -1437,6 +1441,32 @@ $ky-hero-cream: #e8e3d4;
     width: 100%;
     margin-top: 4px;
     margin-left: 0;
+  }
+
+  /* Close button header inside both panels — sticky so it's always reachable */
+  .ky-nav__panel-header {
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: $ky-xdark-primary;
+    padding: 10px 0 6px;
+    margin-bottom: 4px;
+  }
+  .ky-nav-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    border-radius: 6px;
+    &:hover { background: rgba(255,255,255,0.1); }
   }
 
   /* ── Homepage hero nav ── */

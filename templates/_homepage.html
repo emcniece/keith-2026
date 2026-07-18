@@ -8,6 +8,11 @@
     <!-- Nav bar -->
     <nav class="ky-nav" aria-label="Main navigation">
       <div class="ky-nav__panel">
+        <div class="ky-nav__panel-header">
+          <button class="ky-nav-close" aria-label="Close menu">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
         <ul class="ky-nav__links">
           {% for child in site.root_nav_pages %}
             {% unless site.has_donation_page? and child.id == site.donation_page.id %}
