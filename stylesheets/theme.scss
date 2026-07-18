@@ -981,8 +981,7 @@ $ky-hero-cream: #e8e3d4;
   gap: 1.5rem;
   flex: 1;
 }
-.ky-nav__panel-header,
-.ky-nav-close {
+.ky-nav__panel-header {
   display: none;
 }
 
@@ -1449,21 +1448,6 @@ $ky-hero-cream: #e8e3d4;
     padding: 10px 0 6px;
     margin-bottom: 4px;
   }
-  .ky-nav-close {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 1.25rem;
-    cursor: pointer;
-    border-radius: 6px;
-    &:hover { background: rgba(255,255,255,0.1); }
-  }
-
   /* ── Homepage hero nav ── */
   .ky-nav {
     padding: 0.75rem 1rem;
