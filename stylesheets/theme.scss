@@ -4093,6 +4093,8 @@ $ky-progress-radius: 20px;
   .ky-media__carousel {
     padding: 24px;
     gap: 16px;
+	  flex-direction: column;
+        align-items: center;
   }
 
   .ky-media__posts {
