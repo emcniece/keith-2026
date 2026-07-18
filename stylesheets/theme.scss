@@ -1372,12 +1372,7 @@ $ky-hero-cream: #e8e3d4;
     display: none;
   }
   .ky-inner-nav--open .ky-hamburger {
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-    margin-left: 0;
-    z-index: 101;
+    display: none;
   }
   .ky-inner-nav--open {
     .ky-inner-nav__nav {
@@ -1479,6 +1474,9 @@ $ky-hero-cream: #e8e3d4;
   }
   .ky-nav--open {
     background-color: $ky-xdark-primary;
+    > .ky-hamburger {
+      display: none;
+    }
     .ky-nav__panel {
       display: flex;
       flex-direction: column;
