@@ -837,64 +837,6 @@
     </div>
   </div>
 
-    <!-- ── PLATFORM SECTION ───────────────────────────────────────── -->
-  <section class="ky-platform">
-
-    <!-- Top block: cream bg, rounded top-left, 3 icon features -->
-    <div class="ky-platform__top">
-      <div class="ky-platform__intro">
-        <p class="ky-platform__kicker">PLATFORM</p>
-        <h2 class="ky-platform__heading">The plan ahead</h2>
-        <p class="ky-platform__body">We've laid a strong foundation, but there is still much to do. These are the key areas where I am committed to working alongside you to build the kind of city we all deserve.</p>
-      </div>
-      <div class="ky-platform__features">
-        <div class="ky-platform__feature">
-          <div class="ky-platform__feature-icon" aria-hidden="true">
-            <img src="{{ theme['platform-icon-growth.svg'] }}" alt="" />
-          </div>
-          <h3 class="ky-platform__feature-heading">Growth with purpose</h3>
-          <p class="ky-platform__feature-body">Focusing on the "Who, and who benefits?" of every development.</p>
-        </div>
-        <div class="ky-platform__feature">
-          <div class="ky-platform__feature-icon" aria-hidden="true">
-            <img src="{{ theme['platform-icon-taxes.svg'] }}" alt="" />
-          </div>
-          <h3 class="ky-platform__feature-heading">Lower taxes, more stability</h3>
-          <p class="ky-platform__feature-body">Moving toward a more equitable tax system that lowers the burden for the majority of residents by eliminating outdated subsidies.</p>
-        </div>
-        <div class="ky-platform__feature">
-          <div class="ky-platform__feature-icon" aria-hidden="true">
-            <img src="{{ theme['platform-icon-downtown.svg'] }}" alt="" />
-          </div>
-          <h3 class="ky-platform__feature-heading">A vibrant downtown</h3>
-          <p class="ky-platform__feature-body">Investing in Station Avenue and community events to ensure Langford is a destination for culture and commerce, not just a bedroom community.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom block: green bg, rounded bottom-left, signup form -->
-    <div class="ky-platform__bottom">
-      <h3 class="ky-platform__soon">Full platform coming soon...</h3>
-      <div class="ky-platform__signup-row">
-        <p class="ky-platform__signup-text">I'll let you know when my full platform is released, so you can make an informed decision at the ballot box</p>
-        <form class="ky-platform__form" method="post" action="/forms/signups" data-ajax-signup novalidate>
-          <input type="hidden" name="authenticity_token" value="{{ authenticity_token }}" />
-          <input type="hidden" name="page_id" value="{{ ky_signup_page_id }}" />
-          <div class="form-control-material">
-            <label for="platform-name" class="floating-label">Name</label>
-            <input type="text" id="platform-name" name="signup[first_name]" class="ky-platform__input form-group__field ky-ajax-name" autocomplete="name" required aria-required="true" />
-          </div>
-          <div class="form-control-material">
-            <label for="platform-email" class="floating-label">Email</label>
-            <input type="email" id="platform-email" name="signup[email]" class="ky-platform__input form-group__field ky-ajax-email" required aria-required="true" autocomplete="email" />
-          </div>
-          <button type="submit" class="ky-platform__submit">Stay Informed</button>
-          <p class="ky-form-feedback ky-form-feedback--success" hidden>Thanks! We'll let you know when the full platform is released.</p>
-          <p class="ky-form-feedback ky-form-feedback--error" hidden></p>
-        </form>
-      </div>
-    </div>
-
-  </section>
+  {% include "ky_platform" %}
 
 </div><!-- /.ky-progress-page -->
