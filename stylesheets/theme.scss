@@ -5470,7 +5470,7 @@ textarea[aria-invalid="true"] {
   padding-top: 24px;
   font-family: 'Sora', sans-serif;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: rgba(0, 23, 32, 0.8);
 
   p { margin: 0 0 16px; }
@@ -5487,7 +5487,9 @@ textarea[aria-invalid="true"] {
   .ky-platform-page {
     padding: 48px 16px;
   }
-
+	.ky-platform-accordion__toggle {
+		flex-direction: column;
+	}
   .ky-platform-story__media img {
     height: 260px;
   }
@@ -5513,7 +5515,7 @@ textarea[aria-invalid="true"] {
   }
 
   .ky-platform-accordion__panel {
-    padding: 0 16px 24px 60px;
+    padding: 0 16px 24px;
   }
 
   .ky-platform-accordion__heading {
