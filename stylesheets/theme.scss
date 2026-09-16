@@ -2973,6 +2973,7 @@ $ky-progress-radius: 20px;
 
 .ky-donate {
   background-color: #003144;
+  padding-top: 64px;
 }
 
 /* Dark pill: rounded top corners, sits over teal outer */
@@ -5134,6 +5135,9 @@ textarea[aria-invalid="true"] {
 }
 
 .ky-platform-play {
+  // Hidden for now until video is wired up — re-enable by removing this rule.
+  display: none;
+
   position: absolute;
   bottom: 24px;
   left: 24px;
@@ -5144,7 +5148,6 @@ textarea[aria-invalid="true"] {
   background-color: $ky-secondary; // #1bd49a
   color: $ky-xdark-primary;
   font-size: 1.75rem;
-  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -5166,8 +5169,9 @@ textarea[aria-invalid="true"] {
 
   img {
     width: 100%;
-    height: 480px;
+    height: 760px;
     object-fit: cover;
+    object-position: top;
     display: block;
   }
 }
