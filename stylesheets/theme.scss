@@ -5418,6 +5418,32 @@ textarea[aria-invalid="true"] {
   }
 }
 
+.ky-platform-accordion__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  li {
+    padding-left: 20px;
+    border-left: 2px solid rgba(0, 23, 32, 0.15);
+  }
+
+  > li > a:first-child {
+    display: inline-block;
+    font-weight: 700;
+    color: $ky-dark-secondary; // #01734f
+    text-decoration: underline;
+    margin-bottom: 4px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
 /* Fold each pillar's media under its copy before things get crunchy, ahead of
    the full page-layout collapse below. */
 @media (max-width: 1279px) {
