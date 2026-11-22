@@ -2,8 +2,8 @@
 
 Campaign website for Keith Yacucha, Langford City Council (BC municipal election, October 17, 2026).
 
-- GitHub Pages: https://emcniece.github.io/keith-2026/
-- Domain: https://www.keithyacucha.ca (not yet pointed at GitHub Pages)
+- GitHub Pages: https://keithyacucha.github.io/keith-2026/
+- Domain: https://www.keithyacucha.ca
 
 ## The site
 
